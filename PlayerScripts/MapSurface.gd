@@ -21,6 +21,9 @@ extends ItemBase
 @export var RedFlag: Node3D
 @export var BlueFlag: Node3D
 @export var GreenFlag: Node3D
+@export var RedFlagMarker: Node3D
+@export var BlueFlagMarker: Node3D
+@export var GreenFlagMarker: Node3D
 @export var Scale: Node3D
 @export var Player: PlayerController
 
@@ -125,7 +128,7 @@ func _unhandled_input(event: InputEvent):
 					ToolModelParent.add_child(currentToolModel)
 			if currentToolModel:
 				currentToolModel.global_position = result.position
-			if isPainting:
+			if isPainting and [MarkerCliff,MarkerWater,Eraser].has(currentToolModel):
 				var localPoint = TargetMesh.to_local(result.position)
 				var imagePoint = Vector2(localPoint.x, localPoint.y)
 				imagePoint += Vector2(0.5, 0.5)
@@ -152,6 +155,14 @@ func _unhandled_input(event: InputEvent):
 				map.Draw(imagePoint, drawSize, color, true)
 				
 				lastPosition = imagePoint
+			elif isPainting:
+				match(currentToolModel):
+					RedFlag:
+						RedFlagMarker.position=  currentToolModel.position
+					BlueFlag:
+						BlueFlagMarker.position=  currentToolModel.position
+					GreenFlag:
+						GreenFlagMarker.position=  currentToolModel.position
 		else:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 			if currentToolModel:

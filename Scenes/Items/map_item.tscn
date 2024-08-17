@@ -55,7 +55,7 @@ albedo_color = Color(0.11536, 0.48, 0.0672, 1)
 albedo_texture = ExtResource("6_dx62p")
 texture_filter = 0
 
-[node name="MapItem" type="Node3D" node_paths=PackedStringArray("TargetMesh", "Collider", "WaterToolButton", "CliffToolButton", "EraserToolButton", "RedFlagButton", "BlueFlagButton", "GreenFlagButton", "ToolParent", "FlagParent", "ToolModelParent", "MarkerCliff", "MarkerWater", "Eraser", "RedFlag", "BlueFlag", "GreenFlag", "Scale")]
+[node name="MapItem" type="Node3D" node_paths=PackedStringArray("TargetMesh", "Collider", "WaterToolButton", "CliffToolButton", "EraserToolButton", "RedFlagButton", "BlueFlagButton", "GreenFlagButton", "ToolParent", "FlagParent", "ToolModelParent", "MarkerCliff", "MarkerWater", "Eraser", "RedFlag", "BlueFlag", "GreenFlag", "RedFlagMarker", "BlueFlagMarker", "GreenFlagMarker", "Scale")]
 transform = Transform3D(1, 0, 0, 0, 0.82806, 0.560639, 0, -0.560639, 0.82806, 0, -0.139, -1.067)
 script = ExtResource("1_bm0m2")
 TargetMesh = NodePath("Map")
@@ -76,6 +76,9 @@ Eraser = NodePath("Node3D/Eraser")
 RedFlag = NodePath("Node3D/RedFlag")
 BlueFlag = NodePath("Node3D/BlueFlag")
 GreenFlag = NodePath("Node3D/GreenFlag")
+RedFlagMarker = NodePath("MapFlags/RedFlagMarker")
+BlueFlagMarker = NodePath("MapFlags/BlueFlagMarker")
+GreenFlagMarker = NodePath("MapFlags/GreenFlagMarker")
 Scale = NodePath("Scale")
 
 [node name="Scale" type="MeshInstance3D" parent="."]
@@ -266,28 +269,28 @@ skeleton = NodePath("../../../FlagPalette/RedFlagButton")
 
 [node name="MapFlags" type="Node3D" parent="."]
 
-[node name="RedFlag" type="Node3D" parent="MapFlags"]
-transform = Transform3D(1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, 0, 0, 0)
+[node name="RedFlagMarker" type="Node3D" parent="MapFlags"]
+transform = Transform3D(1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, -256, 0, 0)
 
-[node name="RedFlag" type="MeshInstance3D" parent="MapFlags/RedFlag"]
+[node name="RedFlag" type="MeshInstance3D" parent="MapFlags/RedFlagMarker"]
 transform = Transform3D(0.141394, 0, 0, 0, 0.133406, -2.23517e-08, 0, 0, 0.248819, 0, 0, 0.05)
 material_override = SubResource("StandardMaterial3D_s50oa")
 mesh = SubResource("QuadMesh_hr3vy")
 skeleton = NodePath("../../../FlagPalette/RedFlagButton")
 
-[node name="BlueFlag" type="Node3D" parent="MapFlags"]
-transform = Transform3D(1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, 0, 0, 0)
+[node name="BlueFlagMarker" type="Node3D" parent="MapFlags"]
+transform = Transform3D(1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, -256, 0, 0)
 
-[node name="BlueFlag" type="MeshInstance3D" parent="MapFlags/BlueFlag"]
+[node name="BlueFlag" type="MeshInstance3D" parent="MapFlags/BlueFlagMarker"]
 transform = Transform3D(0.141394, 0, 0, 0, 0.133406, -2.23517e-08, 0, 0, 0.248819, 0, 0, 0.05)
 material_override = SubResource("StandardMaterial3D_2ltoa")
 mesh = SubResource("QuadMesh_hr3vy")
 skeleton = NodePath("../../../FlagPalette/RedFlagButton")
 
-[node name="GreenFlag" type="Node3D" parent="MapFlags"]
-transform = Transform3D(1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, 0, 0, 0)
+[node name="GreenFlagMarker" type="Node3D" parent="MapFlags"]
+transform = Transform3D(1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, -256, 0, 0)
 
-[node name="GreenFlag" type="MeshInstance3D" parent="MapFlags/GreenFlag"]
+[node name="GreenFlag" type="MeshInstance3D" parent="MapFlags/GreenFlagMarker"]
 transform = Transform3D(0.141394, 0, 0, 0, 0.133406, -2.23517e-08, 0, 0, 0.248819, 0, 0, 0.05)
 material_override = SubResource("StandardMaterial3D_bmttq")
 mesh = SubResource("QuadMesh_hr3vy")
