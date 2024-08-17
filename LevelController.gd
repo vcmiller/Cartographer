@@ -26,6 +26,7 @@ func _birth_player():
 func _on_player_begin_trial(image: Image) -> void:
 	player.queue_free()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	player_canvas.hide()
 	playback_canvas.activate()
 	
 	MapGridHandler.ParseImage(image)

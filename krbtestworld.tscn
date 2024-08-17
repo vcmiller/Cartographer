@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dmc1dnnyc71t3"]
+[gd_scene load_steps=19 format=3 uid="uid://dmc1dnnyc71t3"]
 
 [ext_resource type="Script" path="res://LevelController.gd" id="1_ggm0a"]
 [ext_resource type="Texture2D" uid="uid://cblyipbdlfhs5" path="res://icon.svg" id="2_5cd64"]
@@ -7,8 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://c56yvex4g3pif" path="res://Scenes/player.tscn" id="4_3l74u"]
 [ext_resource type="Script" path="res://navigator_detector.gd" id="5_4uk23"]
 [ext_resource type="Script" path="res://navigator_spawn.gd" id="5_vwqx6"]
-[ext_resource type="Script" path="res://playback_canvas.gd" id="8_oorxp"]
-[ext_resource type="Script" path="res://player_canvas.gd" id="8_v0oxe"]
+[ext_resource type="PackedScene" uid="uid://b60f5c5tiin0e" path="res://Scenes/player_canvas.tscn" id="6_4o3jr"]
+[ext_resource type="PackedScene" uid="uid://svaiv3vkg55a" path="res://Scenes/playback_canvas.tscn" id="7_7hif6"]
 
 [sub_resource type="Resource" id="Resource_3evtv"]
 script = ExtResource("3_d6gpy")
@@ -19,9 +19,6 @@ Height = 128
 albedo_color = Color(0.116667, 1, 0, 1)
 emission_enabled = true
 emission = Color(0.645, 0.86, 0.659333, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qwa8h"]
-bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f5q3e"]
 albedo_texture = ExtResource("2_5cd64")
@@ -64,81 +61,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 106.722, 0, 111.801)
 [node name="Sphere" type="CSGSphere3D" parent="Target"]
 material = SubResource("StandardMaterial3D_136qs")
 
-[node name="PlayerCanvas" type="CanvasLayer" parent="."]
-script = ExtResource("8_v0oxe")
+[node name="PlayerCanvas" parent="." instance=ExtResource("6_4o3jr")]
 
-[node name="ItemSelect" type="HBoxContainer" parent="PlayerCanvas"]
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -132.0
-grow_horizontal = 2
-grow_vertical = 0
-alignment = 1
-
-[node name="MapContainer" type="PanelContainer" parent="PlayerCanvas/ItemSelect"]
-custom_minimum_size = Vector2(132, 132)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_qwa8h")
-
-[node name="TextureRect" type="TextureRect" parent="PlayerCanvas/ItemSelect/MapContainer"]
-layout_mode = 2
-texture = ExtResource("2_5cd64")
-
-[node name="CompassContainer" type="PanelContainer" parent="PlayerCanvas/ItemSelect"]
-custom_minimum_size = Vector2(132, 132)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_qwa8h")
-
-[node name="TextureRect" type="TextureRect" parent="PlayerCanvas/ItemSelect/CompassContainer"]
-layout_mode = 2
-texture = ExtResource("2_5cd64")
-
-[node name="StepCountContainer" type="PanelContainer" parent="PlayerCanvas/ItemSelect"]
-custom_minimum_size = Vector2(132, 132)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_qwa8h")
-
-[node name="TextureRect" type="TextureRect" parent="PlayerCanvas/ItemSelect/StepCountContainer"]
-layout_mode = 2
-texture = ExtResource("2_5cd64")
-
-[node name="PanelContainer4" type="PanelContainer" parent="PlayerCanvas/ItemSelect"]
-custom_minimum_size = Vector2(132, 132)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_qwa8h")
-
-[node name="TextureRect" type="TextureRect" parent="PlayerCanvas/ItemSelect/PanelContainer4"]
-layout_mode = 2
-texture = ExtResource("2_5cd64")
-
-[node name="PlaybackCanvas" type="CanvasLayer" parent="."]
-visible = false
-script = ExtResource("8_oorxp")
-
-[node name="FuckLabel" type="Label" parent="PlaybackCanvas"]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 256
-text = "FUCK"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="PlaybackCanvas"]
-unique_name_in_owner = true
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="PlaybackCanvas" parent="." instance=ExtResource("7_7hif6")]
 
 [node name="SpectatorCamera" type="Camera3D" parent="."]
 transform = Transform3D(0.999998, 0.00159038, -0.000953869, 0, 0.514354, 0.857578, 0.0018545, -0.857576, 0.514353, 70.329, 80.318, 141.749)
@@ -182,7 +107,8 @@ shape = SubResource("BoxShape3D_mb4a5")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_rehpt")
 
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 4.15258e-06, 95, 0)
+
 [connection signal="body_entered" from="NavigatorDetector" to="NavigatorDetector" method="_on_body_entered"]
-[connection signal="navigator_detected" from="NavigatorDetector" to="PlaybackCanvas/FuckLabel" method="show"]
 [connection signal="body_entered" from="NavigatorDetector2" to="NavigatorDetector2" method="_on_body_entered"]
-[connection signal="navigator_detected" from="NavigatorDetector2" to="PlaybackCanvas/FuckLabel" method="show"]

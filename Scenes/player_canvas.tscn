@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://b60f5c5tiin0e"]
+
+[ext_resource type="Script" path="res://player_canvas.gd" id="1_h22vk"]
+[ext_resource type="Texture2D" uid="uid://cblyipbdlfhs5" path="res://icon.svg" id="2_yx018"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qwa8h"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="PlayerCanvas" type="CanvasLayer"]
+script = ExtResource("1_h22vk")
+
+[node name="ItemSelect" type="HBoxContainer" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -132.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="MapContainer" type="PanelContainer" parent="ItemSelect"]
+custom_minimum_size = Vector2(132, 132)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qwa8h")
+
+[node name="TextureRect" type="TextureRect" parent="ItemSelect/MapContainer"]
+layout_mode = 2
+texture = ExtResource("2_yx018")
+
+[node name="CompassContainer" type="PanelContainer" parent="ItemSelect"]
+custom_minimum_size = Vector2(132, 132)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qwa8h")
+
+[node name="TextureRect" type="TextureRect" parent="ItemSelect/CompassContainer"]
+layout_mode = 2
+texture = ExtResource("2_yx018")
+
+[node name="StepCountContainer" type="PanelContainer" parent="ItemSelect"]
+custom_minimum_size = Vector2(132, 132)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qwa8h")
+
+[node name="TextureRect" type="TextureRect" parent="ItemSelect/StepCountContainer"]
+layout_mode = 2
+texture = ExtResource("2_yx018")
+
+[node name="PanelContainer4" type="PanelContainer" parent="ItemSelect"]
+custom_minimum_size = Vector2(132, 132)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qwa8h")
+
+[node name="TextureRect" type="TextureRect" parent="ItemSelect/PanelContainer4"]
+layout_mode = 2
+texture = ExtResource("2_yx018")
