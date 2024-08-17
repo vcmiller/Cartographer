@@ -22,7 +22,7 @@ func _ready() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
-		if Input.mouse_mode != Input.MOUSE_MODE_VISIBLE:
+		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 			var delta = event.relative * MouseSensitivity * -PI / 180
 			eulerAngles.x = clamp(eulerAngles.x + delta.y, -LookLimit * PI / 180, LookLimit * PI / 180)
 			eulerAngles.y += delta.x
@@ -32,10 +32,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		lastMousePos = event.position
 	
 
-func _process(delta: float) -> void:
+func _process(delta: float) -> void: 
 	if Input.is_action_just_pressed("ui_accept"): 
 		begin_trial.emit(Map.image)
-	if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
+	if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE: 
 		var size = get_viewport().size
 		
 		var bound = MouseBoundWhenNotCaptured * size.y

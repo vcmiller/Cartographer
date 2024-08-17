@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://b5o0gu7ahor2g"]
+
+[ext_resource type="Texture2D" uid="uid://bvdyt6jhg42oc" path="res://Textures/ButtonWater.png" id="1_owihp"]
+
+[resource]
+transparency = 1
+albedo_texture = ExtResource("1_owihp")
+texture_filter = 0

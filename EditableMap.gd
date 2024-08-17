@@ -4,6 +4,7 @@ class_name EditableMap
 @export var Width: int
 @export var Height: int
 @export var BGColor: Color
+@export var OutlineSize: int
 
 var image: Image
 var texture: ImageTexture
@@ -12,13 +13,7 @@ func CreateImage():
 	image = Image.create(Width, Height, false, Image.FORMAT_RGBA8)
 	image.fill(BGColor)
 	
-	print("Image size: ", image.get_width(), ", ", image.get_height())
-	
 	texture = ImageTexture.create_from_image(image)
-	if texture.get_width() == 0 or texture.get_height() == 0:
-		print("Failed to create texture")
-	else:
-		print("Created texture")
 		
 func Draw(position: Vector2, size: int, color: Color, update: bool):
 	var x = roundi(position.x)
