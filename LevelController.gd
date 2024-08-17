@@ -1,4 +1,5 @@
 extends Node3D
+class_name LevelController
 
 @onready var spectator_camera: Camera3D = $SpectatorCamera
 @onready var playback_canvas: PlaybackCanvas = $PlaybackCanvas
@@ -6,6 +7,8 @@ extends Node3D
 
 @export var navigator_spawn_points: Array[NavigatorSpawn]
 @export var player: PlayerController
+
+static var savedMap: EditableMap
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -15,10 +18,18 @@ func _birth_player():
 	if player.get_parent() != self:
 		player.get_parent().remove_child(player)
 		add_child(player)
+		
+	if savedMap and savedMap.Width == player.Map.Width and savedMap.Height == player.Map.Height:
+		player.Map = savedMap
+		savedMap = null
+		
 	player.position = navigator_spawn_points[0].position
 	player.player_canvas = player_canvas
 	player.CameraNode.make_current()
 	player.connect("begin_trial",_on_player_begin_trial)
+	
+func SaveMap():
+	savedMap = player.Map
 
 func _on_player_begin_trial(image: Image) -> void:
 	remove_child(player)

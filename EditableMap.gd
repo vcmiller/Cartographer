@@ -7,7 +7,10 @@ class_name EditableMap
 var image: Image
 var texture: ImageTexture
 
-func CreateImage():
+func CreateImageIfNecessary():
+	if image:
+		return
+	
 	image = Image.create(Width, Height, false, Image.FORMAT_RGBA8)
 	image.fill(Color.BLACK)
 	

@@ -1,4 +1,5 @@
 extends ItemBase
+class_name MapItem
 
 @export var TargetMesh: MeshInstance3D
 @export var Camera: Camera3D
@@ -28,8 +29,9 @@ var map: EditableMap
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	await get_tree().process_frame
+	
 	map = Player.Map
-	map.CreateImage()
+	map.CreateImageIfNecessary()
 	
 	var aspect = map.Width / float(map.Height)
 	TargetMesh.scale = Vector3(aspect, 1, 1)
