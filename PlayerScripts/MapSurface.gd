@@ -1,4 +1,4 @@
-extends Node3D
+extends ItemBase
 
 @export var TargetMesh: MeshInstance3D
 @export var Map: EditableMap
@@ -19,6 +19,11 @@ func _ready() -> void:
 	material.albedo_texture = Map.texture
 	TargetMesh.set_surface_override_material(0, material)
 
+func _enter_tree() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	
+func _exit_tree() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -26,19 +31,18 @@ func _process(delta: float) -> void:
 	
 func _unhandled_input(event: InputEvent):
 	var pressedThisFrame = false
-	if event is InputEventMouseButton:
-		if event.is_pressed():
-			isPainting = true
-			pressedThisFrame = true
+	if event.is_action_pressed("draw"):
+		isPainting = true
+		pressedThisFrame = true
 			
-		elif event.is_released():
-			isPainting = false
+	if event.is_action_released("draw"):
+		isPainting = false
 			
 	if event is InputEventMouse and isPainting:
 		var mouseEvent: InputEventMouse = event
 		var origin = Camera.project_ray_origin(mouseEvent.position)
 		var direction = Camera.project_ray_normal(mouseEvent.position)
-		var query = PhysicsRayQueryParameters3D.create(origin, origin + direction * 500)
+		var query = PhysicsRayQueryParameters3D.create(origin, origin + direction * 500, 1 << 15)
 		var spaceRid = get_world_3d().space
 		var spaceState = PhysicsServer3D.space_get_direct_state(spaceRid)
 		var result = spaceState.intersect_ray(query)

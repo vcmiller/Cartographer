@@ -1,9 +1,15 @@
-[gd_scene load_steps=13 format=3 uid="uid://cegqjo31aarvw"]
+[gd_scene load_steps=14 format=3 uid="uid://cegqjo31aarvw"]
 
-[ext_resource type="Script" path="res://MapSurface.gd" id="1_8jnke"]
+[ext_resource type="Script" path="res://PlayerScripts/MapSurface.gd" id="1_8jnke"]
 [ext_resource type="Script" path="res://EditableMap.gd" id="2_3v0d1"]
-[ext_resource type="Script" path="res://PlayerController.gd" id="3_4clgg"]
+[ext_resource type="Script" path="res://PlayerScripts/PlayerController.gd" id="3_4clgg"]
 [ext_resource type="Texture2D" uid="uid://bk66tx41gvhkm" path="res://coast_sand_rocks_02_diff_4k.jpg" id="4_db4cw"]
+[ext_resource type="Script" path="res://PlayerScripts/ItemManager.gd" id="4_s6usk"]
+
+[sub_resource type="Environment" id="Environment_yanan"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_18swh"]
+radius = 0.4
 
 [sub_resource type="QuadMesh" id="QuadMesh_lr13n"]
 
@@ -15,11 +21,6 @@ BGColor = Color(0.749303, 0.64661, 0.286261, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o22g7"]
 size = Vector3(1, 1, 0.05)
-
-[sub_resource type="Environment" id="Environment_yanan"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_18swh"]
-radius = 0.4
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u3e4m"]
 albedo_texture = ExtResource("4_db4cw")
@@ -34,36 +35,45 @@ size = Vector3(2, 0.1, 2)
 
 [node name="Node3D" type="Node3D"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." node_paths=PackedStringArray("TargetMesh", "Camera", "Collider")]
-mesh = SubResource("QuadMesh_lr13n")
-script = ExtResource("1_8jnke")
-TargetMesh = NodePath(".")
-Map = SubResource("Resource_8lmju")
-Camera = NodePath("../CharacterBody3D/Camera3D")
-Collider = NodePath("StaticBody3D")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.025)
-shape = SubResource("BoxShape3D_o22g7")
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_yanan")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.951718, 0.306975, 0, -0.306975, 0.951718, 0, 0, 0)
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="." node_paths=PackedStringArray("CameraNode")]
+[node name="Player" type="CharacterBody3D" parent="." node_paths=PackedStringArray("CameraNode")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.03934)
 script = ExtResource("3_4clgg")
 CameraNode = NodePath("Camera3D")
+LookSpeedWhenNotCaptured = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
 shape = SubResource("CapsuleShape3D_18swh")
 
-[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
+[node name="Camera3D" type="Camera3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.608218, 0)
+
+[node name="ItemManager" type="Node3D" parent="Player/Camera3D" node_paths=PackedStringArray("Items")]
+script = ExtResource("4_s6usk")
+Items = [NodePath("Map")]
+
+[node name="Map" type="MeshInstance3D" parent="Player/Camera3D/ItemManager" node_paths=PackedStringArray("TargetMesh", "Camera", "Collider")]
+transform = Transform3D(1, 0, 0, 0, 0.82806, 0.560639, 0, -0.560639, 0.82806, 0, -0.139, -1.067)
+mesh = SubResource("QuadMesh_lr13n")
+skeleton = NodePath("../../../..")
+script = ExtResource("1_8jnke")
+TargetMesh = NodePath(".")
+Map = SubResource("Resource_8lmju")
+Camera = NodePath("../..")
+Collider = NodePath("StaticBody3D")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Player/Camera3D/ItemManager/Map"]
+collision_layer = 32768
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/Camera3D/ItemManager/Map/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.025)
+shape = SubResource("BoxShape3D_o22g7")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 transform = Transform3D(7.05, 0, 0, 0, 7.05, 0, 0, 0, 7.05, 0, -1, 0)
