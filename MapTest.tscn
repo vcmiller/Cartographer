@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://cegqjo31aarvw"]
+
+[ext_resource type="Script" path="res://MapSurface.gd" id="1_8jnke"]
+[ext_resource type="Script" path="res://EditableMap.gd" id="2_3v0d1"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_lr13n"]
+
+[sub_resource type="Resource" id="Resource_8lmju"]
+script = ExtResource("2_3v0d1")
+Width = 256
+Height = 256
+BGColor = Color(0.749303, 0.64661, 0.286261, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o22g7"]
+size = Vector3(1, 1, 0.05)
+
+[sub_resource type="Environment" id="Environment_yanan"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." node_paths=PackedStringArray("TargetMesh", "Camera", "Collider")]
+mesh = SubResource("QuadMesh_lr13n")
+script = ExtResource("1_8jnke")
+TargetMesh = NodePath(".")
+Map = SubResource("Resource_8lmju")
+Camera = NodePath("../Camera3D")
+Collider = NodePath("StaticBody3D")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.025)
+shape = SubResource("BoxShape3D_o22g7")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.801793)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_yanan")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.951718, 0.306975, 0, -0.306975, 0.951718, 0, 0, 0)
