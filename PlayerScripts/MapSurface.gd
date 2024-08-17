@@ -13,7 +13,7 @@ extends ItemBase
 @export var ButtonDefaultScale = 0.18
 @export var ButtonPressedScale = 0.25
 
-var material: Material
+var material: ShaderMaterial
 var isPainting: bool
 var lastPosition: Vector2
 var highlightedButton: StaticBody3D
@@ -23,9 +23,9 @@ var currentButton: StaticBody3D
 func _ready() -> void:
 	Map.CreateImage()
 	
-	material = StandardMaterial3D.new()
-	material.albedo_texture = Map.texture
-	TargetMesh.set_surface_override_material(0, material)
+	material = TargetMesh.get_material_override()
+	material.set_shader_parameter("Texture", Map.texture)
+	TargetMesh.set_material_override(material)
 	currentButton = CliffToolButton
 	currentButton.scale = Vector3(ButtonPressedScale, ButtonPressedScale, ButtonPressedScale)
 

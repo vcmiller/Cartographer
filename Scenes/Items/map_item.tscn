@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://67kq4c7qivrh"]
+[gd_scene load_steps=15 format=3 uid="uid://67kq4c7qivrh"]
 
 [ext_resource type="Script" path="res://PlayerScripts/MapSurface.gd" id="1_bm0m2"]
+[ext_resource type="Material" uid="uid://c4u0te7x41n41" path="res://Materials/Map.tres" id="1_lpqoy"]
 [ext_resource type="Script" path="res://EditableMap.gd" id="2_k7h5r"]
 [ext_resource type="Material" uid="uid://cl2nlqr3dqeqo" path="res://Materials/ButtonBG.tres" id="3_wd5aj"]
 [ext_resource type="Material" uid="uid://b5o0gu7ahor2g" path="res://Materials/ButtonWater.tres" id="4_ris4b"]
@@ -14,7 +15,8 @@
 script = ExtResource("2_k7h5r")
 Width = 256
 Height = 256
-BGColor = Color(0.749303, 0.64661, 0.286261, 1)
+BGColor = Color(0, 0, 0, 1)
+OutlineSize = 1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o22g7"]
 size = Vector3(1, 1, 0.05)
@@ -29,6 +31,7 @@ size = Vector3(1, 1, 0.1)
 
 [node name="MapItem" type="MeshInstance3D" node_paths=PackedStringArray("TargetMesh", "Collider", "WaterToolButton", "CliffToolButton", "EraserToolButton")]
 transform = Transform3D(1, 0, 0, 0, 0.82806, 0.560639, 0, -0.560639, 0.82806, 0, -0.139, -1.067)
+material_override = ExtResource("1_lpqoy")
 mesh = SubResource("QuadMesh_lr13n")
 skeleton = NodePath("../../../..")
 script = ExtResource("1_bm0m2")
@@ -36,6 +39,7 @@ TargetMesh = NodePath(".")
 Map = SubResource("Resource_8lmju")
 Collider = NodePath("StaticBody3D")
 DrawSize = 10
+CliffColor = Color(1, 0, 0, 1)
 WaterToolButton = NodePath("ToolPalette/WaterToolButton")
 CliffToolButton = NodePath("ToolPalette/CliffToolButton")
 EraserToolButton = NodePath("ToolPalette/EraserToolButton")
