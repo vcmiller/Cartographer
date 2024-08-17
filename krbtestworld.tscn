@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dmc1dnnyc71t3"]
+[gd_scene load_steps=18 format=3 uid="uid://dmc1dnnyc71t3"]
 
 [ext_resource type="Script" path="res://LevelController.gd" id="1_ggm0a"]
 [ext_resource type="Texture2D" uid="uid://cblyipbdlfhs5" path="res://icon.svg" id="2_5cd64"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c56yvex4g3pif" path="res://Scenes/player.tscn" id="4_3l74u"]
 [ext_resource type="Script" path="res://navigator_detector.gd" id="5_4uk23"]
 [ext_resource type="Resource" uid="uid://dagoq7bq7cpd3" path="res://shared_map_resource.tres" id="5_ubwq8"]
+[ext_resource type="Script" path="res://navigator_spawn.gd" id="5_vwqx6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_136qs"]
 albedo_color = Color(0.116667, 1, 0, 1)
@@ -32,16 +33,19 @@ albedo_color = Color(1, 0.2, 0.2, 0.490196)
 
 [sub_resource type="Environment" id="Environment_rehpt"]
 
-[node name="krbtestworld" type="Node3D"]
+[node name="krbtestworld" type="Node3D" node_paths=PackedStringArray("navigator_spawn_points")]
 script = ExtResource("1_ggm0a")
-navigator = ExtResource("2_ap437")
+navigator_spawn_points = [NodePath("NavigatorSpawn")]
 
 [node name="MapLoader" type="Node" parent="."]
 script = ExtResource("3_eeww0")
 image = ExtResource("2_a6r1f")
 
-[node name="NavigatorSpawn" type="Marker3D" parent="."]
+[node name="NavigatorSpawn" type="Marker3D" parent="." node_paths=PackedStringArray("target")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.7543, 0, 12.2798)
+script = ExtResource("5_vwqx6")
+target = NodePath("../Target")
+navigator_scene = ExtResource("2_ap437")
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="NavigatorSpawn"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.69435, 0)
