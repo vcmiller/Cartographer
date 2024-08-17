@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmc1dnnyc71t3"]
+
+[ext_resource type="Script" path="res://navigator.gd" id="1_xywwr"]
+[ext_resource type="Texture2D" uid="uid://cblyipbdlfhs5" path="res://icon.svg" id="2_5cd64"]
+
+[node name="krbtestworld" type="Node3D"]
+
+[node name="Navigator" type="Node3D" parent="."]
+script = ExtResource("1_xywwr")
+tex = ExtResource("2_5cd64")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Navigator"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="DBTex" type="TextureRect" parent="CanvasLayer"]
+unique_name_in_owner = true
+offset_right = 40.0
+offset_bottom = 40.0
