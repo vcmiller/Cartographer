@@ -1,8 +1,9 @@
-[gd_scene load_steps=21 format=3 uid="uid://67kq4c7qivrh"]
+[gd_scene load_steps=24 format=3 uid="uid://67kq4c7qivrh"]
 
 [ext_resource type="Script" path="res://PlayerScripts/MapSurface.gd" id="1_bm0m2"]
 [ext_resource type="Material" uid="uid://c4u0te7x41n41" path="res://Materials/Map.tres" id="1_lpqoy"]
 [ext_resource type="Script" path="res://EditableMap.gd" id="2_k7h5r"]
+[ext_resource type="Texture2D" uid="uid://de7am7o16yd1x" path="res://Textures/Scale.png" id="3_qs0ip"]
 [ext_resource type="Material" uid="uid://cl2nlqr3dqeqo" path="res://Materials/ButtonBG.tres" id="3_wd5aj"]
 [ext_resource type="Material" uid="uid://b5o0gu7ahor2g" path="res://Materials/ButtonWater.tres" id="4_ris4b"]
 [ext_resource type="Texture2D" uid="uid://bvdyt6jhg42oc" path="res://Textures/ButtonWater.png" id="5_0lwdd"]
@@ -22,6 +23,14 @@ Height = 250
 BGColor = Color(0, 0, 0, 1)
 OutlineSize = 1
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u00ct"]
+transparency = 1
+albedo_texture = ExtResource("3_qs0ip")
+
+[sub_resource type="QuadMesh" id="QuadMesh_kkb6y"]
+size = Vector2(1.333, 1.333)
+center_offset = Vector3(0.505, 0.667, 0)
+
 [sub_resource type="QuadMesh" id="QuadMesh_sjhvp"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o22g7"]
@@ -35,7 +44,7 @@ albedo_texture = ExtResource("5_0lwdd")
 [sub_resource type="BoxShape3D" id="BoxShape3D_kcsa5"]
 size = Vector3(1, 1, 0.1)
 
-[node name="MapItem" type="Node3D" node_paths=PackedStringArray("TargetMesh", "Collider", "WaterToolButton", "CliffToolButton", "EraserToolButton", "ToolParent", "ToolModelParent", "MarkerCliff", "MarkerWater", "Eraser")]
+[node name="MapItem" type="Node3D" node_paths=PackedStringArray("TargetMesh", "Collider", "WaterToolButton", "CliffToolButton", "EraserToolButton", "ToolParent", "ToolModelParent", "MarkerCliff", "MarkerWater", "Eraser", "Scale")]
 transform = Transform3D(1, 0, 0, 0, 0.82806, 0.560639, 0, -0.560639, 0.82806, 0, -0.139, -1.067)
 script = ExtResource("1_bm0m2")
 TargetMesh = NodePath("Map")
@@ -51,6 +60,13 @@ ToolModelParent = NodePath("Node3D")
 MarkerCliff = NodePath("Node3D/MarkerBlack")
 MarkerWater = NodePath("Node3D/MarkerBlue")
 Eraser = NodePath("Node3D/Eraser")
+Scale = NodePath("Scale")
+
+[node name="Scale" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.18, 0, 0, 0, 0.18, -3.72529e-08, 0, 3.72529e-08, 0.18, -0.499038, 0.51, 0)
+material_override = SubResource("StandardMaterial3D_u00ct")
+mesh = SubResource("QuadMesh_kkb6y")
+skeleton = NodePath("../ToolPalette/WaterToolButton")
 
 [node name="Map" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, 0, 0, 0)

@@ -17,6 +17,7 @@ extends ItemBase
 @export var MarkerCliff: Node3D
 @export var MarkerWater: Node3D
 @export var Eraser: Node3D
+@export var Scale: Node3D
 
 var material: ShaderMaterial
 var isPainting: bool
@@ -32,6 +33,11 @@ func _ready() -> void:
 	var aspect = Map.Width / float(Map.Height)
 	TargetMesh.scale = Vector3(aspect, 1, 1)
 	ToolParent.position = Vector3(aspect * -0.5 - 0.138, 0, 0)
+	
+	
+	var scaleWidth = 25.0 / Map.Height
+	Scale.scale = Vector3(scaleWidth, scaleWidth, 1)
+	Scale.position = Vector3(aspect * -0.5, Scale.position.y, 0)
 	
 	material = TargetMesh.get_material_override()
 	material.set_shader_parameter("Texture", Map.texture)
