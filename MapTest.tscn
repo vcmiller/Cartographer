@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cegqjo31aarvw"]
+[gd_scene load_steps=13 format=3 uid="uid://cegqjo31aarvw"]
 
 [ext_resource type="Script" path="res://MapSurface.gd" id="1_8jnke"]
 [ext_resource type="Script" path="res://EditableMap.gd" id="2_3v0d1"]
+[ext_resource type="Script" path="res://PlayerController.gd" id="3_4clgg"]
+[ext_resource type="Texture2D" uid="uid://bk66tx41gvhkm" path="res://coast_sand_rocks_02_diff_4k.jpg" id="4_db4cw"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_lr13n"]
 
@@ -16,6 +18,20 @@ size = Vector3(1, 1, 0.05)
 
 [sub_resource type="Environment" id="Environment_yanan"]
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_18swh"]
+radius = 0.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u3e4m"]
+albedo_texture = ExtResource("4_db4cw")
+metallic_specular = 0.0
+normal_enabled = true
+normal_scale = 16.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_tl1ox"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7wy8w"]
+size = Vector3(2, 0.1, 2)
+
 [node name="Node3D" type="Node3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." node_paths=PackedStringArray("TargetMesh", "Camera", "Collider")]
@@ -23,7 +39,7 @@ mesh = SubResource("QuadMesh_lr13n")
 script = ExtResource("1_8jnke")
 TargetMesh = NodePath(".")
 Map = SubResource("Resource_8lmju")
-Camera = NodePath("../Camera3D")
+Camera = NodePath("../CharacterBody3D/Camera3D")
 Collider = NodePath("StaticBody3D")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
@@ -32,11 +48,30 @@ Collider = NodePath("StaticBody3D")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.025)
 shape = SubResource("BoxShape3D_o22g7")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.801793)
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_yanan")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.951718, 0.306975, 0, -0.306975, 0.951718, 0, 0, 0)
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." node_paths=PackedStringArray("CameraNode")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.03934)
+script = ExtResource("3_4clgg")
+CameraNode = NodePath("Camera3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("CapsuleShape3D_18swh")
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.608218, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(7.05, 0, 0, 0, 7.05, 0, 0, 0, 7.05, 0, -1, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+material_override = SubResource("StandardMaterial3D_u3e4m")
+mesh = SubResource("PlaneMesh_tl1ox")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+shape = SubResource("BoxShape3D_7wy8w")
