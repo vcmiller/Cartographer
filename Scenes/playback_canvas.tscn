@@ -1,10 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://svaiv3vkg55a"]
+[gd_scene load_steps=2 format=3 uid="uid://dkv2gdruwmqqp"]
 
 [ext_resource type="Script" path="res://playback_canvas.gd" id="1_btobm"]
 
-[node name="PlaybackCanvas" type="CanvasLayer"]
-visible = false
+[node name="PlaybackCanvas" type="CanvasLayer" node_paths=PackedStringArray("ViewportsLeft", "ViewportsRight", "ViewportParentTL", "ViewportParentBL", "ViewportParentTR", "ViewportParentBR", "CameraTL", "CameraTR", "CameraBL", "CameraBR")]
 script = ExtResource("1_btobm")
+ViewportsLeft = NodePath("HBoxContainer/Left")
+ViewportsRight = NodePath("HBoxContainer/Right")
+ViewportParentTL = NodePath("HBoxContainer/Left/TL")
+ViewportParentBL = NodePath("HBoxContainer/Left/BL")
+ViewportParentTR = NodePath("HBoxContainer/Right/TR")
+ViewportParentBR = NodePath("HBoxContainer/Right/BR")
+CameraTL = NodePath("HBoxContainer/Left/TL/SubViewport/CameraTL")
+CameraTR = NodePath("HBoxContainer/Right/TR/SubViewport3/CameraTR")
+CameraBL = NodePath("HBoxContainer/Left/BL/SubViewport2/CameraBL")
+CameraBR = NodePath("HBoxContainer/Right/BR/SubViewport4/CameraBR")
 
 [node name="FuckLabel" type="Label" parent="."]
 visible = false
@@ -28,3 +37,67 @@ vertical_alignment = 1
 unique_name_in_owner = true
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Left" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TL" type="SubViewportContainer" parent="HBoxContainer/Left"]
+layout_mode = 2
+size_flags_vertical = 3
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="HBoxContainer/Left/TL"]
+handle_input_locally = false
+size = Vector2i(798, 448)
+render_target_update_mode = 4
+
+[node name="CameraTL" type="Camera3D" parent="HBoxContainer/Left/TL/SubViewport"]
+
+[node name="BL" type="SubViewportContainer" parent="HBoxContainer/Left"]
+layout_mode = 2
+size_flags_vertical = 3
+stretch = true
+
+[node name="SubViewport2" type="SubViewport" parent="HBoxContainer/Left/BL"]
+handle_input_locally = false
+size = Vector2i(798, 448)
+render_target_update_mode = 4
+
+[node name="CameraBL" type="Camera3D" parent="HBoxContainer/Left/BL/SubViewport2"]
+
+[node name="Right" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TR" type="SubViewportContainer" parent="HBoxContainer/Right"]
+layout_mode = 2
+size_flags_vertical = 3
+stretch = true
+
+[node name="SubViewport3" type="SubViewport" parent="HBoxContainer/Right/TR"]
+handle_input_locally = false
+size = Vector2i(798, 448)
+render_target_update_mode = 4
+
+[node name="CameraTR" type="Camera3D" parent="HBoxContainer/Right/TR/SubViewport3"]
+
+[node name="BR" type="SubViewportContainer" parent="HBoxContainer/Right"]
+layout_mode = 2
+size_flags_vertical = 3
+stretch = true
+
+[node name="SubViewport4" type="SubViewport" parent="HBoxContainer/Right/BR"]
+handle_input_locally = false
+size = Vector2i(798, 448)
+render_target_update_mode = 4
+
+[node name="CameraBR" type="Camera3D" parent="HBoxContainer/Right/BR/SubViewport4"]

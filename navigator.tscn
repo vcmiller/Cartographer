@@ -13,11 +13,11 @@ grow_amount = 0.686
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_axs1q"]
 
-[node name="Navigator" type="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1)
+[node name="Navigator" type="CharacterBody3D" node_paths=PackedStringArray("remote")]
 axis_lock_angular_x = true
 axis_lock_angular_z = true
 script = ExtResource("1_dle6y")
+remote = NodePath("Remote")
 
 [node name="CSGSphere3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_f6oiq")
@@ -27,6 +27,9 @@ surface_material_override/0 = SubResource("StandardMaterial3D_43ffk")
 shape = SubResource("CapsuleShape3D_coyju")
 
 [node name="LineDrawer" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1)
 top_level = true
 mesh = SubResource("ImmediateMesh_axs1q")
+
+[node name="Remote" type="RemoteTransform3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.925633, 0.378422, 0, -0.378422, 0.925633, 0, 1.44609, 2.41653)
+update_scale = false

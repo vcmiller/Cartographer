@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://navigator_detector.gd" id="5_4uk23"]
 [ext_resource type="Script" path="res://navigator_spawn.gd" id="5_vwqx6"]
 [ext_resource type="PackedScene" path="res://Scenes/player_canvas.tscn" id="6_4o3jr"]
-[ext_resource type="PackedScene" path="res://Scenes/playback_canvas.tscn" id="7_7hif6"]
+[ext_resource type="PackedScene" uid="uid://dkv2gdruwmqqp" path="res://Scenes/playback_canvas.tscn" id="7_7hif6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_136qs"]
 albedo_color = Color(0.116667, 1, 0, 1)
