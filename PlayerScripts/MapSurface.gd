@@ -5,7 +5,8 @@ extends ItemBase
 @export var Camera: Camera3D
 @export var Collider: CollisionObject3D
 @export var DrawSize: int = 5
-@export var DrawColor: Color = Color.BLACK
+@export var CliffColor: Color = Color.BLACK
+@export var WaterColor: Color = Color.BLUE
 @export var WaterToolButton: StaticBody3D
 @export var CliffToolButton: StaticBody3D
 @export var EraserToolButton: StaticBody3D
@@ -64,27 +65,33 @@ func _unhandled_input(event: InputEvent):
 			return
 			
 		var newHighlightButton = null
-		if result.collider == Collider and isPainting:
+		if result.collider == Collider:
 			newHighlightButton = Collider
-			var localPoint = TargetMesh.to_local(result.position)
-			var imagePoint = Vector2(localPoint.x, localPoint.y)
-			imagePoint += Vector2(0.5, 0.5)
-			imagePoint.y = 1.0 - imagePoint.y
-			imagePoint.x *= Map.Width
-			imagePoint.y *= Map.Height
-			
-			var delta = DrawSize * 0.25
-			var offset = imagePoint - lastPosition
-			if not pressedThisFrame and offset.length_squared() > delta * delta:
-				var vDelta = offset.normalized() * delta
-				var distance = offset.length()
-				var pointCount = ceili(distance / delta)
-				for i in range(pointCount):
-					Map.Draw(lastPosition + vDelta * i, DrawSize, DrawColor, false)
-			
-			Map.Draw(imagePoint, DrawSize, DrawColor, true)
-			
-			lastPosition = imagePoint
+			if isPainting:
+				var localPoint = TargetMesh.to_local(result.position)
+				var imagePoint = Vector2(localPoint.x, localPoint.y)
+				imagePoint += Vector2(0.5, 0.5)
+				imagePoint.y = 1.0 - imagePoint.y
+				imagePoint.x *= Map.Width
+				imagePoint.y *= Map.Height
+				
+				var color = CliffColor
+				if currentButton == WaterToolButton:
+					color = WaterColor
+				if currentButton == EraserToolButton:
+					color = Map.BGColor
+				var delta = DrawSize * 0.25
+				var offset = imagePoint - lastPosition
+				if not pressedThisFrame and offset.length_squared() > delta * delta:
+					var vDelta = offset.normalized() * delta
+					var distance = offset.length()
+					var pointCount = ceili(distance / delta)
+					for i in range(pointCount):
+						Map.Draw(lastPosition + vDelta * i, DrawSize, color, false)
+				
+				Map.Draw(imagePoint, DrawSize, color, true)
+				
+				lastPosition = imagePoint
 			
 		if result.collider == CliffToolButton:
 			newHighlightButton = CliffToolButton
@@ -94,12 +101,12 @@ func _unhandled_input(event: InputEvent):
 			newHighlightButton = EraserToolButton
 			
 		if newHighlightButton != highlightedButton:
-			if highlightedButton and highlightedButton != currentButton:
+			if highlightedButton and highlightedButton != currentButton and highlightedButton != Collider:
 				highlightedButton.scale = Vector3(ButtonDefaultScale, ButtonDefaultScale, ButtonDefaultScale)
 				
 			highlightedButton = newHighlightButton
 			
-			if highlightedButton:
+			if highlightedButton and highlightedButton != Collider:
 				highlightedButton.scale = Vector3(ButtonPressedScale, ButtonPressedScale, ButtonPressedScale)
 		
 		

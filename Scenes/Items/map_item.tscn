@@ -27,15 +27,15 @@ albedo_texture = ExtResource("5_0lwdd")
 [sub_resource type="BoxShape3D" id="BoxShape3D_kcsa5"]
 size = Vector3(1, 1, 0.1)
 
-[node name="MapItem" type="MeshInstance3D" node_paths=PackedStringArray("TargetMesh", "Camera", "Collider", "WaterToolButton", "CliffToolButton", "EraserToolButton")]
+[node name="MapItem" type="MeshInstance3D" node_paths=PackedStringArray("TargetMesh", "Collider", "WaterToolButton", "CliffToolButton", "EraserToolButton")]
 transform = Transform3D(1, 0, 0, 0, 0.82806, 0.560639, 0, -0.560639, 0.82806, 0, -0.139, -1.067)
 mesh = SubResource("QuadMesh_lr13n")
 skeleton = NodePath("../../../..")
 script = ExtResource("1_bm0m2")
 TargetMesh = NodePath(".")
 Map = SubResource("Resource_8lmju")
-Camera = NodePath("")
 Collider = NodePath("StaticBody3D")
+DrawSize = 10
 WaterToolButton = NodePath("ToolPalette/WaterToolButton")
 CliffToolButton = NodePath("ToolPalette/CliffToolButton")
 EraserToolButton = NodePath("ToolPalette/EraserToolButton")
