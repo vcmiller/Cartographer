@@ -78,6 +78,10 @@ func _unhandled_input(event: InputEvent):
 		var spaceState = PhysicsServer3D.space_get_direct_state(spaceRid)
 		var result = spaceState.intersect_ray(query)
 		if not result:
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+			if currentToolModel:
+				ToolModelParent.remove_child(currentToolModel)
+				currentToolModel = null
 			return
 			
 		var newHighlightButton = null
