@@ -1,0 +1,51 @@
+[gd_resource type="VisualShader" load_steps=6 format=3 uid="uid://d360cikowpanp"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_ph1wi"]
+input_name = "normal"
+
+[sub_resource type="VisualShaderNodeDotProduct" id="VisualShaderNodeDotProduct_ivj40"]
+output_port_for_preview = 0
+
+[sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_eh5y5"]
+default_input_values = [0, 0.0, 1, 1.0, 2, 0.0]
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_ny85x"]
+constant = Color(0.247059, 0.52549, 0.184314, 1)
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_nxdno"]
+constant = Color(0.15, 0.15, 0.15, 1)
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
+
+
+
+
+void fragment() {
+// ColorConstant:7
+	vec4 n_out7p0 = vec4(0.247059, 0.525490, 0.184314, 1.000000);
+
+
+// ColorConstant:8
+	vec4 n_out8p0 = vec4(0.150000, 0.150000, 0.150000, 1.000000);
+
+
+// Output:0
+	ALBEDO = vec3(n_out7p0.xyz);
+	ALPHA = n_out8p0.x;
+
+
+}
+"
+nodes/fragment/4/node = SubResource("VisualShaderNodeInput_ph1wi")
+nodes/fragment/4/position = Vector2(-540, 360)
+nodes/fragment/5/node = SubResource("VisualShaderNodeDotProduct_ivj40")
+nodes/fragment/5/position = Vector2(-60.0719, 458.278)
+nodes/fragment/6/node = SubResource("VisualShaderNodeVectorCompose_eh5y5")
+nodes/fragment/6/position = Vector2(-500, 500)
+nodes/fragment/7/node = SubResource("VisualShaderNodeColorConstant_ny85x")
+nodes/fragment/7/position = Vector2(34.7258, 259.195)
+nodes/fragment/8/node = SubResource("VisualShaderNodeColorConstant_nxdno")
+nodes/fragment/8/position = Vector2(175.598, 404.796)
+nodes/fragment/connections = PackedInt32Array(4, 0, 5, 0, 6, 0, 5, 1, 7, 0, 0, 0, 8, 0, 0, 1)

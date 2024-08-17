@@ -2,6 +2,8 @@ extends CharacterBody3D
   
 @onready var target: Node3D = %Target
 
+const SPEED = 25
+
 #debug nonsense: ignore
 func draw_path(img: Image, from: Vector2i, to: Vector2i, color: Color):
 	var path = MapGridHandler.grid.get_point_path(from,to)
@@ -22,6 +24,6 @@ func _process(_delta: float) -> void:
 		#var dist_1 = position.distance_to(vec3(path[1]))
 		target_pos = lerp(vec3(path[0]), vec3(path[1]), sqrt(2) - dist_0)
 	#position = position.move_toward(target_pos, 10 * delta)
-	velocity = position.direction_to(target_pos) * 10 #min(position.distance_to(target_pos),  10)
+	velocity = position.direction_to(target_pos) * SPEED #min(position.distance_to(target_pos),  10)
 	move_and_slide()
 	pass

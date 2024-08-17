@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://url466m8etkf"]
+[gd_scene load_steps=5 format=3 uid="uid://url466m8etkf"]
 
 [ext_resource type="Script" path="res://navigator.gd" id="1_dle6y"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_f6oiq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_43ffk"]
+emission_enabled = true
+emission = Color(0.2604, 0.84, 0.084, 1)
+grow_amount = 0.686
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_coyju"]
 
@@ -14,6 +19,7 @@ script = ExtResource("1_dle6y")
 
 [node name="CSGSphere3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_f6oiq")
+surface_material_override/0 = SubResource("StandardMaterial3D_43ffk")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_coyju")
