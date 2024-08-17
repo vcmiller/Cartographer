@@ -3,15 +3,13 @@ class_name EditableMap
 
 @export var Width: int
 @export var Height: int
-@export var BGColor: Color
-@export var OutlineSize: int
 
 var image: Image
 var texture: ImageTexture
 
 func CreateImage():
 	image = Image.create(Width, Height, false, Image.FORMAT_RGBA8)
-	image.fill(BGColor)
+	image.fill(Color.BLACK)
 	
 	texture = ImageTexture.create_from_image(image)
 		
