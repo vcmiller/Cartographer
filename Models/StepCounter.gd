@@ -13,7 +13,10 @@ func _ready() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("draw"):
-		startDist = Player.distanceWalked
+		var tween = create_tween()
+		tween.tween_property(self,"startDist",Player.distanceWalked, 0.2)
+		tween.play()
+		#startDist = Player.distanceWalked
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
