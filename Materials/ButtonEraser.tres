@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://iln7dat2vyml"]
+
+[ext_resource type="Texture2D" uid="uid://mnr0mmouvq3d" path="res://Textures/ButtonEraser.png" id="1_vlhm0"]
+
+[resource]
+transparency = 1
+albedo_texture = ExtResource("1_vlhm0")
+texture_filter = 0
