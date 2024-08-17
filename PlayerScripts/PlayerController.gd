@@ -38,7 +38,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 
 func _process(delta: float) -> void: 
-	if Input.is_action_just_pressed("ui_accept"): 
+	if Input.is_action_just_pressed("map_submit"): 
 		begin_trial.emit(Map.image)
 	if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE: 
 		var size = get_viewport().size
