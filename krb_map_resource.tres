@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="EditableMap" load_steps=2 format=3 uid="uid://dagoq7bq7cpd3"]
-
-[ext_resource type="Script" path="res://EditableMap.gd" id="1_s5s6f"]
-
-[resource]
-script = ExtResource("1_s5s6f")
-Width = 256
-Height = 256
-BGColor = Color(0.749303, 0.64661, 0.286261, 1)

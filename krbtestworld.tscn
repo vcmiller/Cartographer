@@ -1,27 +1,18 @@
-[gd_scene load_steps=21 format=3 uid="uid://dmc1dnnyc71t3"]
+[gd_scene load_steps=17 format=3 uid="uid://dmc1dnnyc71t3"]
 
 [ext_resource type="Script" path="res://LevelController.gd" id="1_ggm0a"]
 [ext_resource type="Texture2D" uid="uid://cblyipbdlfhs5" path="res://icon.svg" id="2_5cd64"]
 [ext_resource type="Image" uid="uid://c518wkcpty703" path="res://icon.png" id="2_a6r1f"]
+[ext_resource type="PackedScene" uid="uid://url466m8etkf" path="res://navigator.tscn" id="2_ap437"]
 [ext_resource type="Script" path="res://map_loader.gd" id="3_eeww0"]
-[ext_resource type="Script" path="res://PlayerScripts/PlayerController.gd" id="4_rrc7s"]
-[ext_resource type="Script" path="res://PlayerScripts/ItemManager.gd" id="5_3vvqa"]
+[ext_resource type="PackedScene" uid="uid://c56yvex4g3pif" path="res://Scenes/player.tscn" id="4_3l74u"]
 [ext_resource type="Script" path="res://navigator_detector.gd" id="5_4uk23"]
-[ext_resource type="Script" path="res://PlayerScripts/MapSurface.gd" id="6_gva70"]
-[ext_resource type="Resource" uid="uid://dagoq7bq7cpd3" path="res://krb_map_resource.tres" id="7_lno3g"]
+[ext_resource type="Resource" uid="uid://dagoq7bq7cpd3" path="res://shared_map_resource.tres" id="5_ubwq8"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_136qs"]
 albedo_color = Color(0.116667, 1, 0, 1)
 emission_enabled = true
 emission = Color(0.645, 0.86, 0.659333, 1)
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4d7q5"]
-radius = 0.4
-
-[sub_resource type="QuadMesh" id="QuadMesh_yvoki"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_bqbi2"]
-size = Vector3(1, 1, 0.05)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f5q3e"]
 albedo_texture = ExtResource("2_5cd64")
@@ -43,6 +34,7 @@ albedo_color = Color(1, 0.2, 0.2, 0.490196)
 
 [node name="krbtestworld" type="Node3D"]
 script = ExtResource("1_ggm0a")
+navigator = ExtResource("2_ap437")
 
 [node name="MapLoader" type="Node" parent="."]
 script = ExtResource("3_eeww0")
@@ -62,41 +54,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 106.722, 0, 111.801)
 [node name="Sphere" type="CSGSphere3D" parent="Target"]
 material = SubResource("StandardMaterial3D_136qs")
 
-[node name="Player" type="CharacterBody3D" parent="." node_paths=PackedStringArray("CameraNode")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 11.5654, 0, 8.00555)
-script = ExtResource("4_rrc7s")
-CameraNode = NodePath("Camera3D")
-LookSpeedWhenNotCaptured = 2
-Map = ExtResource("7_lno3g")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
-shape = SubResource("CapsuleShape3D_4d7q5")
-
-[node name="Camera3D" type="Camera3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.608218, 0)
-current = true
-
-[node name="ItemManager" type="Node3D" parent="Player/Camera3D" node_paths=PackedStringArray("Items")]
-script = ExtResource("5_3vvqa")
-Items = [NodePath("Map")]
-
-[node name="Map" type="MeshInstance3D" parent="Player/Camera3D/ItemManager" node_paths=PackedStringArray("TargetMesh", "Camera", "Collider")]
-transform = Transform3D(1, 0, 0, 0, 0.82806, 0.560639, 0, -0.560639, 0.82806, 0, -0.139, -1.067)
-mesh = SubResource("QuadMesh_yvoki")
-skeleton = NodePath("../../../..")
-script = ExtResource("6_gva70")
-TargetMesh = NodePath(".")
-Map = ExtResource("7_lno3g")
-Camera = NodePath("../..")
-Collider = NodePath("StaticBody3D")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Player/Camera3D/ItemManager/Map"]
-collision_layer = 32768
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/Camera3D/ItemManager/Map/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.025)
-shape = SubResource("BoxShape3D_bqbi2")
+[node name="Player" parent="." instance=ExtResource("4_3l74u")]
+Map = ExtResource("5_ubwq8")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
