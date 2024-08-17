@@ -1,12 +1,9 @@
 extends ItemBase
 
 @export var TargetMesh: MeshInstance3D
-@export var Map: EditableMap
 @export var Camera: Camera3D
 @export var Collider: CollisionObject3D
-@export var DrawSize: int = 5
-@export var CliffColor: Color = Color.BLACK
-@export var WaterColor: Color = Color.BLUE
+@export var DrawSize: float = .05
 @export var WaterToolButton: StaticBody3D
 @export var CliffToolButton: StaticBody3D
 @export var EraserToolButton: StaticBody3D
@@ -18,6 +15,7 @@ extends ItemBase
 @export var MarkerWater: Node3D
 @export var Eraser: Node3D
 @export var Scale: Node3D
+@export var Player: PlayerController
 
 var material: ShaderMaterial
 var isPainting: bool
@@ -25,23 +23,25 @@ var lastPosition: Vector2
 var highlightedButton: StaticBody3D
 var currentButton: StaticBody3D
 var currentToolModel: Node3D
+var map: EditableMap
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	Map.CreateImage()
+	map = Player.Map
+	map.CreateImage()
 	
-	var aspect = Map.Width / float(Map.Height)
+	var aspect = map.Width / float(map.Height)
 	TargetMesh.scale = Vector3(aspect, 1, 1)
 	ToolParent.position = Vector3(aspect * -0.5 - 0.138, 0, 0)
 	
 	
-	var scaleWidth = 25.0 / Map.Height
+	var scaleWidth = 20.0 / map.Height
 	Scale.scale = Vector3(scaleWidth, scaleWidth, 1)
 	Scale.position = Vector3(aspect * -0.5, Scale.position.y, 0)
 	
 	material = TargetMesh.get_material_override()
-	material.set_shader_parameter("Texture", Map.texture)
-	material.set_shader_parameter("TextureSize", Vector2(Map.Width, Map.Height))
+	material.set_shader_parameter("Texture", map.texture)
+	material.set_shader_parameter("TextureSize", Vector2(map.Width, map.Height))
 	TargetMesh.set_material_override(material)
 	currentButton = CliffToolButton
 	currentButton.scale = Vector3(ButtonPressedScale, ButtonPressedScale, ButtonPressedScale)
@@ -111,24 +111,26 @@ func _unhandled_input(event: InputEvent):
 				var imagePoint = Vector2(localPoint.x, localPoint.y)
 				imagePoint += Vector2(0.5, 0.5)
 				imagePoint.y = 1.0 - imagePoint.y
-				imagePoint.x *= Map.Width
-				imagePoint.y *= Map.Height
+				imagePoint.x *= map.Width
+				imagePoint.y *= map.Height
 				
-				var color = CliffColor
+				var color = Color.RED
 				if currentButton == WaterToolButton:
-					color = WaterColor
+					color = Color.BLUE
 				if currentButton == EraserToolButton:
-					color = Map.BGColor
-				var delta = DrawSize * 0.25
+					color = Color.BLACK
+					
+				var drawSize = ceili(map.Height * DrawSize)
+				var delta = drawSize * 0.25
 				var offset = imagePoint - lastPosition
 				if not pressedThisFrame and offset.length_squared() > delta * delta:
 					var vDelta = offset.normalized() * delta
 					var distance = offset.length()
 					var pointCount = ceili(distance / delta)
 					for i in range(pointCount):
-						Map.Draw(lastPosition + vDelta * i, DrawSize, color, false)
+						map.Draw(lastPosition + vDelta * i, drawSize, color, false)
 				
-				Map.Draw(imagePoint, DrawSize, color, true)
+				map.Draw(imagePoint, drawSize, color, true)
 				
 				lastPosition = imagePoint
 		else:

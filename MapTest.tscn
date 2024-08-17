@@ -1,7 +1,16 @@
-[gd_scene load_steps=9 format=3 uid="uid://cegqjo31aarvw"]
+[gd_scene load_steps=17 format=3 uid="uid://cegqjo31aarvw"]
 
 [ext_resource type="PackedScene" uid="uid://c56yvex4g3pif" path="res://Scenes/player.tscn" id="1_ad445"]
-[ext_resource type="Texture2D" uid="uid://bk66tx41gvhkm" path="res://coast_sand_rocks_02_diff_4k.jpg" id="4_db4cw"]
+[ext_resource type="Script" path="res://EditableMap.gd" id="2_tkkob"]
+[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="3_c7gw5"]
+[ext_resource type="Resource" path="res://TerrainData/data.hterrain" id="4_hqkq0"]
+[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_texture_set.gd" id="5_3qa8x"]
+[ext_resource type="Texture2D" uid="uid://dbtnnv53ap7d7" path="res://Textures/grass_1_basecolor-1K.png" id="6_andtf"]
+[ext_resource type="Texture2D" uid="uid://doeyfpmulhmiq" path="res://Textures/Cliff_basecolor.png" id="7_x6axp"]
+[ext_resource type="Texture2D" uid="uid://7m5c5uxiaa3m" path="res://Textures/grass_1_normal-1K.png" id="8_jb2gq"]
+[ext_resource type="Texture2D" uid="uid://dgqwjkwa2ckuq" path="res://Textures/Cliff_normal.png" id="9_ff7x0"]
+[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_detail_layer.gd" id="10_mvm6s"]
+[ext_resource type="Texture2D" uid="uid://6jmdwj3vn6m0" path="res://addons/zylann.hterrain/tools/icons/icon_detail_layer_node.svg" id="11_8siu6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_a5k6u"]
 
@@ -12,16 +21,15 @@ sky_material = SubResource("ProceduralSkyMaterial_a5k6u")
 background_mode = 2
 sky = SubResource("Sky_gagda")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u3e4m"]
-albedo_texture = ExtResource("4_db4cw")
-metallic_specular = 0.0
-normal_enabled = true
-normal_scale = 16.0
+[sub_resource type="Resource" id="Resource_5we7l"]
+script = ExtResource("2_tkkob")
+Width = 100
+Height = 100
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_tl1ox"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_7wy8w"]
-size = Vector3(2, 0.1, 2)
+[sub_resource type="Resource" id="Resource_v8bm5"]
+script = ExtResource("5_3qa8x")
+mode = 0
+textures = [[ExtResource("6_andtf"), ExtResource("7_x6axp")], [ExtResource("8_jb2gq"), ExtResource("9_ff7x0")]]
 
 [node name="Node3D" type="Node3D"]
 
@@ -32,14 +40,37 @@ environment = SubResource("Environment_yanan")
 transform = Transform3D(1, 0, 0, 0, 0.951718, 0.306975, 0, -0.306975, 0.951718, -0.00377464, -0.0199896, 0.00757551)
 
 [node name="Player" parent="." instance=ExtResource("1_ad445")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.1989, 0.994233, 45.031)
+Map = SubResource("Resource_5we7l")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(7.05, 0, 0, 0, 7.05, 0, 0, 0, 7.05, 0, -1, 0)
+[node name="HTerrain" type="Node3D" parent="."]
+script = ExtResource("3_c7gw5")
+map_scale = Vector3(0.781, 1, 0.781)
+_terrain_data = ExtResource("4_hqkq0")
+chunk_size = 16
+collision_enabled = true
+collision_layer = 1
+collision_mask = 1
+shader_type = "Classic4"
+custom_shader = null
+custom_globalmap_shader = null
+texture_set = SubResource("Resource_v8bm5")
+render_layers = 1
+cast_shadow = 1
+shader_params/u_ground_uv_scale_per_texture = Vector4(10, 5, 20, 20)
+shader_params/u_depth_blending = true
+shader_params/u_triplanar = false
+shader_params/u_tile_reduction = Vector4(0, 1, 0, 0)
+shader_params/u_globalmap_blend_start = null
+shader_params/u_globalmap_blend_distance = null
+shader_params/u_colormap_opacity_per_texture = Vector4(1, 1, 1, 1)
+shader_params/u_specular = 0.5
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-material_override = SubResource("StandardMaterial3D_u3e4m")
-mesh = SubResource("PlaneMesh_tl1ox")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
-shape = SubResource("BoxShape3D_7wy8w")
+[node name="HTerrainDetailLayer" type="Node3D" parent="HTerrain"]
+script = ExtResource("10_mvm6s")
+shader_params/u_globalmap_tint_bottom = null
+shader_params/u_globalmap_tint_top = null
+shader_params/u_bottom_ao = null
+shader_params/u_instance_scale = Vector3(1, 1, 1)
+shader_params/u_roughness = 0.9
+metadata/_editor_icon = ExtResource("11_8siu6")

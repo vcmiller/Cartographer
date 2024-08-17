@@ -1,8 +1,7 @@
-[gd_scene load_steps=24 format=3 uid="uid://67kq4c7qivrh"]
+[gd_scene load_steps=22 format=3 uid="uid://67kq4c7qivrh"]
 
 [ext_resource type="Script" path="res://PlayerScripts/MapSurface.gd" id="1_bm0m2"]
 [ext_resource type="Material" uid="uid://c4u0te7x41n41" path="res://Materials/Map.tres" id="1_lpqoy"]
-[ext_resource type="Script" path="res://EditableMap.gd" id="2_k7h5r"]
 [ext_resource type="Texture2D" uid="uid://de7am7o16yd1x" path="res://Textures/Scale.png" id="3_qs0ip"]
 [ext_resource type="Material" uid="uid://cl2nlqr3dqeqo" path="res://Materials/ButtonBG.tres" id="3_wd5aj"]
 [ext_resource type="Material" uid="uid://b5o0gu7ahor2g" path="res://Materials/ButtonWater.tres" id="4_ris4b"]
@@ -15,13 +14,6 @@
 [ext_resource type="Material" uid="uid://dbsl3enptr6di" path="res://Materials/MarkerMatWhite.tres" id="12_6s5u6"]
 [ext_resource type="Material" uid="uid://bjqmoc75otiqo" path="res://Materials/MarkerMatBlack.tres" id="13_rissn"]
 [ext_resource type="Material" uid="uid://t1qmweqph6uc" path="res://Materials/MarkerMatBlue.tres" id="14_4dbmf"]
-
-[sub_resource type="Resource" id="Resource_8lmju"]
-script = ExtResource("2_k7h5r")
-Width = 375
-Height = 250
-BGColor = Color(0, 0, 0, 1)
-OutlineSize = 1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u00ct"]
 transparency = 1
@@ -48,10 +40,8 @@ size = Vector3(1, 1, 0.1)
 transform = Transform3D(1, 0, 0, 0, 0.82806, 0.560639, 0, -0.560639, 0.82806, 0, -0.139, -1.067)
 script = ExtResource("1_bm0m2")
 TargetMesh = NodePath("Map")
-Map = SubResource("Resource_8lmju")
 Collider = NodePath("Map/StaticBody3D")
-DrawSize = 20
-CliffColor = Color(1, 0, 0, 1)
+DrawSize = 0.1
 WaterToolButton = NodePath("ToolPalette/WaterToolButton")
 CliffToolButton = NodePath("ToolPalette/CliffToolButton")
 EraserToolButton = NodePath("ToolPalette/EraserToolButton")
