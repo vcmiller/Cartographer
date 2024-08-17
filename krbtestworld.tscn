@@ -1,14 +1,19 @@
-[gd_scene load_steps=19 format=3 uid="uid://dmc1dnnyc71t3"]
+[gd_scene load_steps=20 format=3 uid="uid://dmc1dnnyc71t3"]
 
 [ext_resource type="Script" path="res://LevelController.gd" id="1_ggm0a"]
 [ext_resource type="Texture2D" uid="uid://cblyipbdlfhs5" path="res://icon.svg" id="2_5cd64"]
 [ext_resource type="PackedScene" uid="uid://url466m8etkf" path="res://navigator.tscn" id="2_ap437"]
+[ext_resource type="Script" path="res://EditableMap.gd" id="3_d6gpy"]
 [ext_resource type="PackedScene" uid="uid://c56yvex4g3pif" path="res://Scenes/player.tscn" id="4_3l74u"]
 [ext_resource type="Script" path="res://navigator_detector.gd" id="5_4uk23"]
-[ext_resource type="Resource" uid="uid://dagoq7bq7cpd3" path="res://shared_map_resource.tres" id="5_ubwq8"]
 [ext_resource type="Script" path="res://navigator_spawn.gd" id="5_vwqx6"]
 [ext_resource type="Script" path="res://playback_canvas.gd" id="8_oorxp"]
 [ext_resource type="Script" path="res://player_canvas.gd" id="8_v0oxe"]
+
+[sub_resource type="Resource" id="Resource_3evtv"]
+script = ExtResource("3_d6gpy")
+Width = 128
+Height = 128
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_136qs"]
 albedo_color = Color(0.116667, 1, 0, 1)
@@ -40,6 +45,7 @@ albedo_color = Color(1, 0.2, 0.2, 0.490196)
 script = ExtResource("1_ggm0a")
 navigator_spawn_points = [NodePath("NavigatorSpawn")]
 player_scene = ExtResource("4_3l74u")
+Map = SubResource("Resource_3evtv")
 
 [node name="NavigatorSpawn" type="Marker3D" parent="." node_paths=PackedStringArray("target")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.7543, 0, 12.2798)
@@ -57,11 +63,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 106.722, 0, 111.801)
 
 [node name="Sphere" type="CSGSphere3D" parent="Target"]
 material = SubResource("StandardMaterial3D_136qs")
-
-[node name="Player" parent="." node_paths=PackedStringArray("player_canvas") instance=ExtResource("4_3l74u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.2036, -7.62939e-06, 26.8893)
-Map = ExtResource("5_ubwq8")
-player_canvas = NodePath("../PlayerCanvas")
 
 [node name="PlayerCanvas" type="CanvasLayer" parent="."]
 script = ExtResource("8_v0oxe")
@@ -181,7 +182,6 @@ shape = SubResource("BoxShape3D_mb4a5")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_rehpt")
 
-[connection signal="begin_trial" from="Player" to="." method="_on_player_begin_trial"]
 [connection signal="body_entered" from="NavigatorDetector" to="NavigatorDetector" method="_on_body_entered"]
 [connection signal="navigator_detected" from="NavigatorDetector" to="PlaybackCanvas/FuckLabel" method="show"]
 [connection signal="body_entered" from="NavigatorDetector2" to="NavigatorDetector2" method="_on_body_entered"]

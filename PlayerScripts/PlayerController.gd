@@ -14,7 +14,7 @@ const JUMP_VELOCITY = 4.5
 @export var Map: EditableMap
 @export var player_canvas: PlayerCanvas
 
-@onready var item_manager: ItemManager = $Camera3D/ItemManager
+@onready var item_manager: ItemManager = $Camera3D/ItemManager 
 
 var lastMousePos: Vector2
 var eulerAngles: Vector3
