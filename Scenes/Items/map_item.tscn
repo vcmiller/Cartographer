@@ -1,0 +1,109 @@
+[gd_scene load_steps=14 format=3 uid="uid://67kq4c7qivrh"]
+
+[ext_resource type="Script" path="res://PlayerScripts/MapSurface.gd" id="1_bm0m2"]
+[ext_resource type="Script" path="res://EditableMap.gd" id="2_k7h5r"]
+[ext_resource type="Material" uid="uid://cl2nlqr3dqeqo" path="res://Materials/ButtonBG.tres" id="3_wd5aj"]
+[ext_resource type="Material" uid="uid://b5o0gu7ahor2g" path="res://Materials/ButtonWater.tres" id="4_ris4b"]
+[ext_resource type="Texture2D" uid="uid://bvdyt6jhg42oc" path="res://Textures/ButtonWater.png" id="5_0lwdd"]
+[ext_resource type="Material" uid="uid://cxumquffv4q3t" path="res://Materials/ButtonCliff.tres" id="6_4dqc2"]
+[ext_resource type="Material" uid="uid://iln7dat2vyml" path="res://Materials/ButtonEraser.tres" id="7_gvfga"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_lr13n"]
+
+[sub_resource type="Resource" id="Resource_8lmju"]
+script = ExtResource("2_k7h5r")
+Width = 256
+Height = 256
+BGColor = Color(0.749303, 0.64661, 0.286261, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o22g7"]
+size = Vector3(1, 1, 0.05)
+
+[sub_resource type="QuadMesh" id="QuadMesh_hr3vy"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s02l6"]
+albedo_texture = ExtResource("5_0lwdd")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kcsa5"]
+size = Vector3(1, 1, 0.1)
+
+[node name="MapItem" type="MeshInstance3D" node_paths=PackedStringArray("TargetMesh", "Camera", "Collider", "WaterToolButton", "CliffToolButton", "EraserToolButton")]
+transform = Transform3D(1, 0, 0, 0, 0.82806, 0.560639, 0, -0.560639, 0.82806, 0, -0.139, -1.067)
+mesh = SubResource("QuadMesh_lr13n")
+skeleton = NodePath("../../../..")
+script = ExtResource("1_bm0m2")
+TargetMesh = NodePath(".")
+Map = SubResource("Resource_8lmju")
+Camera = NodePath("")
+Collider = NodePath("StaticBody3D")
+WaterToolButton = NodePath("ToolPalette/WaterToolButton")
+CliffToolButton = NodePath("ToolPalette/CliffToolButton")
+EraserToolButton = NodePath("ToolPalette/EraserToolButton")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_layer = 32768
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.025)
+shape = SubResource("BoxShape3D_o22g7")
+
+[node name="ToolPalette" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, -0.63791, 0, 0)
+
+[node name="WaterToolButton" type="StaticBody3D" parent="ToolPalette"]
+transform = Transform3D(0.18, 0, 0, 0, 0.18, -6.70552e-09, 0, 6.70552e-09, 0.18, 0, 0.25, 1.49012e-08)
+collision_layer = 32768
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ToolPalette/WaterToolButton"]
+material_override = ExtResource("3_wd5aj")
+mesh = SubResource("QuadMesh_hr3vy")
+
+[node name="Icon" type="MeshInstance3D" parent="ToolPalette/WaterToolButton"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.05)
+material_override = ExtResource("4_ris4b")
+mesh = SubResource("QuadMesh_hr3vy")
+surface_material_override/0 = SubResource("StandardMaterial3D_s02l6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ToolPalette/WaterToolButton"]
+transform = Transform3D(1, 0, 0, 0, 1, 5.96046e-07, 0, -5.96046e-07, 1, 0, 2.38419e-07, -0.0500001)
+shape = SubResource("BoxShape3D_kcsa5")
+
+[node name="CliffToolButton" type="StaticBody3D" parent="ToolPalette"]
+transform = Transform3D(0.18, 0, 0, 0, 0.18, 0, 0, 0, 0.18, 0, 0, 0)
+collision_layer = 32768
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ToolPalette/CliffToolButton"]
+material_override = ExtResource("3_wd5aj")
+mesh = SubResource("QuadMesh_hr3vy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ToolPalette/CliffToolButton"]
+transform = Transform3D(1, 0, 0, 0, 1, 5.96046e-07, 0, -5.96046e-07, 1, 0, 2.38419e-07, -0.0500001)
+shape = SubResource("BoxShape3D_kcsa5")
+
+[node name="Icon" type="MeshInstance3D" parent="ToolPalette/CliffToolButton"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.05)
+material_override = ExtResource("6_4dqc2")
+mesh = SubResource("QuadMesh_hr3vy")
+surface_material_override/0 = SubResource("StandardMaterial3D_s02l6")
+
+[node name="EraserToolButton" type="StaticBody3D" parent="ToolPalette"]
+transform = Transform3D(0.18, 0, 0, 0, 0.18, 0, 0, 0, 0.18, 0, -0.25, 0)
+collision_layer = 32768
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ToolPalette/EraserToolButton"]
+material_override = ExtResource("3_wd5aj")
+mesh = SubResource("QuadMesh_hr3vy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ToolPalette/EraserToolButton"]
+transform = Transform3D(1, 0, 0, 0, 1, 5.96046e-07, 0, -5.96046e-07, 1, 0, 2.38419e-07, -0.0500001)
+shape = SubResource("BoxShape3D_kcsa5")
+
+[node name="Icon" type="MeshInstance3D" parent="ToolPalette/EraserToolButton"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.05)
+material_override = ExtResource("7_gvfga")
+mesh = SubResource("QuadMesh_hr3vy")
+surface_material_override/0 = SubResource("StandardMaterial3D_s02l6")
