@@ -1,7 +1,8 @@
-[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://c4u0te7x41n41"]
+[gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://c4u0te7x41n41"]
 
 [ext_resource type="Shader" uid="uid://c4h7gi1x68f3b" path="res://Shaders/map_shader.tres" id="1_tbtn0"]
 [ext_resource type="Texture2D" uid="uid://dtfboewcs6miy" path="res://Textures/PatternLines.png" id="2_734hw"]
+[ext_resource type="Texture2D" uid="uid://bmfoaemiyhtke" path="res://Textures/Paper.png" id="2_a3hwn"]
 [ext_resource type="Texture2D" uid="uid://bvd8mulkaolut" path="res://Textures/MapSample.png" id="2_i26f1"]
 [ext_resource type="Texture2D" uid="uid://klkv68p8al8b" path="res://Textures/PatternWaves.png" id="4_fikwt"]
 
@@ -9,9 +10,13 @@
 render_priority = 0
 shader = ExtResource("1_tbtn0")
 shader_parameter/BGColor = Color(0.74902, 0.647059, 0.286275, 1)
-shader_parameter/CliffColor = Color(0.06, 0.06, 0.06, 1)
+shader_parameter/GridColor = Color(0.650664, 0.573337, 0.313876, 1)
 shader_parameter/TextureSize = Vector2(256, 256)
+shader_parameter/GridSpacing = 25.0
+shader_parameter/GridWidth = 0.5
+shader_parameter/CliffColor = Color(0.06, 0.06, 0.06, 1)
 shader_parameter/WaterColor = Color(0.077656, 0.087293, 0.293153, 1)
+shader_parameter/PaperTexture = ExtResource("2_a3hwn")
 shader_parameter/Texture = ExtResource("2_i26f1")
 shader_parameter/PatternCliff = ExtResource("2_734hw")
 shader_parameter/PatternWater = ExtResource("4_fikwt")

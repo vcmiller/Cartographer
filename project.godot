@@ -34,6 +34,10 @@ version_control/autoload_on_startup=true
 
 enabled=PackedStringArray("res://addons/zylann.hterrain/plugin.cfg")
 
+[filesystem]
+
+import/blender/enabled=false
+
 [input]
 
 move_f={

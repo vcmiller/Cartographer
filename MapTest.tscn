@@ -22,7 +22,7 @@ size = Vector3(2, 0.1, 2)
 environment = SubResource("Environment_yanan")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.951718, 0.306975, 0, -0.306975, 0.951718, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.951718, 0.306975, 0, -0.306975, 0.951718, -0.00377464, -0.0199896, 0.00757551)
 
 [node name="Player" parent="." instance=ExtResource("1_ad445")]
 
