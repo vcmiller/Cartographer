@@ -1,9 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://cegqjo31aarvw"]
+[gd_scene load_steps=9 format=3 uid="uid://cegqjo31aarvw"]
 
 [ext_resource type="PackedScene" uid="uid://c56yvex4g3pif" path="res://Scenes/player.tscn" id="1_ad445"]
 [ext_resource type="Texture2D" uid="uid://bk66tx41gvhkm" path="res://coast_sand_rocks_02_diff_4k.jpg" id="4_db4cw"]
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_a5k6u"]
+
+[sub_resource type="Sky" id="Sky_gagda"]
+sky_material = SubResource("ProceduralSkyMaterial_a5k6u")
+
 [sub_resource type="Environment" id="Environment_yanan"]
+background_mode = 2
+sky = SubResource("Sky_gagda")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u3e4m"]
 albedo_texture = ExtResource("4_db4cw")

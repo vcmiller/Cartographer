@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://c56yvex4g3pif"]
+[gd_scene load_steps=8 format=3 uid="uid://c56yvex4g3pif"]
 
 [ext_resource type="Script" path="res://PlayerScripts/PlayerController.gd" id="1_fb5hj"]
 [ext_resource type="Script" path="res://PlayerScripts/ItemManager.gd" id="2_pemao"]
 [ext_resource type="PackedScene" uid="uid://67kq4c7qivrh" path="res://Scenes/Items/map_item.tscn" id="3_pixbx"]
 [ext_resource type="Resource" uid="uid://dagoq7bq7cpd3" path="res://shared_map_resource.tres" id="4_s5v4y"]
+[ext_resource type="PackedScene" uid="uid://bqrdettbqghbi" path="res://Models/Compass.glb" id="5_4xvks"]
+[ext_resource type="Script" path="res://PlayerScripts/CompassItem.gd" id="6_3atti"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_18swh"]
 radius = 0.4
@@ -22,9 +24,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.608218, 0)
 
 [node name="ItemManager" type="Node3D" parent="Camera3D" node_paths=PackedStringArray("Items")]
 script = ExtResource("2_pemao")
-Items = [NodePath("MapItem")]
+Items = [NodePath("MapItem"), NodePath("CompassItem")]
 
 [node name="MapItem" parent="Camera3D/ItemManager" node_paths=PackedStringArray("Camera") instance=ExtResource("3_pixbx")]
 transform = Transform3D(1, 0, 0, 0, 0.987414, 0.158158, 0, -0.158158, 0.987414, 0, -0.059, -0.892)
 Map = ExtResource("4_s5v4y")
 Camera = NodePath("../..")
+
+[node name="CompassItem" parent="Camera3D/ItemManager" node_paths=PackedStringArray("RootTransform", "Needle") instance=ExtResource("5_4xvks")]
+transform = Transform3D(0.165, 0, 0, 0, 0.155439, -0.0553495, 0, 0.0553495, 0.155439, 0, -0.201, -0.498)
+script = ExtResource("6_3atti")
+RootTransform = NodePath("../../..")
+Needle = NodePath("Spinner")
+
+[editable path="Camera3D/ItemManager/CompassItem"]
