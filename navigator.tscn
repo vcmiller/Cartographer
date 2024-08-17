@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://url466m8etkf"]
+[gd_scene load_steps=6 format=3 uid="uid://url466m8etkf"]
 
 [ext_resource type="Script" path="res://navigator.gd" id="1_dle6y"]
 
@@ -10,6 +10,8 @@ emission = Color(0.2604, 0.84, 0.084, 1)
 grow_amount = 0.686
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_coyju"]
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_axs1q"]
 
 [node name="Navigator" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1)
@@ -23,3 +25,8 @@ surface_material_override/0 = SubResource("StandardMaterial3D_43ffk")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_coyju")
+
+[node name="LineDrawer" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1)
+top_level = true
+mesh = SubResource("ImmediateMesh_axs1q")

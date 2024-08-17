@@ -23,7 +23,6 @@ func _birth_player():
 		player.Map = savedMap
 		savedMap = null
 		
-	player.position = navigator_spawn_points[0].position
 	player.player_canvas = player_canvas
 	player.CameraNode.make_current()
 	player.connect("begin_trial",_on_player_begin_trial)
