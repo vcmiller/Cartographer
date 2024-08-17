@@ -4,7 +4,6 @@ class_name PlayerCanvas
 @onready var item_select: HBoxContainer = $ItemSelect
 @onready var map_container: PanelContainer = $ItemSelect/MapContainer
 @onready var compass_container: PanelContainer = $ItemSelect/CompassContainer
- 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

@@ -2,6 +2,8 @@ extends CharacterBody3D
   
 @export var target: Node3D 
 
+@onready var lineDrawer: MeshInstance3D = $LineDrawer
+
 const SPEED = 25
 
 #debug nonsense: ignore
@@ -16,6 +18,16 @@ func vec3(from: Vector2i): return Vector3(from.x,position.y,from.y)
 func _process(_delta: float) -> void:  
 	if(not target): return
 	var path = MapGridHandler.grid.get_point_path(vec2i(position),vec2i(target.position), true)
+	
+	var mesh : ImmediateMesh = lineDrawer.mesh
+	mesh.clear_surfaces()
+	mesh.surface_begin(Mesh.PRIMITIVE_LINE_STRIP)
+	
+	for i in range(len(path)):
+		mesh.surface_add_vertex(vec3(path[i]))
+	
+	mesh.surface_end()
+	
 	var target_pos := position
 	if len(path) == 0: return
 	elif len(path) == 1: target_pos = vec3(path[0])
