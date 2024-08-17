@@ -9,6 +9,6 @@ func ParseImage(image: Image):
 	grid.update()
 	for i in range(grid.region.size.x): 
 		for j in range(grid.region.size.y):
-			var solid = image.get_pixel(i,j).b > 0.5
+			var solid = image.get_pixel(i,j).r < 0.2
 			grid.set_point_solid(Vector2i(i,j),solid)
 	pass

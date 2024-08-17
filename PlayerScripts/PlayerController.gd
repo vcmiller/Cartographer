@@ -1,5 +1,6 @@
 extends CharacterBody3D
 
+signal begin_trial(image: Image)
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
@@ -9,6 +10,8 @@ const JUMP_VELOCITY = 4.5
 @export var MouseSensitivity: float = 0.5
 @export var MouseBoundWhenNotCaptured: float = 0.1
 @export var LookSpeedWhenNotCaptured = 1
+@export var Map: EditableMap
+
 
 var lastMousePos: Vector2
 var eulerAngles: Vector3
@@ -30,6 +33,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 
 func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("ui_accept"): 
+		begin_trial.emit(Map.image)
 	if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
 		var size = get_viewport().size
 		

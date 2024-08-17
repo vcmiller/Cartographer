@@ -1,15 +1,27 @@
-[gd_scene load_steps=14 format=3 uid="uid://dmc1dnnyc71t3"]
+[gd_scene load_steps=21 format=3 uid="uid://dmc1dnnyc71t3"]
 
-[ext_resource type="PackedScene" uid="uid://url466m8etkf" path="res://navigator.tscn" id="1_oskyc"]
+[ext_resource type="Script" path="res://LevelController.gd" id="1_ggm0a"]
 [ext_resource type="Texture2D" uid="uid://cblyipbdlfhs5" path="res://icon.svg" id="2_5cd64"]
 [ext_resource type="Image" uid="uid://c518wkcpty703" path="res://icon.png" id="2_a6r1f"]
 [ext_resource type="Script" path="res://map_loader.gd" id="3_eeww0"]
+[ext_resource type="Script" path="res://PlayerScripts/PlayerController.gd" id="4_rrc7s"]
+[ext_resource type="Script" path="res://PlayerScripts/ItemManager.gd" id="5_3vvqa"]
 [ext_resource type="Script" path="res://navigator_detector.gd" id="5_4uk23"]
+[ext_resource type="Script" path="res://PlayerScripts/MapSurface.gd" id="6_gva70"]
+[ext_resource type="Resource" uid="uid://dagoq7bq7cpd3" path="res://krb_map_resource.tres" id="7_lno3g"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_136qs"]
 albedo_color = Color(0.116667, 1, 0, 1)
 emission_enabled = true
 emission = Color(0.645, 0.86, 0.659333, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4d7q5"]
+radius = 0.4
+
+[sub_resource type="QuadMesh" id="QuadMesh_yvoki"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bqbi2"]
+size = Vector3(1, 1, 0.05)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f5q3e"]
 albedo_texture = ExtResource("2_5cd64")
@@ -30,17 +42,61 @@ albedo_color = Color(1, 0.2, 0.2, 0.490196)
 [sub_resource type="Environment" id="Environment_rehpt"]
 
 [node name="krbtestworld" type="Node3D"]
+script = ExtResource("1_ggm0a")
 
 [node name="MapLoader" type="Node" parent="."]
 script = ExtResource("3_eeww0")
 image = ExtResource("2_a6r1f")
 
-[node name="Navigator" parent="." instance=ExtResource("1_oskyc")]
+[node name="NavigatorSpawn" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.7543, 0, 12.2798)
 
-[node name="Target" type="CSGSphere3D" parent="."]
-unique_name_in_owner = true
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="NavigatorSpawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.69435, 0)
+radius = 0.1
+height = 3.403
+
+[node name="Target" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 106.722, 0, 111.801)
+
+[node name="Sphere" type="CSGSphere3D" parent="Target"]
 material = SubResource("StandardMaterial3D_136qs")
+
+[node name="Player" type="CharacterBody3D" parent="." node_paths=PackedStringArray("CameraNode")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 11.5654, 0, 8.00555)
+script = ExtResource("4_rrc7s")
+CameraNode = NodePath("Camera3D")
+LookSpeedWhenNotCaptured = 2
+Map = ExtResource("7_lno3g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+shape = SubResource("CapsuleShape3D_4d7q5")
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.608218, 0)
+current = true
+
+[node name="ItemManager" type="Node3D" parent="Player/Camera3D" node_paths=PackedStringArray("Items")]
+script = ExtResource("5_3vvqa")
+Items = [NodePath("Map")]
+
+[node name="Map" type="MeshInstance3D" parent="Player/Camera3D/ItemManager" node_paths=PackedStringArray("TargetMesh", "Camera", "Collider")]
+transform = Transform3D(1, 0, 0, 0, 0.82806, 0.560639, 0, -0.560639, 0.82806, 0, -0.139, -1.067)
+mesh = SubResource("QuadMesh_yvoki")
+skeleton = NodePath("../../../..")
+script = ExtResource("6_gva70")
+TargetMesh = NodePath(".")
+Map = ExtResource("7_lno3g")
+Camera = NodePath("../..")
+Collider = NodePath("StaticBody3D")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Player/Camera3D/ItemManager/Map"]
+collision_layer = 32768
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/Camera3D/ItemManager/Map/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.025)
+shape = SubResource("BoxShape3D_bqbi2")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -62,7 +118,12 @@ text = "FUCK"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+unique_name_in_owner = true
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SpectatorCamera" type="Camera3D" parent="."]
 transform = Transform3D(0.999998, 0.00159038, -0.000953869, 0, 0.514354, 0.857578, 0.0018545, -0.857576, 0.514353, 70.329, 80.318, 141.749)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
@@ -104,6 +165,7 @@ shape = SubResource("BoxShape3D_mb4a5")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_rehpt")
 
+[connection signal="begin_trial" from="Player" to="." method="_on_player_begin_trial"]
 [connection signal="body_entered" from="NavigatorDetector" to="NavigatorDetector" method="_on_body_entered"]
 [connection signal="navigator_detected" from="NavigatorDetector" to="CanvasLayer/FuckLabel" method="show"]
 [connection signal="body_entered" from="NavigatorDetector2" to="NavigatorDetector2" method="_on_body_entered"]

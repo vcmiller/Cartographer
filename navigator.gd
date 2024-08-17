@@ -1,6 +1,6 @@
 extends CharacterBody3D
   
-@onready var target: Node3D = %Target
+@export var target: Node3D 
 
 const SPEED = 25
 
@@ -14,6 +14,7 @@ func vec3(from: Vector2i): return Vector3(from.x,position.y,from.y)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:  
+	if(not target): return
 	var path = MapGridHandler.grid.get_point_path(vec2i(position),vec2i(target.position), true)
 	var target_pos := position
 	if len(path) == 0: return
