@@ -12,7 +12,9 @@ const JUMP_VELOCITY = 4.5
 @export var MouseBoundWhenNotCaptured: float = 0.1
 @export var LookSpeedWhenNotCaptured = 1
 @export var Map: EditableMap
+@export var player_canvas: PlayerCanvas
 
+@onready var item_manager: ItemManager = $Camera3D/ItemManager
 
 var lastMousePos: Vector2
 var eulerAngles: Vector3
@@ -21,6 +23,7 @@ var distanceWalked: float
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	CameraNode.rotation = eulerAngles
+	if player_canvas: item_manager.selected_item_changed.connect(player_canvas.on_selected_item_changed)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:

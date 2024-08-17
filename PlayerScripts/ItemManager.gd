@@ -1,6 +1,8 @@
 extends Node3D
 class_name ItemManager
 
+signal selected_item_changed(item_index)
+
 @export var Items: Array[ItemBase]
 
 var currentItem : ItemBase
@@ -27,7 +29,8 @@ func _unhandled_input(event: InputEvent) -> void:
 				
 func CycleWeapon(change: int) -> void:
 	var curIndex = Items.find(currentItem)
-	curIndex = (((curIndex + change) % len(Items)) + len(Items)) % len(Items)
+	curIndex = (((curIndex + change) % len(Items)) + len(Items)) % len(Items) 
+	
 	SetItem(Items[curIndex])
 				
 func SetItem(item: ItemBase) -> void:
@@ -42,3 +45,4 @@ func SetItem(item: ItemBase) -> void:
 	
 	if currentItem:
 		add_child(currentItem)
+		selected_item_changed.emit(Items.find(item))

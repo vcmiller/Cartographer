@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dmc1dnnyc71t3"]
+[gd_scene load_steps=20 format=3 uid="uid://dmc1dnnyc71t3"]
 
 [ext_resource type="Script" path="res://LevelController.gd" id="1_ggm0a"]
 [ext_resource type="Texture2D" uid="uid://cblyipbdlfhs5" path="res://icon.svg" id="2_5cd64"]
@@ -15,6 +15,9 @@
 albedo_color = Color(0.116667, 1, 0, 1)
 emission_enabled = true
 emission = Color(0.645, 0.86, 0.659333, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qwa8h"]
+bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f5q3e"]
 albedo_texture = ExtResource("2_5cd64")
@@ -59,9 +62,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 106.722, 0, 111.801)
 [node name="Sphere" type="CSGSphere3D" parent="Target"]
 material = SubResource("StandardMaterial3D_136qs")
 
-[node name="Player" parent="." instance=ExtResource("4_3l74u")]
+[node name="Player" parent="." node_paths=PackedStringArray("player_canvas") instance=ExtResource("4_3l74u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.2036, -7.62939e-06, 26.8893)
 Map = ExtResource("5_ubwq8")
+player_canvas = NodePath("../PlayerCanvas")
 
 [node name="PlayerCanvas" type="CanvasLayer" parent="."]
 script = ExtResource("8_v0oxe")
@@ -79,6 +83,7 @@ alignment = 1
 [node name="MapContainer" type="PanelContainer" parent="PlayerCanvas/ItemSelect"]
 custom_minimum_size = Vector2(132, 132)
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qwa8h")
 
 [node name="TextureRect" type="TextureRect" parent="PlayerCanvas/ItemSelect/MapContainer"]
 layout_mode = 2
@@ -87,6 +92,7 @@ texture = ExtResource("2_5cd64")
 [node name="CompassContainer" type="PanelContainer" parent="PlayerCanvas/ItemSelect"]
 custom_minimum_size = Vector2(132, 132)
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qwa8h")
 
 [node name="TextureRect" type="TextureRect" parent="PlayerCanvas/ItemSelect/CompassContainer"]
 layout_mode = 2
@@ -95,6 +101,7 @@ texture = ExtResource("2_5cd64")
 [node name="PanelContainer3" type="PanelContainer" parent="PlayerCanvas/ItemSelect"]
 custom_minimum_size = Vector2(132, 132)
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qwa8h")
 
 [node name="TextureRect" type="TextureRect" parent="PlayerCanvas/ItemSelect/PanelContainer3"]
 layout_mode = 2
@@ -103,6 +110,7 @@ texture = ExtResource("2_5cd64")
 [node name="PanelContainer4" type="PanelContainer" parent="PlayerCanvas/ItemSelect"]
 custom_minimum_size = Vector2(132, 132)
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qwa8h")
 
 [node name="TextureRect" type="TextureRect" parent="PlayerCanvas/ItemSelect/PanelContainer4"]
 layout_mode = 2
