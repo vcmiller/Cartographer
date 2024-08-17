@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://67kq4c7qivrh"]
+[gd_scene load_steps=26 format=3 uid="uid://67kq4c7qivrh"]
 
 [ext_resource type="Script" path="res://PlayerScripts/MapSurface.gd" id="1_bm0m2"]
 [ext_resource type="Material" uid="uid://c4u0te7x41n41" path="res://Materials/Map.tres" id="1_lpqoy"]
@@ -7,6 +7,7 @@
 [ext_resource type="Material" uid="uid://b5o0gu7ahor2g" path="res://Materials/ButtonWater.tres" id="4_ris4b"]
 [ext_resource type="Texture2D" uid="uid://bvdyt6jhg42oc" path="res://Textures/ButtonWater.png" id="5_0lwdd"]
 [ext_resource type="Material" uid="uid://cxumquffv4q3t" path="res://Materials/ButtonCliff.tres" id="6_4dqc2"]
+[ext_resource type="Texture2D" uid="uid://bkbe4frwi0nur" path="res://FLAG.png" id="6_dx62p"]
 [ext_resource type="Material" uid="uid://iln7dat2vyml" path="res://Materials/ButtonEraser.tres" id="7_gvfga"]
 [ext_resource type="PackedScene" uid="uid://clhetomwayfnr" path="res://Models/Eraser.glb" id="9_rim5m"]
 [ext_resource type="Material" uid="uid://x6yrgkho0nq" path="res://Materials/EraserMat.tres" id="10_iu8h8"]
@@ -36,7 +37,25 @@ albedo_texture = ExtResource("5_0lwdd")
 [sub_resource type="BoxShape3D" id="BoxShape3D_kcsa5"]
 size = Vector3(1, 1, 0.1)
 
-[node name="MapItem" type="Node3D" node_paths=PackedStringArray("TargetMesh", "Collider", "WaterToolButton", "CliffToolButton", "EraserToolButton", "ToolParent", "ToolModelParent", "MarkerCliff", "MarkerWater", "Eraser", "Scale")]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s50oa"]
+transparency = 1
+albedo_color = Color(1, 0.14, 0.14, 1)
+albedo_texture = ExtResource("6_dx62p")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ltoa"]
+transparency = 1
+albedo_color = Color(0.0672, 0.25984, 0.48, 1)
+albedo_texture = ExtResource("6_dx62p")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bmttq"]
+transparency = 1
+albedo_color = Color(0.11536, 0.48, 0.0672, 1)
+albedo_texture = ExtResource("6_dx62p")
+texture_filter = 0
+
+[node name="MapItem" type="Node3D" node_paths=PackedStringArray("TargetMesh", "Collider", "WaterToolButton", "CliffToolButton", "EraserToolButton", "RedFlagButton", "BlueFlagButton", "GreenFlagButton", "ToolParent", "FlagParent", "ToolModelParent", "MarkerCliff", "MarkerWater", "Eraser", "RedFlag", "BlueFlag", "GreenFlag", "Scale")]
 transform = Transform3D(1, 0, 0, 0, 0.82806, 0.560639, 0, -0.560639, 0.82806, 0, -0.139, -1.067)
 script = ExtResource("1_bm0m2")
 TargetMesh = NodePath("Map")
@@ -45,11 +64,18 @@ DrawSize = 0.1
 WaterToolButton = NodePath("ToolPalette/WaterToolButton")
 CliffToolButton = NodePath("ToolPalette/CliffToolButton")
 EraserToolButton = NodePath("ToolPalette/EraserToolButton")
+RedFlagButton = NodePath("FlagPalette/RedFlagButton")
+BlueFlagButton = NodePath("FlagPalette/BlueFlagButton")
+GreenFlagButton = NodePath("FlagPalette/GreenFlagButton")
 ToolParent = NodePath("ToolPalette")
+FlagParent = NodePath("FlagPalette")
 ToolModelParent = NodePath("Node3D")
 MarkerCliff = NodePath("Node3D/MarkerBlack")
 MarkerWater = NodePath("Node3D/MarkerBlue")
 Eraser = NodePath("Node3D/Eraser")
+RedFlag = NodePath("Node3D/RedFlag")
+BlueFlag = NodePath("Node3D/BlueFlag")
+GreenFlag = NodePath("Node3D/GreenFlag")
 Scale = NodePath("Scale")
 
 [node name="Scale" type="MeshInstance3D" parent="."]
@@ -132,6 +158,63 @@ material_override = ExtResource("7_gvfga")
 mesh = SubResource("QuadMesh_hr3vy")
 surface_material_override/0 = SubResource("StandardMaterial3D_s02l6")
 
+[node name="FlagPalette" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, 0.66209, 0, 0)
+
+[node name="RedFlagButton" type="StaticBody3D" parent="FlagPalette"]
+transform = Transform3D(0.18, 0, 0, 0, 0.18, -6.70552e-09, 0, 6.70552e-09, 0.18, 0, 0.25, 1.49012e-08)
+collision_layer = 32768
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FlagPalette/RedFlagButton"]
+material_override = ExtResource("3_wd5aj")
+mesh = SubResource("QuadMesh_hr3vy")
+
+[node name="Icon" type="MeshInstance3D" parent="FlagPalette/RedFlagButton"]
+transform = Transform3D(0.78552, 0, 0, 0, 0.741145, 0, 0, -5.96046e-08, 1.38233, -0.0412364, 0, 0.0499988)
+material_override = SubResource("StandardMaterial3D_s50oa")
+mesh = SubResource("QuadMesh_hr3vy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FlagPalette/RedFlagButton"]
+transform = Transform3D(1, 0, 0, 0, 1, 5.96046e-07, 0, -5.96046e-07, 1, 0, 2.38419e-07, -0.0500001)
+shape = SubResource("BoxShape3D_kcsa5")
+
+[node name="BlueFlagButton" type="StaticBody3D" parent="FlagPalette"]
+transform = Transform3D(0.18, 0, 0, 0, 0.18, -6.70552e-09, 0, 6.70552e-09, 0.18, 0, 0, 0)
+collision_layer = 32768
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FlagPalette/BlueFlagButton"]
+material_override = ExtResource("3_wd5aj")
+mesh = SubResource("QuadMesh_hr3vy")
+
+[node name="Icon" type="MeshInstance3D" parent="FlagPalette/BlueFlagButton"]
+transform = Transform3D(0.78552, 0, 0, 0, 0.741145, 0, 0, -5.96046e-08, 1.38233, -0.0412364, 0, 0.0499988)
+material_override = SubResource("StandardMaterial3D_2ltoa")
+mesh = SubResource("QuadMesh_hr3vy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FlagPalette/BlueFlagButton"]
+transform = Transform3D(1, 0, 0, 0, 1, 5.96046e-07, 0, -5.96046e-07, 1, 0, 2.38419e-07, -0.0500001)
+shape = SubResource("BoxShape3D_kcsa5")
+
+[node name="GreenFlagButton" type="StaticBody3D" parent="FlagPalette"]
+transform = Transform3D(0.18, 0, 0, 0, 0.18, -6.70552e-09, 0, 6.70552e-09, 0.18, 0, -0.25, 0)
+collision_layer = 32768
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FlagPalette/GreenFlagButton"]
+material_override = ExtResource("3_wd5aj")
+mesh = SubResource("QuadMesh_hr3vy")
+
+[node name="Icon" type="MeshInstance3D" parent="FlagPalette/GreenFlagButton"]
+transform = Transform3D(0.78552, 0, 0, 0, 0.741145, 0, 0, -5.96046e-08, 1.38233, -0.0412364, 0, 0.0499988)
+material_override = SubResource("StandardMaterial3D_bmttq")
+mesh = SubResource("QuadMesh_hr3vy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FlagPalette/GreenFlagButton"]
+transform = Transform3D(1, 0, 0, 0, 1, 5.96046e-07, 0, -5.96046e-07, 1, 0, 2.38419e-07, -0.0500001)
+shape = SubResource("BoxShape3D_kcsa5")
+
 [node name="Node3D" type="Node3D" parent="."]
 
 [node name="Eraser" parent="Node3D" instance=ExtResource("9_rim5m")]
@@ -156,6 +239,59 @@ transform = Transform3D(1, 0, 0, 0, -0.500514, -0.865729, 0, 0.865729, -0.500514
 surface_material_override/0 = ExtResource("12_6s5u6")
 surface_material_override/1 = ExtResource("14_4dbmf")
 surface_material_override/2 = ExtResource("14_4dbmf")
+
+[node name="RedFlag" type="Node3D" parent="Node3D"]
+
+[node name="RedFlag" type="MeshInstance3D" parent="Node3D/RedFlag"]
+transform = Transform3D(0.141394, 0, 0, 0, 0.133406, -2.23517e-08, 0, 0, 0.248819, 0, 0, 0.1)
+material_override = SubResource("StandardMaterial3D_s50oa")
+mesh = SubResource("QuadMesh_hr3vy")
+skeleton = NodePath("../../../FlagPalette/RedFlagButton")
+
+[node name="BlueFlag" type="Node3D" parent="Node3D"]
+
+[node name="BlueFlag" type="MeshInstance3D" parent="Node3D/BlueFlag"]
+transform = Transform3D(0.141394, 0, 0, 0, 0.133406, -2.23517e-08, 0, 0, 0.248819, 0, 0, 0.1)
+material_override = SubResource("StandardMaterial3D_2ltoa")
+mesh = SubResource("QuadMesh_hr3vy")
+skeleton = NodePath("../../../FlagPalette/RedFlagButton")
+
+[node name="GreenFlag" type="Node3D" parent="Node3D"]
+
+[node name="GreenFlag" type="MeshInstance3D" parent="Node3D/GreenFlag"]
+transform = Transform3D(0.141394, 0, 0, 0, 0.133406, -2.23517e-08, 0, 0, 0.248819, 0, 0, 0.1)
+material_override = SubResource("StandardMaterial3D_bmttq")
+mesh = SubResource("QuadMesh_hr3vy")
+skeleton = NodePath("../../../FlagPalette/RedFlagButton")
+
+[node name="MapFlags" type="Node3D" parent="."]
+
+[node name="RedFlag" type="Node3D" parent="MapFlags"]
+transform = Transform3D(1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, 0, 0, 0)
+
+[node name="RedFlag" type="MeshInstance3D" parent="MapFlags/RedFlag"]
+transform = Transform3D(0.141394, 0, 0, 0, 0.133406, -2.23517e-08, 0, 0, 0.248819, 0, 0, 0.05)
+material_override = SubResource("StandardMaterial3D_s50oa")
+mesh = SubResource("QuadMesh_hr3vy")
+skeleton = NodePath("../../../FlagPalette/RedFlagButton")
+
+[node name="BlueFlag" type="Node3D" parent="MapFlags"]
+transform = Transform3D(1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, 0, 0, 0)
+
+[node name="BlueFlag" type="MeshInstance3D" parent="MapFlags/BlueFlag"]
+transform = Transform3D(0.141394, 0, 0, 0, 0.133406, -2.23517e-08, 0, 0, 0.248819, 0, 0, 0.05)
+material_override = SubResource("StandardMaterial3D_2ltoa")
+mesh = SubResource("QuadMesh_hr3vy")
+skeleton = NodePath("../../../FlagPalette/RedFlagButton")
+
+[node name="GreenFlag" type="Node3D" parent="MapFlags"]
+transform = Transform3D(1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, 0, 0, 0)
+
+[node name="GreenFlag" type="MeshInstance3D" parent="MapFlags/GreenFlag"]
+transform = Transform3D(0.141394, 0, 0, 0, 0.133406, -2.23517e-08, 0, 0, 0.248819, 0, 0, 0.05)
+material_override = SubResource("StandardMaterial3D_bmttq")
+mesh = SubResource("QuadMesh_hr3vy")
+skeleton = NodePath("../../../FlagPalette/RedFlagButton")
 
 [editable path="Node3D/Eraser"]
 [editable path="Node3D/MarkerBlack"]

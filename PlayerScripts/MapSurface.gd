@@ -7,13 +7,20 @@ extends ItemBase
 @export var WaterToolButton: StaticBody3D
 @export var CliffToolButton: StaticBody3D
 @export var EraserToolButton: StaticBody3D
+@export var RedFlagButton: StaticBody3D
+@export var BlueFlagButton: StaticBody3D
+@export var GreenFlagButton: StaticBody3D
 @export var ButtonDefaultScale = 0.18
 @export var ButtonPressedScale = 0.25
 @export var ToolParent: Node3D
+@export var FlagParent: Node3D
 @export var ToolModelParent: Node3D
 @export var MarkerCliff: Node3D
 @export var MarkerWater: Node3D
 @export var Eraser: Node3D
+@export var RedFlag: Node3D
+@export var BlueFlag: Node3D
+@export var GreenFlag: Node3D
 @export var Scale: Node3D
 @export var Player: PlayerController
 
@@ -34,6 +41,7 @@ func _ready() -> void:
 	var aspect = map.Width / float(map.Height)
 	TargetMesh.scale = Vector3(aspect, 1, 1)
 	ToolParent.position = Vector3(aspect * -0.5 - 0.138, 0, 0)
+	FlagParent.position = Vector3(aspect * 0.5 + 0.138, 0, 0)
 	
 	
 	var scaleWidth = 20.0 / map.Height
@@ -50,6 +58,9 @@ func _ready() -> void:
 	ToolModelParent.remove_child(Eraser)
 	ToolModelParent.remove_child(MarkerWater)
 	ToolModelParent.remove_child(MarkerCliff)
+	ToolModelParent.remove_child(RedFlag)
+	ToolModelParent.remove_child(BlueFlag)
+	ToolModelParent.remove_child(GreenFlag)
 
 func _enter_tree() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -96,12 +107,19 @@ func _unhandled_input(event: InputEvent):
 			newHighlightButton = Collider
 			Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 			if !currentToolModel:
-				if currentButton == CliffToolButton:
-					currentToolModel = MarkerCliff
-				elif currentButton == WaterToolButton:
-					currentToolModel = MarkerWater
-				elif currentButton == EraserToolButton:
-					currentToolModel = Eraser
+				match(currentButton):
+					CliffToolButton:
+						currentToolModel = MarkerCliff
+					WaterToolButton:
+						currentToolModel = MarkerWater
+					EraserToolButton:
+						currentToolModel = Eraser
+					RedFlagButton:
+						currentToolModel = RedFlag	
+					BlueFlagButton:
+						currentToolModel = BlueFlag	
+					GreenFlagButton:
+						currentToolModel = GreenFlag	
 				
 				if currentToolModel:
 					ToolModelParent.add_child(currentToolModel)
@@ -140,12 +158,8 @@ func _unhandled_input(event: InputEvent):
 				ToolModelParent.remove_child(currentToolModel)
 				currentToolModel = null
 			
-		if result.collider == CliffToolButton:
-			newHighlightButton = CliffToolButton
-		if result.collider == WaterToolButton:
-			newHighlightButton = WaterToolButton
-		if result.collider == EraserToolButton:
-			newHighlightButton = EraserToolButton
+		if [CliffToolButton,WaterToolButton,EraserToolButton,RedFlagButton,BlueFlagButton,GreenFlagButton].has(result.collider):
+			newHighlightButton = result.collider
 			
 		if newHighlightButton != highlightedButton:
 			if highlightedButton and highlightedButton != currentButton and highlightedButton != Collider:
