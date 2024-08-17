@@ -1,4 +1,5 @@
 extends CharacterBody3D
+class_name PlayerController
 
 signal begin_trial(image: Image)
 
@@ -15,6 +16,7 @@ const JUMP_VELOCITY = 4.5
 
 var lastMousePos: Vector2
 var eulerAngles: Vector3
+var distanceWalked: float
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -58,6 +60,8 @@ func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+	else:
+		distanceWalked += velocity.length() * delta
 
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():

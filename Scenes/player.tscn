@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c56yvex4g3pif"]
+[gd_scene load_steps=10 format=3 uid="uid://c56yvex4g3pif"]
 
 [ext_resource type="Script" path="res://PlayerScripts/PlayerController.gd" id="1_fb5hj"]
 [ext_resource type="Script" path="res://PlayerScripts/ItemManager.gd" id="2_pemao"]
@@ -6,6 +6,8 @@
 [ext_resource type="Resource" uid="uid://dagoq7bq7cpd3" path="res://shared_map_resource.tres" id="4_s5v4y"]
 [ext_resource type="PackedScene" uid="uid://bqrdettbqghbi" path="res://Models/Compass.glb" id="5_4xvks"]
 [ext_resource type="Script" path="res://PlayerScripts/CompassItem.gd" id="6_3atti"]
+[ext_resource type="PackedScene" uid="uid://h7v7gl1r3btn" path="res://Models/StepCounter.glb" id="7_wr6qj"]
+[ext_resource type="Script" path="res://Models/StepCounter.gd" id="8_fnlbg"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_18swh"]
 radius = 0.4
@@ -24,7 +26,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.608218, 0)
 
 [node name="ItemManager" type="Node3D" parent="Camera3D" node_paths=PackedStringArray("Items")]
 script = ExtResource("2_pemao")
-Items = [NodePath("MapItem"), NodePath("CompassItem")]
+Items = [NodePath("MapItem"), NodePath("CompassItem"), null]
 
 [node name="MapItem" parent="Camera3D/ItemManager" node_paths=PackedStringArray("Camera") instance=ExtResource("3_pixbx")]
 transform = Transform3D(1, 0, 0, 0, 0.987414, 0.158158, 0, -0.158158, 0.987414, 0, -0.059, -0.892)
@@ -37,4 +39,13 @@ script = ExtResource("6_3atti")
 RootTransform = NodePath("../../..")
 Needle = NodePath("Spinner")
 
+[node name="StepCounterItem" parent="Camera3D/ItemManager" node_paths=PackedStringArray("HundredsDigit", "TensDigit", "OnesDigit", "Player") instance=ExtResource("7_wr6qj")]
+transform = Transform3D(0.09, 0, 0, 0, 0.0858929, 0.0268777, 0, -0.0268777, 0.0858929, 0, -0.155, -0.431)
+script = ExtResource("8_fnlbg")
+HundredsDigit = NodePath("Hundreds")
+TensDigit = NodePath("Tens")
+OnesDigit = NodePath("Ones")
+Player = NodePath("../../..")
+
 [editable path="Camera3D/ItemManager/CompassItem"]
+[editable path="Camera3D/ItemManager/StepCounterItem"]
