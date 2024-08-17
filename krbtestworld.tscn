@@ -1,19 +1,12 @@
-[gd_scene load_steps=19 format=3 uid="uid://dmc1dnnyc71t3"]
+[gd_scene load_steps=16 format=3 uid="uid://dmc1dnnyc71t3"]
 
 [ext_resource type="Script" path="res://LevelController.gd" id="1_ggm0a"]
 [ext_resource type="Texture2D" uid="uid://cblyipbdlfhs5" path="res://icon.svg" id="2_5cd64"]
 [ext_resource type="PackedScene" uid="uid://url466m8etkf" path="res://navigator.tscn" id="2_ap437"]
-[ext_resource type="Script" path="res://EditableMap.gd" id="3_d6gpy"]
-[ext_resource type="PackedScene" uid="uid://c56yvex4g3pif" path="res://Scenes/player.tscn" id="4_3l74u"]
 [ext_resource type="Script" path="res://navigator_detector.gd" id="5_4uk23"]
 [ext_resource type="Script" path="res://navigator_spawn.gd" id="5_vwqx6"]
-[ext_resource type="PackedScene" uid="uid://b60f5c5tiin0e" path="res://Scenes/player_canvas.tscn" id="6_4o3jr"]
-[ext_resource type="PackedScene" uid="uid://svaiv3vkg55a" path="res://Scenes/playback_canvas.tscn" id="7_7hif6"]
-
-[sub_resource type="Resource" id="Resource_3evtv"]
-script = ExtResource("3_d6gpy")
-Width = 128
-Height = 128
+[ext_resource type="PackedScene" path="res://Scenes/player_canvas.tscn" id="6_4o3jr"]
+[ext_resource type="PackedScene" path="res://Scenes/playback_canvas.tscn" id="7_7hif6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_136qs"]
 albedo_color = Color(0.116667, 1, 0, 1)
@@ -41,8 +34,6 @@ albedo_color = Color(1, 0.2, 0.2, 0.490196)
 [node name="krbtestworld" type="Node3D" node_paths=PackedStringArray("navigator_spawn_points")]
 script = ExtResource("1_ggm0a")
 navigator_spawn_points = [NodePath("NavigatorSpawn")]
-player_scene = ExtResource("4_3l74u")
-Map = SubResource("Resource_3evtv")
 
 [node name="NavigatorSpawn" type="Marker3D" parent="." node_paths=PackedStringArray("target")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.7543, 0, 12.2798)

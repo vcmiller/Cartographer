@@ -1,5 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://cegqjo31aarvw"]
+[gd_scene load_steps=24 format=3 uid="uid://cegqjo31aarvw"]
 
+[ext_resource type="Script" path="res://LevelController.gd" id="1_7gly0"]
 [ext_resource type="PackedScene" uid="uid://c56yvex4g3pif" path="res://Scenes/player.tscn" id="1_ad445"]
 [ext_resource type="Script" path="res://EditableMap.gd" id="2_tkkob"]
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="3_c7gw5"]
@@ -11,6 +12,12 @@
 [ext_resource type="Texture2D" uid="uid://dgqwjkwa2ckuq" path="res://Textures/Cliff_normal.png" id="9_ff7x0"]
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_detail_layer.gd" id="10_mvm6s"]
 [ext_resource type="Texture2D" uid="uid://6jmdwj3vn6m0" path="res://addons/zylann.hterrain/tools/icons/icon_detail_layer_node.svg" id="11_8siu6"]
+[ext_resource type="PackedScene" uid="uid://dtab7c0bq186o" path="res://Scenes/house.tscn" id="12_ain71"]
+[ext_resource type="PackedScene" uid="uid://7jfrr44c1tir" path="res://Scenes/chest.tscn" id="13_rhw22"]
+[ext_resource type="Script" path="res://navigator_spawn.gd" id="14_nmrc2"]
+[ext_resource type="PackedScene" uid="uid://url466m8etkf" path="res://navigator.tscn" id="16_7r0ls"]
+[ext_resource type="PackedScene" path="res://Scenes/playback_canvas.tscn" id="17_0p3wf"]
+[ext_resource type="PackedScene" path="res://Scenes/player_canvas.tscn" id="18_400c0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_a5k6u"]
 
@@ -31,7 +38,10 @@ script = ExtResource("5_3qa8x")
 mode = 0
 textures = [[ExtResource("6_andtf"), ExtResource("7_x6axp")], [ExtResource("8_jb2gq"), ExtResource("9_ff7x0")]]
 
-[node name="Node3D" type="Node3D"]
+[node name="Level1" type="Node3D" node_paths=PackedStringArray("navigator_spawn_points", "player")]
+script = ExtResource("1_7gly0")
+navigator_spawn_points = [NodePath("Start")]
+player = NodePath("Player")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_yanan")
@@ -74,3 +84,24 @@ shader_params/u_bottom_ao = null
 shader_params/u_instance_scale = Vector3(1, 1, 1)
 shader_params/u_roughness = 0.9
 metadata/_editor_icon = ExtResource("11_8siu6")
+
+[node name="House" parent="." instance=ExtResource("12_ain71")]
+transform = Transform3D(0.913907, 0, -0.405923, 0, 1, 0, 0.405923, 0, 0.913907, 44.0488, 0, 34.9483)
+
+[node name="Chest" parent="." instance=ExtResource("13_rhw22")]
+
+[node name="Start" type="Marker3D" parent="." node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.904, 1, 38.216)
+script = ExtResource("14_nmrc2")
+target = NodePath("../Marker3D2")
+navigator_scene = ExtResource("16_7r0ls")
+
+[node name="Marker3D2" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.62, 1, 7.13)
+
+[node name="PlaybackCanvas" parent="." instance=ExtResource("17_0p3wf")]
+
+[node name="PlayerCanvas" parent="." instance=ExtResource("18_400c0")]
+
+[node name="SpectatorCamera" type="Camera3D" parent="."]
+transform = Transform3D(0.999998, 0.00171881, -0.000303073, 0, 0.173648, 0.984808, 0.00174533, -0.984806, 0.173648, 25, 34.213, 33.164)
