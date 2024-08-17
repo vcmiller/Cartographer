@@ -1,15 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://dmc1dnnyc71t3"]
+[gd_scene load_steps=6 format=3 uid="uid://dmc1dnnyc71t3"]
 
-[ext_resource type="Script" path="res://navigator.gd" id="1_xywwr"]
+[ext_resource type="PackedScene" uid="uid://url466m8etkf" path="res://navigator.tscn" id="1_oskyc"]
 [ext_resource type="Texture2D" uid="uid://cblyipbdlfhs5" path="res://icon.svg" id="2_5cd64"]
+[ext_resource type="Texture2D" uid="uid://c518wkcpty703" path="res://icon.png" id="2_a6r1f"]
+[ext_resource type="Script" path="res://map_loader.gd" id="3_eeww0"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_e3mo1"]
 
 [node name="krbtestworld" type="Node3D"]
 
-[node name="Navigator" type="Node3D" parent="."]
-script = ExtResource("1_xywwr")
-tex = ExtResource("2_5cd64")
+[node name="MapLoader" type="Node" parent="."]
+script = ExtResource("3_eeww0")
+texture = ExtResource("2_a6r1f")
 
-[node name="CSGSphere3D" type="CSGSphere3D" parent="Navigator"]
+[node name="Navigator" parent="." instance=ExtResource("1_oskyc")]
+
+[node name="Target" type="CSGSphere3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.718, 0, 127)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -17,3 +25,15 @@ tex = ExtResource("2_5cd64")
 unique_name_in_owner = true
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.999998, 0.00159038, -0.000953869, 0, 0.514354, 0.857578, 0.0018545, -0.857576, 0.514353, 70.329, 80.318, 141.749)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="Sprite3D" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(-96, 8.39259e-06, -3.66852e-13, 0, -4.19629e-06, -96, -8.39259e-06, -96, 4.19629e-06, 64, 0, 64)
+texture = ExtResource("2_5cd64")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_e3mo1")

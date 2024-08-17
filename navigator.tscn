@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://url466m8etkf"]
+
+[ext_resource type="Script" path="res://navigator.gd" id="1_dle6y"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_f6oiq"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_coyju"]
+
+[node name="Navigator" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1)
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+script = ExtResource("1_dle6y")
+
+[node name="CSGSphere3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_f6oiq")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_coyju")
