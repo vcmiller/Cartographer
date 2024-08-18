@@ -115,17 +115,19 @@ visible = false
 visible = false
 
 [node name="Prop_Sword" parent="Dude" index="11"]
-transform = Transform3D(-0.0497688, 0.00484826, -0.00045096, 0.00483867, 0.0497616, 0.000988165, 0.000544566, 0.000939835, -0.0499942, 0.871134, 1.44702, -0.715854)
+transform = Transform3D(-0.0488726, 0.00350537, -0.0100286, -0.00298942, 0.0407673, 0.028818, 0.0101943, 0.0287599, -0.0396273, 0.737386, 2.00894, -0.924954)
 visible = false
 
 [node name="Skeleton3D" parent="Dude/Armature" index="0"]
-bones/1/rotation = Quaternion(0.00129293, -0.00695756, 0.973934, -0.226722)
+bones/1/rotation = Quaternion(0.0185242, -0.318192, 0.912467, -0.256542)
 bones/1/scale = Vector3(1, 1, 1)
-bones/2/rotation = Quaternion(-0.00129293, -0.00695756, 0.973934, 0.226722)
+bones/2/rotation = Quaternion(0.0138964, 0.301749, 0.940218, 0.157304)
 bones/2/scale = Vector3(1, 1, 1)
+bones/3/rotation = Quaternion(0.946101, 1.41569e-08, -4.13554e-08, 0.323872)
+bones/4/rotation = Quaternion(0.945091, -1.42852e-08, -4.13112e-08, -0.326808)
 
 [node name="HandAttach" type="BoneAttachment3D" parent="Dude/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.897191, 0.441606, 0.00567332, -0.441642, -0.897097, -0.0129661, -0.000636407, -0.0141387, 0.9999, 0.590047, 1.99674, 0.03887)
+transform = Transform3D(-0.867686, 0.456385, 0.197065, -0.479962, -0.66588, -0.571175, -0.129454, -0.590184, 0.796821, 0.590047, 1.99674, 0.03887)
 bone_name = "Arm_R"
 bone_idx = 1
 
