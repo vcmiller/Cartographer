@@ -1,10 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://cpyuibv7in8lg"]
+[gd_scene load_steps=7 format=3 uid="uid://cpyuibv7in8lg"]
 
 [ext_resource type="Script" path="res://player_canvas.gd" id="1_h22vk"]
+[ext_resource type="Texture2D" uid="uid://kgme0al5qkto" path="res://Textures/maps.png" id="2_n7pw8"]
 [ext_resource type="Texture2D" uid="uid://cblyipbdlfhs5" path="res://icon.svg" id="2_yx018"]
+[ext_resource type="Texture2D" uid="uid://c03o1cdqx0qdb" path="res://Textures/compass.png" id="3_052lg"]
+[ext_resource type="Texture2D" uid="uid://d16t1f5tolr2a" path="res://Textures/counter.png" id="4_da5ew"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qwa8h"]
-bg_color = Color(1, 1, 1, 1)
+bg_color = Color(0.32, 0.32, 0.32, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_blend = true
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
 
 [node name="PlayerCanvas" type="CanvasLayer" node_paths=PackedStringArray("submit_button", "close_map_button")]
 script = ExtResource("1_h22vk")
@@ -28,7 +40,8 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_qwa8h")
 
 [node name="TextureRect" type="TextureRect" parent="ItemSelect/MapContainer"]
 layout_mode = 2
-texture = ExtResource("2_yx018")
+texture = ExtResource("2_n7pw8")
+expand_mode = 2
 
 [node name="CompassContainer" type="PanelContainer" parent="ItemSelect"]
 custom_minimum_size = Vector2(132, 132)
@@ -37,7 +50,8 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_qwa8h")
 
 [node name="TextureRect" type="TextureRect" parent="ItemSelect/CompassContainer"]
 layout_mode = 2
-texture = ExtResource("2_yx018")
+texture = ExtResource("3_052lg")
+expand_mode = 2
 
 [node name="StepCountContainer" type="PanelContainer" parent="ItemSelect"]
 custom_minimum_size = Vector2(132, 132)
@@ -46,7 +60,8 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_qwa8h")
 
 [node name="TextureRect" type="TextureRect" parent="ItemSelect/StepCountContainer"]
 layout_mode = 2
-texture = ExtResource("2_yx018")
+texture = ExtResource("4_da5ew")
+expand_mode = 2
 
 [node name="PanelContainer4" type="PanelContainer" parent="ItemSelect"]
 custom_minimum_size = Vector2(132, 132)
