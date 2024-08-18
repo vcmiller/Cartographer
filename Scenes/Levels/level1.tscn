@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://doeyfpmulhmiq" path="res://Textures/Cliff_basecolor.png" id="8_8iwbd"]
 [ext_resource type="Texture2D" uid="uid://7m5c5uxiaa3m" path="res://Textures/grass_1_normal-1K.png" id="9_u54t8"]
 [ext_resource type="Texture2D" uid="uid://dgqwjkwa2ckuq" path="res://Textures/Cliff_normal.png" id="10_cxcxb"]
-[ext_resource type="PackedScene" uid="uid://dtab7c0bq186o" path="res://Scenes/house.tscn" id="13_00hr0"]
+[ext_resource type="PackedScene" path="res://Scenes/house.tscn" id="13_00hr0"]
 [ext_resource type="PackedScene" uid="uid://7jfrr44c1tir" path="res://Scenes/chest.tscn" id="14_ndxgu"]
 [ext_resource type="Script" path="res://navigator_spawn.gd" id="15_31cjw"]
 [ext_resource type="PackedScene" uid="uid://url466m8etkf" path="res://navigator.tscn" id="16_f256h"]
@@ -103,6 +103,7 @@ visible = false
 level_controller = NodePath("..")
 
 [node name="PlayerCanvas" parent="." instance=ExtResource("18_xbvxu")]
+num_items_shown = 1
 
 [node name="FlagMarkers" type="Node3D" parent="."]
 
