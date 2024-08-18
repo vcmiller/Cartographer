@@ -156,7 +156,7 @@ func _process(_delta: float) -> void:
 		
 		var camAngleDiff = cameraArm.quaternion.angle_to(targetQuaternion)
 		if camAngleDiff > 0.01:
-			var amtToRotate = min(camAngleDiff, _delta * PI)
+			var amtToRotate = min(camAngleDiff / 2, _delta * PI)
 			var interp = amtToRotate / camAngleDiff
 			cameraArm.quaternion = cameraArm.quaternion.slerp(targetQuaternion, interp)
 	move_and_slide()

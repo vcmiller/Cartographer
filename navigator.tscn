@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://url466m8etkf"]
+[gd_scene load_steps=14 format=3 uid="uid://url466m8etkf"]
 
 [ext_resource type="Script" path="res://navigator.gd" id="1_dle6y"]
 [ext_resource type="PackedScene" uid="uid://dxu8ruvox87at" path="res://Models/Dude.glb" id="2_lan0h"]
@@ -8,6 +8,10 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_coyju"]
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_axs1q"]
+
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_x0il8"]
+length = 2.0
+slide_on_slope = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j7gbt"]
 transparency = 1
@@ -37,7 +41,7 @@ axis_lock_angular_x = true
 axis_lock_angular_z = true
 script = ExtResource("1_dle6y")
 Model = NodePath("Dude")
-remote = NodePath("CameraArm/Remote")
+remote = NodePath("CameraArm/Node3D/Remote")
 anim = NodePath("Dude/AnimationPlayer")
 cameraArm = NodePath("CameraArm")
 thoughtBubble = NodePath("ThoughtBubble")
@@ -96,7 +100,7 @@ visible = false
 visible = false
 
 [node name="Prop_Sword" parent="Dude" index="11"]
-transform = Transform3D(-0.0497687, 0.00484826, -0.00045096, 0.00483866, 0.0497616, 0.000988165, 0.000544564, 0.000939835, -0.0499942, 0.871134, 1.44702, -0.715854)
+transform = Transform3D(-0.0497687, 0.00484826, -0.00045096, 0.00483866, 0.0497616, 0.000988165, 0.000544565, 0.000939835, -0.0499942, 0.871134, 1.44702, -0.715854)
 visible = false
 
 [node name="Skeleton3D" parent="Dude/Armature" index="0"]
@@ -120,9 +124,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.815705, 0)
 bone_name = "Root"
 bone_idx = 0
 
-[node name="CameraArm" type="Node3D" parent="."]
+[node name="CameraArm" type="SpringArm3D" parent="."]
+shape = SubResource("SeparationRayShape3D_x0il8")
+spring_length = 2.0
 
-[node name="Remote" type="RemoteTransform3D" parent="CameraArm"]
+[node name="Node3D" type="Node3D" parent="CameraArm"]
+
+[node name="Remote" type="RemoteTransform3D" parent="CameraArm/Node3D"]
 transform = Transform3D(1, 0, 0, 0, 0.925633, 0.378422, 0, -0.378422, 0.925633, 0, 1.44609, 2.41653)
 update_scale = false
 
