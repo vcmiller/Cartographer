@@ -79,4 +79,4 @@ func fail():
 func succccess():
 	navigator_count -= 1
 	if navigator_count <= 0 and not has_failed:
-		playback_canvas.win_label.show()
+		playback_canvas.on_victory()

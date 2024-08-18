@@ -3,6 +3,7 @@ class_name PlaybackCanvas
 
 @onready var fuck_label: Label = $FuckLabel
 @onready var win_label: Label = $WinLabel
+@onready var victory_sound: AudioStreamPlayer = $VictorySound
 
 @export var level_controller: LevelController
 @export var ViewportsLeft: CanvasItem
@@ -27,6 +28,10 @@ func retry():
 func _ready() -> void:
 	ViewportsLeft.hide()
 	ViewportsRight.hide()
+
+func on_victory():
+	win_label.show()
+	victory_sound.play()
 		
 func update_viewports(navigators: Array[Navigator]):
 	var count = len(navigators)

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dkv2gdruwmqqp"]
+[gd_scene load_steps=3 format=3 uid="uid://dkv2gdruwmqqp"]
 
 [ext_resource type="Script" path="res://playback_canvas.gd" id="1_btobm"]
+[ext_resource type="AudioStream" uid="uid://hj5lgujb8we2" path="res://Audio/413203__joepayne__clean-and-pompous-fanfare-trumpet.mp3" id="2_1g7wd"]
 
 [node name="PlaybackCanvas" type="CanvasLayer" node_paths=PackedStringArray("ViewportsLeft", "ViewportsRight", "ViewportParentTL", "ViewportParentBL", "ViewportParentTR", "ViewportParentBR", "CameraTL", "CameraTR", "CameraBL", "CameraBR")]
 script = ExtResource("1_btobm")
@@ -143,6 +144,9 @@ text = "Next Level"
 unique_name_in_owner = true
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="VictorySound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_1g7wd")
 
 [connection signal="pressed" from="Retry" to="." method="retry"]
 [connection signal="pressed" from="WinLabel/Button" to="." method="_on_next_button_pressed"]
