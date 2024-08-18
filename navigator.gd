@@ -1,6 +1,8 @@
 extends CharacterBody3D
+class_name Navigator
   
 @export var target: Node3D 
+@export var remote: RemoteTransform3D
 
 @onready var lineDrawer: MeshInstance3D = $LineDrawer
 
@@ -38,5 +40,11 @@ func _process(_delta: float) -> void:
 		target_pos = lerp(vec3(path[0]), vec3(path[1]), sqrt(2) - dist_0)
 	#position = position.move_toward(target_pos, 10 * delta)
 	velocity = position.direction_to(target_pos) * SPEED #min(position.distance_to(target_pos),  10)
+	if velocity.length_squared() > 0.1:
+		var dir = velocity
+		dir.y = 0
+		var targetBasis = Basis.looking_at(dir)
+		var targetQuaternion = targetBasis.get_rotation_quaternion()
+		quaternion = quaternion.slerp(targetQuaternion, _delta * TAU)
 	move_and_slide()
 	pass

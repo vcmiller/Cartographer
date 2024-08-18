@@ -1,7 +1,6 @@
 extends Node3D
 class_name LevelController
 
-@onready var spectator_camera: Camera3D = $SpectatorCamera
 @onready var playback_canvas: PlaybackCanvas = $PlaybackCanvas
 @onready var player_canvas: PlayerCanvas = $PlayerCanvas
 
@@ -38,4 +37,8 @@ func _on_player_begin_trial(image: Image) -> void:
 	
 	MapGridHandler.ParseImage(image)
 	
-	for nsp in navigator_spawn_points: nsp.spawn_navigator() 
+	var navigators : Array[Navigator] = []
+	for nsp in navigator_spawn_points:
+		var navigator = nsp.spawn_navigator()
+		navigators.append(navigator)
+	playback_canvas.update_viewports(navigators)
