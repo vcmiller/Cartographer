@@ -12,9 +12,9 @@
 [ext_resource type="Texture2D" uid="uid://dwdxtpum8euki" path="res://Textures/1K-snow_3_Base Color.jpg" id="9_bms4d"]
 [ext_resource type="Texture2D" uid="uid://7m5c5uxiaa3m" path="res://Textures/grass_1_normal-1K.png" id="9_u54t8"]
 [ext_resource type="Texture2D" uid="uid://dgqwjkwa2ckuq" path="res://Textures/Cliff_normal.png" id="10_cxcxb"]
-[ext_resource type="PackedScene" path="res://Scenes/house.tscn" id="13_00hr0"]
+[ext_resource type="PackedScene" uid="uid://dtab7c0bq186o" path="res://Scenes/house.tscn" id="13_00hr0"]
 [ext_resource type="PackedScene" uid="uid://7jfrr44c1tir" path="res://Scenes/chest.tscn" id="14_ndxgu"]
-[ext_resource type="PackedScene" path="res://Scenes/dragon.tscn" id="15_5dqpx"]
+[ext_resource type="PackedScene" uid="uid://dia0af0h1mn1v" path="res://Scenes/dragon.tscn" id="15_5dqpx"]
 [ext_resource type="Script" path="res://navigator_spawn.gd" id="15_31cjw"]
 [ext_resource type="PackedScene" uid="uid://url466m8etkf" path="res://navigator.tscn" id="16_f256h"]
 [ext_resource type="AudioStream" uid="uid://bt5r22mrhkdg" path="res://Audio/556048__antimsounds__dragon-growl.wav" id="16_wqx12"]
@@ -51,7 +51,7 @@ player = NodePath("Player")
 goals = [NodePath("Chest"), NodePath("Dragon")]
 extraMarkerSprites = Array[Texture2D]([ExtResource("2_yp7xa")])
 extraMarkerPositions = [NodePath("Flag2")]
-nextLevel = "res://Scenes/Levels/level2.tscn"
+nextLevel = "res://Scenes/Levels/level5.tscn"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_yanan")
