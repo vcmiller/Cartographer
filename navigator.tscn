@@ -100,7 +100,7 @@ visible = false
 visible = false
 
 [node name="Prop_Sword" parent="Dude" index="11"]
-transform = Transform3D(-0.0497687, 0.00484826, -0.00045096, 0.00483867, 0.0497616, 0.000988165, 0.000544565, 0.000939835, -0.0499942, 0.871134, 1.44702, -0.715854)
+transform = Transform3D(-0.0497687, 0.00484826, -0.00045096, 0.00483866, 0.0497616, 0.000988165, 0.000544565, 0.000939835, -0.0499942, 0.871134, 1.44702, -0.715854)
 visible = false
 
 [node name="Skeleton3D" parent="Dude/Armature" index="0"]

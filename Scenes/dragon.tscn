@@ -2,26 +2,28 @@
 
 [ext_resource type="Script" path="res://gooooaaaal.gd" id="1_n3jxn"]
 [ext_resource type="Texture2D" uid="uid://dgehecsxh8uf0" path="res://Textures/dragon.png" id="2_yiboy"]
-[ext_resource type="PackedScene" uid="uid://2qrou3qhhn48" path="res://Models/Chest.glb" id="3_xiibd"]
+[ext_resource type="PackedScene" uid="uid://bipchdgovuohs" path="res://Models/Dragon.glb" id="3_nclcw"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sgc8r"]
-size = Vector3(1.56445, 1.39746, 1.1272)
+size = Vector3(1.598, 4.73, 3.834)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_448bg"]
 radius = 8.293
 
-[node name="Dragon" type="StaticBody3D" node_paths=PackedStringArray("trigger")]
+[node name="Dragon" type="StaticBody3D" node_paths=PackedStringArray("trigger", "anim_player")]
 transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0, 0, 0)
 script = ExtResource("1_n3jxn")
 trigger = NodePath("Area3D")
 is_hazard = true
 hazard_radius = 12.0
 marker_sprite = ExtResource("2_yiboy")
-
-[node name="Model" parent="." instance=ExtResource("3_xiibd")]
+anim_player = NodePath("Dragon/AnimationPlayer")
+idle_anim = "Idle"
+die_anim = "Die"
+die_delay = 2.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 2.14196e-08, 0, 1, 0, -2.14196e-08, 0, 1, 0, 0.19873, 0)
+transform = Transform3D(0.999969, 0, 2.14196e-08, 0, 1, 0, -2.14196e-08, 0, 0.999969, 0, 2.236, 0.59)
 shape = SubResource("BoxShape3D_sgc8r")
 
 [node name="Area3D" type="Area3D" parent="."]
@@ -30,3 +32,22 @@ transform = Transform3D(1, 0, 4.65661e-10, 0, 1, 0, -4.65661e-10, 0, 1, 0, 0, 0)
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, -4.65661e-10, 0, 1, 0, 4.65661e-10, 0, 1, 0, 0, 0)
 shape = SubResource("SphereShape3D_448bg")
+
+[node name="Dragon" parent="." instance=ExtResource("3_nclcw")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="Skeleton3D" parent="Dragon/Armature" index="0"]
+bones/1/rotation = Quaternion(0.99594, 0.0215481, 0.0019497, -0.0873843)
+bones/1/scale = Vector3(1, 1, 0.999993)
+bones/2/rotation = Quaternion(-0.402398, 6.09125e-10, 6.09125e-10, 0.915465)
+bones/2/scale = Vector3(1, 1, 1)
+bones/3/rotation = Quaternion(-0.0805527, -0.473641, 0.812836, -0.329351)
+bones/4/rotation = Quaternion(0.047211, -3.50072e-10, -7.87093e-10, 0.998885)
+bones/5/scale = Vector3(1, 1, 1)
+bones/6/rotation = Quaternion(0.0805527, -0.473641, 0.812836, 0.329351)
+bones/7/scale = Vector3(1, 1, 1)
+bones/8/rotation = Quaternion(0.406182, 0.577357, 0.582967, 0.402273)
+bones/9/rotation = Quaternion(0.99594, -0.0215481, -0.0019497, -0.0873843)
+bones/9/scale = Vector3(1, 1, 0.999993)
+
+[editable path="Dragon"]
