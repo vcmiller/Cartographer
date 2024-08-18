@@ -9,4 +9,5 @@ func spawn_navigator() -> Navigator:
 	get_parent().add_child(navigator_inst)
 	navigator_inst.target = target
 	navigator_inst.position = position
+	navigator_inst.rotation = rotation
 	return navigator_inst

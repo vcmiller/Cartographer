@@ -2,11 +2,21 @@ extends CharacterBody3D
 class_name Navigator
   
 @export var target: Node3D 
+@export var Model: Node3D
 @export var remote: RemoteTransform3D
+@export var anim: AnimationPlayer
+@export var cameraArm: Node3D
 
 @onready var lineDrawer: MeshInstance3D = $LineDrawer
 
-const SPEED = 25
+const SPEED = 15
+const MOVE_DELAY = 1
+
+var elapsed: float
+
+func _ready() -> void:
+	anim.play("Walk")
+	cameraArm.rotation = Vector3(0, PI, 0)
 
 #debug nonsense: ignore
 func draw_path(img: Image, from: Vector2i, to: Vector2i, color: Color):
@@ -19,6 +29,11 @@ func vec3(from: Vector2i): return Vector3(from.x,position.y,from.y)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:  
 	if(not target): return
+	elapsed += _delta
+	
+	if elapsed < MOVE_DELAY:
+		return
+	
 	var path = MapGridHandler.grid.get_point_path(vec2i(position),vec2i(target.position), true)
 	
 	var mesh : ImmediateMesh = lineDrawer.mesh
@@ -45,6 +60,13 @@ func _process(_delta: float) -> void:
 		dir.y = 0
 		var targetBasis = Basis.looking_at(dir)
 		var targetQuaternion = targetBasis.get_rotation_quaternion()
-		quaternion = quaternion.slerp(targetQuaternion, _delta * TAU)
+		targetQuaternion = quaternion.inverse() * targetQuaternion
+		Model.quaternion = Model.quaternion.slerp(targetQuaternion, _delta * TAU * 4)
+		
+		var camAngleDiff = cameraArm.quaternion.angle_to(targetQuaternion)
+		if camAngleDiff > 0.01:
+			var amtToRotate = min(camAngleDiff, _delta * PI)
+			var interp = amtToRotate / camAngleDiff
+			cameraArm.quaternion = cameraArm.quaternion.slerp(targetQuaternion, interp)
 	move_and_slide()
 	pass

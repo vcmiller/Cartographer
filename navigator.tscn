@@ -1,27 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://url466m8etkf"]
+[gd_scene load_steps=5 format=3 uid="uid://url466m8etkf"]
 
 [ext_resource type="Script" path="res://navigator.gd" id="1_dle6y"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_f6oiq"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_43ffk"]
-emission_enabled = true
-emission = Color(0.2604, 0.84, 0.084, 1)
-grow_amount = 0.686
+[ext_resource type="PackedScene" uid="uid://dxu8ruvox87at" path="res://Models/Dude.glb" id="2_lan0h"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_coyju"]
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_axs1q"]
 
-[node name="Navigator" type="CharacterBody3D" node_paths=PackedStringArray("remote")]
+[node name="Navigator" type="CharacterBody3D" node_paths=PackedStringArray("Model", "remote", "anim", "cameraArm")]
 axis_lock_angular_x = true
 axis_lock_angular_z = true
 script = ExtResource("1_dle6y")
-remote = NodePath("Remote")
-
-[node name="CSGSphere3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("CapsuleMesh_f6oiq")
-surface_material_override/0 = SubResource("StandardMaterial3D_43ffk")
+Model = NodePath("Dude")
+remote = NodePath("CameraArm/Remote")
+anim = NodePath("Dude/AnimationPlayer")
+cameraArm = NodePath("CameraArm")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_coyju")
@@ -30,6 +23,58 @@ shape = SubResource("CapsuleShape3D_coyju")
 top_level = true
 mesh = SubResource("ImmediateMesh_axs1q")
 
-[node name="Remote" type="RemoteTransform3D" parent="."]
+[node name="Dude" parent="." instance=ExtResource("2_lan0h")]
+transform = Transform3D(0.59, 0, 0, 0, 0.59, 0, 0, 0, 0.59, 0, -1, 0)
+
+[node name="Hair2_Medium" parent="Dude" index="1"]
+visible = false
+
+[node name="Hair3_Long" parent="Dude" index="2"]
+visible = false
+
+[node name="Hair1_Short" parent="Dude" index="4"]
+visible = false
+
+[node name="FacialHair2" parent="Dude" index="5"]
+visible = false
+
+[node name="FacialHair3" parent="Dude" index="6"]
+visible = false
+
+[node name="FacialHair4" parent="Dude" index="7"]
+visible = false
+
+[node name="FacialHair5" parent="Dude" index="8"]
+visible = false
+
+[node name="KnightHelmet" parent="Dude" index="9"]
+visible = false
+
+[node name="KnightArmor" parent="Dude" index="10"]
+visible = false
+
+[node name="Prop_Sword" parent="Dude" index="11"]
+transform = Transform3D(-0.0488635, 0.0035047, -0.0100266, -0.00298889, 0.0407596, 0.0288125, 0.0101924, 0.0287545, -0.0396197, 0.737387, 2.00894, -0.924955)
+visible = false
+
+[node name="Skeleton3D" parent="Dude/Armature" index="0"]
+bones/2/rotation = Quaternion(0.0138964, 0.301749, 0.940218, 0.157304)
+bones/4/rotation = Quaternion(0.945091, 0, 0, -0.326808)
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Dude/Armature/Skeleton3D" index="1"]
+transform = Transform3D(-0.867687, 0.456385, 0.197065, -0.479962, -0.66588, -0.571175, -0.129454, -0.590184, 0.796821, 0.590047, 1.99674, 0.03887)
+bone_name = "Arm_R"
+bone_idx = 1
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Dude/Armature/Skeleton3D/BoneAttachment3D"]
+transform = Transform3D(0.850187, -0.526481, -7.45058e-09, -0.526466, -0.850163, -0.00757468, 0.00398789, 0.00643983, -0.999971, -0.00892674, 0.627956, -0.745926)
+remote_path = NodePath("../../../../Prop_Sword")
+update_scale = false
+
+[node name="CameraArm" type="Node3D" parent="."]
+
+[node name="Remote" type="RemoteTransform3D" parent="CameraArm"]
 transform = Transform3D(1, 0, 0, 0, 0.925633, 0.378422, 0, -0.378422, 0.925633, 0, 1.44609, 2.41653)
 update_scale = false
+
+[editable path="Dude"]

@@ -81,7 +81,7 @@ transform = Transform3D(0.913907, 0, -0.405923, 0, 1, 0, 0.405923, 0, 0.913907, 
 transform = Transform3D(0.0887552, 0, -0.996053, 0, 1, 0, 0.996053, 0, 0.0887552, 37.9914, 0.000104904, 9.52753)
 
 [node name="Start" type="Marker3D" parent="." node_paths=PackedStringArray("target")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.904, 1, 38.216)
+transform = Transform3D(-0.144736, 0, 0.98947, 0, 1, 0, -0.98947, 0, -0.144736, 42.904, 1, 38.216)
 script = ExtResource("15_31cjw")
 target = NodePath("../Marker3D2")
 navigator_scene = ExtResource("16_f256h")
