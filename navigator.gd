@@ -50,8 +50,10 @@ func create_grid(map: EditableMap):
 		MapGridHandler.AddHazard(grid, map.markerLocations[i], goal.hazard_radius)
 	
 func check_goal(hit_goal: Goal):
+	if hit_goal.is_dead: return
 	if hit_goal == goal:
 		level_controller.succccess()
+		hit_goal.die()
 	elif hit_goal.is_hazard:
 		level_controller.fail()
 		is_dead = true
