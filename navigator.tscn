@@ -63,7 +63,6 @@ mesh = SubResource("ImmediateMesh_axs1q")
 transform = Transform3D(0.59, 0, 0, 0, 0.59, 0, 0, 0, 0.59, 0, -1, 0)
 
 [node name="FacialHair1" parent="Dude" index="0"]
-transform = Transform3D(-0.995248, 0.0969522, -0.00901812, 0.0967598, 0.995112, 0.0197609, 0.0108899, 0.0187944, -0.999764, 0.871134, 1.44702, -0.715854)
 visible = false
 
 [node name="Hair2_Medium" parent="Dude" index="1"]
@@ -97,7 +96,7 @@ visible = false
 visible = false
 
 [node name="Prop_Sword" parent="Dude" index="11"]
-transform = Transform3D(-0.0497686, 0.00484819, -0.00045096, 0.0048386, 0.0497616, 0.000988164, 0.000544563, 0.000939834, -0.0499942, 0.871134, 1.44702, -0.715854)
+transform = Transform3D(-0.0497687, 0.00484826, -0.00045096, 0.00483866, 0.0497616, 0.000988165, 0.000544564, 0.000939835, -0.0499942, 0.871134, 1.44702, -0.715854)
 visible = false
 
 [node name="Skeleton3D" parent="Dude/Armature" index="0"]
@@ -107,7 +106,7 @@ bones/2/rotation = Quaternion(-0.00129293, -0.00695756, 0.973934, 0.226722)
 bones/2/scale = Vector3(1, 1, 1)
 
 [node name="HandAttach" type="BoneAttachment3D" parent="Dude/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.897192, 0.441607, 0.00567332, -0.441644, -0.897097, -0.0129661, -0.000636413, -0.0141387, 0.9999, 0.590047, 1.99674, 0.03887)
+transform = Transform3D(-0.897191, 0.441606, 0.00567332, -0.441642, -0.897097, -0.0129661, -0.000636407, -0.0141387, 0.9999, 0.590047, 1.99674, 0.03887)
 bone_name = "Arm_R"
 bone_idx = 1
 

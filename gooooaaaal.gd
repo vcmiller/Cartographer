@@ -3,6 +3,7 @@ class_name Goal
 
 @export var trigger: Area3D
 @export var is_hazard: bool
+@export var hazard_radius: float
 @export var marker_sprite: Texture2D
 @export var start_marked: bool
 

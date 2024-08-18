@@ -18,3 +18,19 @@ static func ParseImage(image: Image) -> AStarGrid2D:
 			grid.set_point_solid(Vector2i(i,j),solid)
 	return grid
 	pass
+	
+static func AddHazard(grid: AStarGrid2D, position: Vector3, radius: float):
+	var x = round(position.x)
+	var y = round(position.z)
+	var box_size = ceili(radius)
+	var r2 = radius * radius
+	
+	for nx in range(x - box_size, x + box_size + 1):
+		for ny in range(y - box_size, y + box_size + 1):
+			if nx < 0 or ny < 0 or nx >= grid.size.x or ny >= grid.size.y:
+				continue
+			
+			if Vector2(x - nx, y - ny).length_squared() > r2:
+				continue
+				
+			grid.set_point_solid(Vector2(nx, ny), true)

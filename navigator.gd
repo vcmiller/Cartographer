@@ -42,8 +42,12 @@ func _ready() -> void:
 	randomize_mesh()
 	
 func create_grid(map: EditableMap):
-	grid = MapGridHandler.ParseImage(map.image)
 	self.map = map
+	grid = MapGridHandler.ParseImage(map.image)
+	for i in range(len(level_controller.goals)):
+		var goal = level_controller.goals[i]
+		if goal == self.goal or not goal.is_hazard or not map.markersPlaced[i]: continue
+		MapGridHandler.AddHazard(grid, map.markerLocations[i], goal.hazard_radius)
 	
 func check_goal(hit_goal: Goal):
 	if hit_goal == goal:

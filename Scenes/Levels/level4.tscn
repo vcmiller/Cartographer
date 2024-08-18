@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://d1ypaifgivgvd"]
+[gd_scene load_steps=27 format=3 uid="uid://d1ypaifgivgvd"]
 
 [ext_resource type="Script" path="res://LevelController.gd" id="1_t3b22"]
 [ext_resource type="PackedScene" uid="uid://c56yvex4g3pif" path="res://Scenes/player.tscn" id="2_s5h3j"]
@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://dgqwjkwa2ckuq" path="res://Textures/Cliff_normal.png" id="10_cxcxb"]
 [ext_resource type="PackedScene" uid="uid://dtab7c0bq186o" path="res://Scenes/house.tscn" id="13_00hr0"]
 [ext_resource type="PackedScene" uid="uid://7jfrr44c1tir" path="res://Scenes/chest.tscn" id="14_ndxgu"]
-[ext_resource type="Texture2D" uid="uid://dgehecsxh8uf0" path="res://Textures/dragon.png" id="14_tb18f"]
+[ext_resource type="PackedScene" uid="uid://dia0af0h1mn1v" path="res://Scenes/dragon.tscn" id="15_5dqpx"]
 [ext_resource type="Script" path="res://navigator_spawn.gd" id="15_31cjw"]
 [ext_resource type="PackedScene" uid="uid://url466m8etkf" path="res://navigator.tscn" id="16_f256h"]
 [ext_resource type="PackedScene" uid="uid://dkv2gdruwmqqp" path="res://Scenes/playback_canvas.tscn" id="17_ls85u"]
@@ -39,9 +39,6 @@ Height = 100
 script = ExtResource("6_4gba7")
 mode = 0
 textures = [[ExtResource("7_h37f5"), ExtResource("8_8iwbd"), ExtResource("9_bms4d")], [ExtResource("9_u54t8"), ExtResource("10_cxcxb"), null]]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_448bg"]
-radius = 8.293
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sspvq"]
 size = Vector3(75, 20, 50)
@@ -104,13 +101,8 @@ transform = Transform3D(-0.999579, 0, 0.0290204, 0, 1, 0, -0.0290204, 0, -0.9995
 [node name="Chest" parent="." instance=ExtResource("14_ndxgu")]
 transform = Transform3D(-0.0605606, 0, 0.998164, 0, 1, 0, -0.998164, 0, -0.0605606, 9.79081, 10.0247, 8.37394)
 
-[node name="Dragon" parent="." instance=ExtResource("14_ndxgu")]
-transform = Transform3D(-0.0605606, 0, 0.998164, 0, 1, 0, -0.998164, 0, -0.0605606, 30.0785, 4.07013, 16.9969)
-is_hazard = true
-marker_sprite = ExtResource("14_tb18f")
-
-[node name="CollisionShape3D2" parent="Dragon/Area3D" index="0"]
-shape = SubResource("SphereShape3D_448bg")
+[node name="Dragon" parent="." instance=ExtResource("15_5dqpx")]
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 27.8026, 4.24358, 19.4879)
 
 [node name="Start" type="Marker3D" parent="."]
 transform = Transform3D(0.989816, 0, 0.142352, 0, 1, 0, -0.142352, 0, 0.989816, 65.7755, 1, 35.9011)
@@ -134,5 +126,3 @@ shape = SubResource("BoxShape3D_sspvq")
 
 [node name="Flag2" parent="." instance=ExtResource("19_ndh0y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65.7761, 0, 36.9675)
-
-[editable path="Dragon"]

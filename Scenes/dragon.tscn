@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://dia0af0h1mn1v"]
+
+[ext_resource type="Script" path="res://gooooaaaal.gd" id="1_n3jxn"]
+[ext_resource type="Texture2D" uid="uid://dgehecsxh8uf0" path="res://Textures/dragon.png" id="2_yiboy"]
+[ext_resource type="PackedScene" uid="uid://2qrou3qhhn48" path="res://Models/Chest.glb" id="3_xiibd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sgc8r"]
+size = Vector3(1.56445, 1.39746, 1.1272)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_448bg"]
+radius = 8.293
+
+[node name="Dragon" type="StaticBody3D" node_paths=PackedStringArray("trigger")]
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0, 0, 0)
+script = ExtResource("1_n3jxn")
+trigger = NodePath("Area3D")
+is_hazard = true
+hazard_radius = 12.0
+marker_sprite = ExtResource("2_yiboy")
+
+[node name="Model" parent="." instance=ExtResource("3_xiibd")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 2.14196e-08, 0, 1, 0, -2.14196e-08, 0, 1, 0, 0.19873, 0)
+shape = SubResource("BoxShape3D_sgc8r")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 4.65661e-10, 0, 1, 0, -4.65661e-10, 0, 1, 0, 0, 0)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, -4.65661e-10, 0, 1, 0, 4.65661e-10, 0, 1, 0, 0, 0)
+shape = SubResource("SphereShape3D_448bg")
