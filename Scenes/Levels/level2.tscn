@@ -49,7 +49,9 @@ nextLevel = "res://Scenes/Levels/level3.tscn"
 environment = SubResource("Environment_yanan")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.951718, 0.306975, 0, -0.306975, 0.951718, -0.00377464, -0.0199896, 0.00757551)
+transform = Transform3D(-4.37114e-08, -0.840567, 0.541708, 0, 0.541708, 0.840567, -1, 3.67423e-08, -2.36788e-08, -0.00377464, -0.0199896, 0.00757551)
+shadow_enabled = true
+shadow_reverse_cull_face = true
 
 [node name="Player" parent="." instance=ExtResource("2_s5h3j")]
 transform = Transform3D(0.119565, 0, -0.992826, 0, 1, 0, 0.992826, 0, 0.119565, 5.16028, 0.994233, 37.7684)
@@ -79,7 +81,7 @@ shader_params/u_colormap_opacity_per_texture = Vector4(1, 1, 1, 1)
 shader_params/u_specular = 0.5
 
 [node name="House" parent="." instance=ExtResource("13_00hr0")]
-transform = Transform3D(-0.063609, 0, -0.997975, 0, 1, 0, 0.997975, 0, -0.063609, 13.9566, -0.0374413, 40.3338)
+transform = Transform3D(-0.063497, 0.00377353, -0.997975, 0.0593238, 0.998239, 0, 0.996217, -0.0592037, -0.063609, 13.9569, -0.451774, 40.3291)
 
 [node name="Chest2" parent="." instance=ExtResource("14_ndxgu")]
 transform = Transform3D(-0.999469, 0, 0.0325795, 0, 1, 0, -0.0325795, 0, -0.999469, 39.0107, 0.000104904, 38.1422)

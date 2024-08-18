@@ -52,7 +52,9 @@ nextLevel = "res://Scenes/Levels/level2.tscn"
 environment = SubResource("Environment_yanan")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.951718, 0.306975, 0, -0.306975, 0.951718, -0.00377464, -0.0199896, 0.00757551)
+transform = Transform3D(-4.37114e-08, 0.638768, -0.7694, 0, 0.7694, 0.638768, 1, 2.79214e-08, -3.36315e-08, -0.00377464, -0.0199896, 0.00757551)
+shadow_enabled = true
+shadow_reverse_cull_face = true
 
 [node name="Player" parent="." instance=ExtResource("2_s5h3j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.1989, 0.994233, 45.031)
