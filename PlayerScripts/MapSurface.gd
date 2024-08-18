@@ -26,6 +26,9 @@ signal flag_marker_placed(index: int, position: Vector3)
 @export var MarkerScene: PackedScene
 @export var ExtraMarkerScene: PackedScene
 
+@onready var drawing_sound: AudioStreamPlayer = $DrawingSound
+@onready var erasing_sound: AudioStreamPlayer = $ErasingSound
+
 var material: ShaderMaterial
 var isPainting: bool
 var lastPosition: Vector2
@@ -139,6 +142,10 @@ func _unhandled_input(event: InputEvent):
 		if highlightedButton == Collider:
 			isPainting = true
 			pressedThisFrame = true
+			if [MarkerCliff,MarkerWater].has(currentToolModel):
+				drawing_sound.play()
+			elif Eraser == currentToolModel:
+				erasing_sound.play()
 		elif highlightedButton:
 			
 			if currentButton and currentButton != highlightedButton:
@@ -147,6 +154,8 @@ func _unhandled_input(event: InputEvent):
 			
 	if event.is_action_released("draw"):
 		isPainting = false
+		drawing_sound.stop()
+		erasing_sound.stop()
 			
 	if event is InputEventMouse:
 		var mouseEvent: InputEventMouse = event

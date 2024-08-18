@@ -26,6 +26,6 @@ func _on_trigger_body_entered(body: Node3D):
 func die():
 	if anim_player and die_anim:
 		anim_player.play(die_anim)
-	is_dead = true
+	is_dead = true 
 	await get_tree().create_timer(die_delay).timeout
 	get_parent().remove_child(self)

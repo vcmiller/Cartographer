@@ -73,6 +73,7 @@ func _on_player_begin_trial(map: EditableMap) -> void:
 	
 func fail():
 	playback_canvas.fuck_label.show()
+	if has_node("DragonRoar"): $"DragonRoar".play(1)
 	has_failed = true
 	
 func succccess():

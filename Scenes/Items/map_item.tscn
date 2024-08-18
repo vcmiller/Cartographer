@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://67kq4c7qivrh"]
+[gd_scene load_steps=33 format=3 uid="uid://67kq4c7qivrh"]
 
 [ext_resource type="Script" path="res://PlayerScripts/MapSurface.gd" id="1_bm0m2"]
 [ext_resource type="Material" uid="uid://c4u0te7x41n41" path="res://Materials/Map.tres" id="1_lpqoy"]
@@ -18,6 +18,8 @@
 [ext_resource type="Material" uid="uid://bjqmoc75otiqo" path="res://Materials/MarkerMatBlack.tres" id="13_rissn"]
 [ext_resource type="Material" uid="uid://t1qmweqph6uc" path="res://Materials/MarkerMatBlue.tres" id="14_4dbmf"]
 [ext_resource type="Texture2D" uid="uid://bgb6577o4d701" path="res://Textures/Marker.png" id="17_cgaph"]
+[ext_resource type="AudioStream" uid="uid://i8m13xe5pkjf" path="res://Audio/79163__atha89__writing-with-dry-erase-marker.wav" id="19_tw3ry"]
+[ext_resource type="AudioStream" uid="uid://ghhd7pavdsb4" path="res://Audio/85701__tmkappelt__pencil_erasing.mp3" id="20_8imnb"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u00ct"]
 transparency = 1
@@ -299,6 +301,12 @@ transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0.644682, 1.49012e-0
 sorting_offset = 101.0
 mesh = SubResource("QuadMesh_by8d8")
 surface_material_override/0 = SubResource("StandardMaterial3D_1q2rl")
+
+[node name="DrawingSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("19_tw3ry")
+
+[node name="ErasingSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_8imnb")
 
 [editable path="3DTools/Eraser"]
 [editable path="3DTools/MarkerBlack"]

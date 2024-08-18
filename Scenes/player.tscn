@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c56yvex4g3pif"]
+[gd_scene load_steps=18 format=3 uid="uid://c56yvex4g3pif"]
 
 [ext_resource type="Script" path="res://PlayerScripts/PlayerController.gd" id="1_fb5hj"]
 [ext_resource type="Script" path="res://PlayerScripts/ItemManager.gd" id="2_pemao"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bqrdettbqghbi" path="res://Models/Compass.glb" id="5_4xvks"]
 [ext_resource type="Script" path="res://PlayerScripts/CompassItem.gd" id="6_3atti"]
 [ext_resource type="PackedScene" uid="uid://h7v7gl1r3btn" path="res://Models/StepCounter.glb" id="7_wr6qj"]
+[ext_resource type="AudioStream" uid="uid://bqvg4745qyxgs" path="res://Audio/17893__zippi1__sound-click3.wav" id="8_3d1bq"]
 [ext_resource type="Script" path="res://Models/StepCounter.gd" id="8_fnlbg"]
 [ext_resource type="AudioStream" uid="uid://bvx5ncrwqnedq" path="res://Audio/27009__nuff3__footsteps-dirt-pack/477390__nuff3__steps-dirt_2a.ogg" id="8_qv07j"]
 [ext_resource type="Script" path="res://Scenes/audio_randomizer.gd" id="9_2ff4q"]
@@ -54,6 +55,9 @@ HundredsDigit = NodePath("Hundreds")
 TensDigit = NodePath("Tens")
 OnesDigit = NodePath("Ones")
 Player = NodePath("../../..")
+
+[node name="TickSound" type="AudioStreamPlayer" parent="Camera3D/ItemManager/StepCounterItem"]
+stream = ExtResource("8_3d1bq")
 
 [node name="FootstepPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_qv07j")
