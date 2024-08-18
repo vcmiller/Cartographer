@@ -7,7 +7,7 @@
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_axs1q"]
 
-[node name="Navigator" type="CharacterBody3D" node_paths=PackedStringArray("Model", "remote", "anim", "cameraArm")]
+[node name="Navigator" type="CharacterBody3D" node_paths=PackedStringArray("Model", "remote", "anim", "cameraArm", "body", "hairs", "facialHairs")]
 axis_lock_angular_x = true
 axis_lock_angular_z = true
 script = ExtResource("1_dle6y")
@@ -15,6 +15,13 @@ Model = NodePath("Dude")
 remote = NodePath("CameraArm/Remote")
 anim = NodePath("Dude/AnimationPlayer")
 cameraArm = NodePath("CameraArm")
+body = NodePath("Dude/Armature/Skeleton3D/Body")
+hairs = [NodePath("Dude/Hair1_Short"), NodePath("Dude/Hair2_Medium"), NodePath("Dude/Hair3_Long"), NodePath("Dude/Hair4_Bowl")]
+facialHairs = [NodePath("Dude/FacialHair1"), NodePath("Dude/FacialHair2"), NodePath("Dude/FacialHair3"), NodePath("Dude/FacialHair4"), NodePath("Dude/FacialHair5")]
+skinColors = Array[Color]([Color(0.870283, 0.706282, 0.629122, 1), Color(0.623324, 0.403301, 0.328911, 1), Color(0.37, 0.163787, 0.0888, 1)])
+hairColors = Array[Color]([Color(0.41881, 0.352475, 0.321652, 1), Color(0.735273, 0.200193, 0.191977, 1), Color(0.69, 0.54303, 0.2001, 1), Color(0.18, 0.066, 0, 1), Color(0, 0, 0, 1), Color(0, 0.745098, 0, 1), Color(0, 0, 0.72549, 1), Color(0.0905625, 0.0495592, 0.0116016, 1), Color(0.780702, 0.780702, 0.780702, 1)])
+eyeColors = Array[Color]([Color(0.175446, 0.0549022, 0.00962464, 1), Color(0.218414, 0.600838, 0.215416, 1), Color(0.0403767, 0.278228, 0.999993, 1)])
+clothesColors = Array[Color]([Color(0.122213, 0.186244, 0.33624, 1), Color(0.770255, 0.218197, 0.470758, 1), Color(0.448897, 0.574281, 0.165106, 1), Color(0.235235, 0.188599, 0.0986695, 1), Color(0, 0.121333, 0.28, 1), Color(0.417257, 0.417257, 0.417257, 1), Color(0.575466, 0.484795, 0.0132383, 1)])
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_coyju")
@@ -26,10 +33,16 @@ mesh = SubResource("ImmediateMesh_axs1q")
 [node name="Dude" parent="." instance=ExtResource("2_lan0h")]
 transform = Transform3D(0.59, 0, 0, 0, 0.59, 0, 0, 0, 0.59, 0, -1, 0)
 
+[node name="FacialHair1" parent="Dude" index="0"]
+visible = false
+
 [node name="Hair2_Medium" parent="Dude" index="1"]
 visible = false
 
 [node name="Hair3_Long" parent="Dude" index="2"]
+visible = false
+
+[node name="Hair4_Bowl" parent="Dude" index="3"]
 visible = false
 
 [node name="Hair1_Short" parent="Dude" index="4"]

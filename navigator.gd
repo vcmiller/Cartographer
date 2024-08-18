@@ -6,6 +6,15 @@ class_name Navigator
 @export var remote: RemoteTransform3D
 @export var anim: AnimationPlayer
 @export var cameraArm: Node3D
+@export var body: MeshInstance3D
+@export var hairs: Array[MeshInstance3D]
+@export var facialHairs: Array[MeshInstance3D]
+@export var skinColors: Array[Color]
+@export var hairColors: Array[Color]
+@export var eyeColors: Array[Color]
+@export var clothesColors: Array[Color]
+@export var hairChance: float = 0.8
+@export var facialHairChance: float = 0.3
 
 @onready var lineDrawer: MeshInstance3D = $LineDrawer
 
@@ -17,11 +26,55 @@ var elapsed: float
 func _ready() -> void:
 	anim.play("Walk")
 	cameraArm.rotation = Vector3(0, PI, 0)
+	randomize_mesh()
 
 #debug nonsense: ignore
 func draw_path(img: Image, from: Vector2i, to: Vector2i, color: Color):
 	var path = MapGridHandler.grid.get_point_path(from,to)
 	for node in path: img.set_pixelv(node, color)
+	
+func randomize_mesh():
+	var rng = RandomNumberGenerator.new()
+	var skinColor = skinColors[rng.randi_range(0, len(skinColors) - 1)]
+	var hairColor = hairColors[rng.randi_range(0, len(hairColors) - 1)]
+	var eyeColor = eyeColors[rng.randi_range(0, len(eyeColors) - 1)]
+	var shirtColor = clothesColors[rng.randi_range(0, len(clothesColors) - 1)]
+	var pantsColor = clothesColors[rng.randi_range(0, len(clothesColors) - 1)]
+	
+	var bodySkinMat = body.mesh.surface_get_material(0).duplicate() as StandardMaterial3D
+	bodySkinMat.albedo_color = skinColor
+	body.set_surface_override_material(0, bodySkinMat)
+	body.set_surface_override_material(8, bodySkinMat)
+	
+	var bodyHairMat = body.mesh.surface_get_material(7).duplicate() as StandardMaterial3D
+	bodyHairMat.albedo_color = hairColor
+	body.set_surface_override_material(7, bodyHairMat)
+	
+	var bodyEyeMat = body.mesh.surface_get_material(6).duplicate() as StandardMaterial3D
+	bodyEyeMat.albedo_color = eyeColor
+	body.set_surface_override_material(6, bodyEyeMat)
+	
+	var shirtMat = body.mesh.surface_get_material(1).duplicate() as StandardMaterial3D
+	shirtMat.albedo_color = shirtColor
+	body.set_surface_override_material(1, shirtMat)
+	
+	var pantsMat = body.mesh.surface_get_material(2).duplicate() as StandardMaterial3D
+	pantsMat.albedo_color = pantsColor
+	body.set_surface_override_material(2, pantsMat)
+	
+	if rng.randf() < hairChance:
+		var hair = hairs[rng.randi_range(0, len(hairs) - 1)]
+		var hairMat = hair.mesh.surface_get_material(0).duplicate() as StandardMaterial3D
+		hairMat.albedo_color = hairColor
+		hair.set_surface_override_material(0, hairMat)
+		hair.show()
+		
+	if rng.randf() < facialHairChance:
+		var facialHair = facialHairs[rng.randi_range(0, len(facialHairs) - 1)]
+		var facialHairMat = facialHair.mesh.surface_get_material(0).duplicate() as StandardMaterial3D
+		facialHairMat.albedo_color = hairColor
+		facialHair.set_surface_override_material(0, facialHairMat)
+		facialHair.show()
 	
 func vec2i(from: Vector3): return Vector2i(roundi(from.x), roundi(from.z))	
 func vec3(from: Vector2i): return Vector3(from.x,position.y,from.y)
