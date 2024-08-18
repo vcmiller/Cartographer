@@ -1,6 +1,8 @@
 extends ItemBase
 class_name MapItem
 
+signal flag_marker_placed(index: int, position: Vector3)
+
 @export var TargetMesh: MeshInstance3D
 @export var Camera: Camera3D
 @export var Collider: CollisionObject3D
@@ -158,13 +160,22 @@ func _unhandled_input(event: InputEvent):
 				
 				lastPosition = imagePoint
 			elif isPainting:
+				var localPoint = TargetMesh.to_local(result.position)
+				var imagePoint = Vector2(localPoint.x, localPoint.y)
+				imagePoint += Vector2(0.5, 0.5)
+				imagePoint.y = 1.0 - imagePoint.y
+				imagePoint.x *= map.Width / 2
+				imagePoint.y *= map.Height / 2
 				match(currentToolModel):
 					RedFlag:
 						RedFlagMarker.position=  currentToolModel.position
+						flag_marker_placed.emit(0,Vector3(imagePoint.x,0,imagePoint.y))
 					BlueFlag:
 						BlueFlagMarker.position=  currentToolModel.position
+						flag_marker_placed.emit(1,Vector3(imagePoint.x,0,imagePoint.y))
 					GreenFlag:
 						GreenFlagMarker.position=  currentToolModel.position
+						flag_marker_placed.emit(2,Vector3(imagePoint.x,0,imagePoint.y))
 		else:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 			if currentToolModel:

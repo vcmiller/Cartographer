@@ -25,6 +25,7 @@ func _birth_player():
 	player.player_canvas = player_canvas
 	player.CameraNode.make_current()
 	player.connect("begin_trial",_on_player_begin_trial)
+	player.connect("flag_marker_placed", _on_player_flag_marker_placed)
 	
 func SaveMap():
 	savedMap = player.Map
@@ -42,3 +43,9 @@ func _on_player_begin_trial(image: Image) -> void:
 		var navigator = nsp.spawn_navigator()
 		navigators.append(navigator)
 	playback_canvas.update_viewports(navigators)
+
+
+func _on_player_flag_marker_placed(index: int, position: Vector3) -> void:
+	if len(navigator_spawn_points) + 1 < index: return
+	navigator_spawn_points[index].target.position = position
+	pass # Replace with function body.

@@ -8,7 +8,7 @@
 [ext_resource type="Resource" uid="uid://dagoq7bq7cpd3" path="res://shared_map_resource.tres" id="5_736ka"]
 [ext_resource type="Script" path="res://navigator_spawn.gd" id="5_vwqx6"]
 [ext_resource type="PackedScene" uid="uid://b60f5c5tiin0e" path="res://Scenes/player_canvas.tscn" id="6_4o3jr"]
-[ext_resource type="PackedScene" uid="uid://svaiv3vkg55a" path="res://Scenes/playback_canvas.tscn" id="7_7hif6"]
+[ext_resource type="PackedScene" uid="uid://dkv2gdruwmqqp" path="res://Scenes/playback_canvas.tscn" id="7_7hif6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_136qs"]
 albedo_color = Color(0.116667, 1, 0, 1)
@@ -109,5 +109,6 @@ environment = SubResource("Environment_rehpt")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 4.15258e-06, 95, 0)
 
+[connection signal="flag_marker_placed" from="Player" to="." method="_on_player_flag_marker_placed"]
 [connection signal="body_entered" from="NavigatorDetector" to="NavigatorDetector" method="_on_body_entered"]
 [connection signal="body_entered" from="NavigatorDetector2" to="NavigatorDetector2" method="_on_body_entered"]

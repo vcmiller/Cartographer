@@ -2,6 +2,7 @@ extends CharacterBody3D
 class_name PlayerController
 
 signal begin_trial(image: Image)
+signal flag_marker_placed(index: int, position: Vector3)
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
@@ -82,3 +83,8 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+
+
+func _on_map_item_flag_marker_placed(index: int, position: Vector3) -> void:
+	flag_marker_placed.emit(index,position)
+	pass # Replace with function body.

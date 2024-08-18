@@ -46,5 +46,7 @@ TensDigit = NodePath("Tens")
 OnesDigit = NodePath("Ones")
 Player = NodePath("../../..")
 
+[connection signal="flag_marker_placed" from="Camera3D/ItemManager/MapItem" to="." method="_on_map_item_flag_marker_placed"]
+
 [editable path="Camera3D/ItemManager/CompassItem"]
 [editable path="Camera3D/ItemManager/StepCounterItem"]
