@@ -113,18 +113,17 @@ func _process(_delta: float) -> void:
 	
 	var path = grid.get_point_path(vec2i(position),vec2i(map.markerLocations[destIndex]), true)
 	
-	var mesh : ImmediateMesh = lineDrawer.mesh
-	mesh.clear_surfaces()
-	mesh.surface_begin(Mesh.PRIMITIVE_LINE_STRIP)
-	
-	for i in range(len(path)):
-		mesh.surface_add_vertex(vec3(path[i]))
-	
-	mesh.surface_end()
-	
 	var target_pos := position
 	if len(path) < 2: return
-	else: 
+	else:
+		var mesh : ImmediateMesh = lineDrawer.mesh
+		mesh.clear_surfaces()
+		mesh.surface_begin(Mesh.PRIMITIVE_LINE_STRIP)
+		
+		for i in range(len(path)):
+			mesh.surface_add_vertex(vec3(path[i]))
+		
+		mesh.surface_end()
 		target_pos = vec3(path[1])
 		var dist_0 = position.distance_to(vec3(path[0]))
 		#var dist_1 = position.distance_to(vec3(path[1]))

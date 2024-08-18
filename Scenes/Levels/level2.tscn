@@ -53,9 +53,6 @@ transform = Transform3D(1, 0, 0, 0, 0.951718, 0.306975, 0, -0.306975, 0.951718, 
 
 [node name="Player" parent="." instance=ExtResource("2_s5h3j")]
 transform = Transform3D(0.119565, 0, -0.992826, 0, 1, 0, 0.992826, 0, 0.119565, 5.16028, 0.994233, 37.7684)
-LookLimit = 80.0
-MouseSensitivity = 0.5
-MouseBoundWhenNotCaptured = 0.1
 Map = SubResource("Resource_5we7l")
 
 [node name="HTerrain" type="Node3D" parent="."]
