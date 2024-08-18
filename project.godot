@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 MapGridHandler="*res://map_grid_handler.gd"
+Bgm="*res://Scenes/bgm.tscn"
 
 [display]
 
