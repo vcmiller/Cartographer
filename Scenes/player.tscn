@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c56yvex4g3pif"]
+[gd_scene load_steps=17 format=3 uid="uid://c56yvex4g3pif"]
 
 [ext_resource type="Script" path="res://PlayerScripts/PlayerController.gd" id="1_fb5hj"]
 [ext_resource type="Script" path="res://PlayerScripts/ItemManager.gd" id="2_pemao"]
@@ -7,6 +7,14 @@
 [ext_resource type="Script" path="res://PlayerScripts/CompassItem.gd" id="6_3atti"]
 [ext_resource type="PackedScene" uid="uid://h7v7gl1r3btn" path="res://Models/StepCounter.glb" id="7_wr6qj"]
 [ext_resource type="Script" path="res://Models/StepCounter.gd" id="8_fnlbg"]
+[ext_resource type="AudioStream" uid="uid://bvx5ncrwqnedq" path="res://Audio/27009__nuff3__footsteps-dirt-pack/477390__nuff3__steps-dirt_2a.ogg" id="8_qv07j"]
+[ext_resource type="Script" path="res://Scenes/audio_randomizer.gd" id="9_2ff4q"]
+[ext_resource type="AudioStream" uid="uid://ga1ddcrbgemq" path="res://Audio/27009__nuff3__footsteps-dirt-pack/477391__nuff3__steps-dirt_1b.ogg" id="10_1qmbj"]
+[ext_resource type="AudioStream" uid="uid://0fg37uvlsx48" path="res://Audio/27009__nuff3__footsteps-dirt-pack/477392__nuff3__steps-dirt_1a.ogg" id="11_x8jd4"]
+[ext_resource type="AudioStream" uid="uid://b8qpsg00ou76v" path="res://Audio/27009__nuff3__footsteps-dirt-pack/477393__nuff3__steps-dirt-falling_1a.ogg" id="12_01hob"]
+[ext_resource type="AudioStream" uid="uid://n63otkahu7j4" path="res://Audio/27009__nuff3__footsteps-dirt-pack/477394__nuff3__steps-dirt_3b.ogg" id="13_4tdk0"]
+[ext_resource type="AudioStream" uid="uid://dx8m6t5bolw6x" path="res://Audio/27009__nuff3__footsteps-dirt-pack/477395__nuff3__steps-dirt_3a.ogg" id="14_ttwdn"]
+[ext_resource type="AudioStream" uid="uid://csoty3ifjain7" path="res://Audio/27009__nuff3__footsteps-dirt-pack/477396__nuff3__steps-dirt_2b.ogg" id="15_fsknt"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_18swh"]
 radius = 0.4
@@ -46,6 +54,14 @@ HundredsDigit = NodePath("Hundreds")
 TensDigit = NodePath("Tens")
 OnesDigit = NodePath("Ones")
 Player = NodePath("../../..")
+
+[node name="FootstepPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_qv07j")
+volume_db = -10.78
+pitch_scale = 0.9
+autoplay = true
+script = ExtResource("9_2ff4q")
+sounds = Array[AudioStream]([ExtResource("8_qv07j"), ExtResource("10_1qmbj"), ExtResource("11_x8jd4"), ExtResource("12_01hob"), ExtResource("13_4tdk0"), ExtResource("14_ttwdn"), ExtResource("15_fsknt")])
 
 [connection signal="flag_marker_placed" from="Camera3D/ItemManager/MapItem" to="." method="_on_map_item_flag_marker_placed"]
 

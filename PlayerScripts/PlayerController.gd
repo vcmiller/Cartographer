@@ -17,6 +17,7 @@ const JUMP_VELOCITY = 4.5
 @export var player_canvas: PlayerCanvas
 
 @onready var item_manager: ItemManager = $Camera3D/ItemManager 
+@onready var footstep_player: AudioStreamPlayer = $FootstepPlayer
 
 var lastMousePos: Vector2
 var eulerAngles: Vector3
@@ -86,6 +87,7 @@ func _physics_process(delta: float) -> void:
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
+		if not footstep_player.playing: footstep_player.play_random()
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
