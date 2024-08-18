@@ -17,6 +17,8 @@ static var savedMap: EditableMap
 var navigator_count: int
 var has_failed: bool
 
+signal update_map()
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	player_canvas.player = player
@@ -80,3 +82,4 @@ func succccess():
 	navigator_count -= 1
 	if navigator_count <= 0 and not has_failed:
 		playback_canvas.on_victory()
+	update_map.emit()

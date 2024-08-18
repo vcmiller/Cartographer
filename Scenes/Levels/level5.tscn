@@ -1,0 +1,121 @@
+[gd_scene load_steps=26 format=3 uid="uid://doxnu2k871um4"]
+
+[ext_resource type="Script" path="res://LevelController.gd" id="1_7gly0"]
+[ext_resource type="PackedScene" uid="uid://c56yvex4g3pif" path="res://Scenes/player.tscn" id="1_ad445"]
+[ext_resource type="Texture2D" uid="uid://b40qi0acguhr8" path="res://FLAGRed.png" id="2_fa5xc"]
+[ext_resource type="Script" path="res://EditableMap.gd" id="2_tkkob"]
+[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="3_c7gw5"]
+[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_texture_set.gd" id="5_3qa8x"]
+[ext_resource type="Resource" path="res://Scenes/Levels/level5/data.hterrain" id="5_iyj1v"]
+[ext_resource type="Texture2D" uid="uid://dbtnnv53ap7d7" path="res://Textures/grass_1_basecolor-1K.png" id="6_andtf"]
+[ext_resource type="Texture2D" uid="uid://doeyfpmulhmiq" path="res://Textures/Cliff_basecolor.png" id="7_x6axp"]
+[ext_resource type="Texture2D" uid="uid://7m5c5uxiaa3m" path="res://Textures/grass_1_normal-1K.png" id="8_jb2gq"]
+[ext_resource type="Texture2D" uid="uid://dgqwjkwa2ckuq" path="res://Textures/Cliff_normal.png" id="9_ff7x0"]
+[ext_resource type="Texture2D" uid="uid://dwdxtpum8euki" path="res://Textures/1K-snow_3_Base Color.jpg" id="9_w4bpm"]
+[ext_resource type="PackedScene" uid="uid://7jfrr44c1tir" path="res://Scenes/chest.tscn" id="13_rhw22"]
+[ext_resource type="Script" path="res://navigator_spawn.gd" id="14_nmrc2"]
+[ext_resource type="PackedScene" uid="uid://url466m8etkf" path="res://navigator.tscn" id="16_7r0ls"]
+[ext_resource type="PackedScene" uid="uid://dkv2gdruwmqqp" path="res://Scenes/playback_canvas.tscn" id="17_0p3wf"]
+[ext_resource type="PackedScene" uid="uid://dia0af0h1mn1v" path="res://Scenes/dragon.tscn" id="17_dwt5v"]
+[ext_resource type="PackedScene" uid="uid://cpyuibv7in8lg" path="res://Scenes/player_canvas.tscn" id="18_400c0"]
+[ext_resource type="PackedScene" uid="uid://bkpvpnsmwlkuy" path="res://Models/Flag.glb" id="18_jywsr"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_a5k6u"]
+
+[sub_resource type="Sky" id="Sky_gagda"]
+sky_material = SubResource("ProceduralSkyMaterial_a5k6u")
+
+[sub_resource type="Environment" id="Environment_yanan"]
+background_mode = 2
+sky = SubResource("Sky_gagda")
+
+[sub_resource type="Resource" id="Resource_0neh7"]
+script = ExtResource("2_tkkob")
+Width = 100
+Height = 150
+
+[sub_resource type="Resource" id="Resource_v8bm5"]
+script = ExtResource("5_3qa8x")
+mode = 0
+textures = [[ExtResource("6_andtf"), ExtResource("7_x6axp"), ExtResource("9_w4bpm")], [ExtResource("8_jb2gq"), ExtResource("9_ff7x0"), null]]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_70al6"]
+size = Vector3(50, 20, 75)
+
+[node name="Level3" type="Node3D" node_paths=PackedStringArray("navigator_spawn_points", "player", "goals", "extraMarkerPositions")]
+script = ExtResource("1_7gly0")
+navigator_spawn_points = [NodePath("Start1"), NodePath("Start2")]
+player = NodePath("Player")
+goals = [NodePath("Chest"), NodePath("Dragon")]
+extraMarkerSprites = Array[Texture2D]([ExtResource("2_fa5xc")])
+extraMarkerPositions = [NodePath("Flag2")]
+nextLevel = "res://Scenes/Levels/level4.tscn"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_yanan")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0.922349, 0.386357, 0, -0.386357, 0.922349, 1, 4.03172e-08, 1.68882e-08, -0.00377464, -0.0199896, 0.00757551)
+shadow_enabled = true
+shadow_bias = 0.0
+shadow_reverse_cull_face = true
+
+[node name="Player" parent="." node_paths=PackedStringArray("player_canvas") instance=ExtResource("1_ad445")]
+transform = Transform3D(0.996329, 0, 0.0856083, 0, 1, 0, -0.0856083, 0, 0.996329, 32.0052, 0.994232, 70.4692)
+Map = SubResource("Resource_0neh7")
+player_canvas = NodePath("../PlayerCanvas")
+
+[node name="HTerrain" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -12.5)
+script = ExtResource("3_c7gw5")
+map_scale = Vector3(0.781, 1, 0.781)
+_terrain_data = ExtResource("5_iyj1v")
+chunk_size = 16
+collision_enabled = true
+collision_layer = 1
+collision_mask = 1
+shader_type = "Classic4"
+custom_shader = null
+custom_globalmap_shader = null
+texture_set = SubResource("Resource_v8bm5")
+render_layers = 1
+cast_shadow = 1
+shader_params/u_ground_uv_scale_per_texture = Vector4(10, 5, 20, 20)
+shader_params/u_depth_blending = true
+shader_params/u_triplanar = false
+shader_params/u_tile_reduction = Vector4(0, 1, 0, 0)
+shader_params/u_globalmap_blend_start = null
+shader_params/u_globalmap_blend_distance = null
+shader_params/u_colormap_opacity_per_texture = Vector4(1, 1, 1, 1)
+shader_params/u_specular = 0.5
+
+[node name="Chest" parent="." instance=ExtResource("13_rhw22")]
+transform = Transform3D(0.0732033, 0, -0.997317, 0, 1, 0, 0.997317, 0, 0.0732033, 36.5036, 0.000106811, 7.17767)
+
+[node name="Start1" type="Marker3D" parent="."]
+transform = Transform3D(0.506229, 0, -0.862398, 0, 1, 0, 0.862398, 0, 0.506229, 25.1756, 1, 71.8429)
+script = ExtResource("14_nmrc2")
+navigator_scene = ExtResource("16_7r0ls")
+
+[node name="Start2" type="Marker3D" parent="."]
+transform = Transform3D(0.190432, 0, 0.9817, 0, 1, 0, -0.9817, 0, 0.190432, 35.7573, 1, 65.2502)
+script = ExtResource("14_nmrc2")
+navigator_scene = ExtResource("16_7r0ls")
+
+[node name="PlaybackCanvas" parent="." node_paths=PackedStringArray("level_controller") instance=ExtResource("17_0p3wf")]
+visible = false
+level_controller = NodePath("..")
+
+[node name="PlayerCanvas" parent="." instance=ExtResource("18_400c0")]
+
+[node name="MapBounds" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MapBounds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 10, 37.5)
+shape = SubResource("BoxShape3D_70al6")
+
+[node name="Dragon" parent="." instance=ExtResource("17_dwt5v")]
+transform = Transform3D(-0.872239, 0, 0.489078, 0, 1, 0, -0.489078, 0, -0.872239, 38.7339, 0, 36.5313)
+
+[node name="Flag2" parent="." instance=ExtResource("18_jywsr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.8282, 0, 64.3789)

@@ -8,6 +8,7 @@ class_name Navigator
 @export var thoughtBubble: Node3D
 @export var thoughtBubbleIcon: MeshInstance3D
 @export var thoughtBubbleNoDest: Node3D
+@export var thoughtBubbleNoPath: Node3D
 @export var body: MeshInstance3D
 @export var hairs: Array[MeshInstance3D]
 @export var facialHairs: Array[MeshInstance3D]
@@ -41,19 +42,25 @@ func _ready() -> void:
 	thoughtBubbleIcon.set_surface_override_material(0, mat)
 	randomize_mesh()
 	
+	level_controller.connect("update_map", _on_update_map)
+	
 func create_grid(map: EditableMap):
 	self.map = map
 	grid = MapGridHandler.ParseImage(map.image)
 	for i in range(len(level_controller.goals)):
 		var goal = level_controller.goals[i]
-		if goal == self.goal or not goal.is_hazard or not map.markersPlaced[i]: continue
+		if goal == self.goal or not goal.is_hazard or not map.markersPlaced[i] or goal.is_dead: continue
 		MapGridHandler.AddHazard(grid, map.markerLocations[i], goal.hazard_radius)
+		
+func _on_update_map():
+	if not goal.is_dead:
+		create_grid(map)
 	
 func check_goal(hit_goal: Goal):
 	if hit_goal.is_dead: return
 	if hit_goal == goal:
-		level_controller.succccess()
 		hit_goal.die()
+		level_controller.succccess()
 	elif hit_goal.is_hazard:
 		level_controller.fail()
 		is_dead = true
@@ -124,16 +131,24 @@ func _process(_delta: float) -> void:
 	thoughtBubbleNoDest.hide()
 	elapsed += _delta
 	
-	if elapsed < MOVE_DELAY or is_dead:
+	if elapsed < MOVE_DELAY or is_dead or not goal.get_parent():
 		return
 		
-	thoughtBubble.hide()
 	
-	var path = grid.get_point_path(vec2i(position),vec2i(map.markerLocations[destIndex]), true)
+	var dest2d = vec2i(map.markerLocations[destIndex])
+	var path = grid.get_point_path(vec2i(position), dest2d, true)
 	
 	var target_pos := position
 	if len(path) < 2: return
 	else:
+		var lastPos = path[-1]
+		if lastPos.distance_to(dest2d) > 2:
+			thoughtBubble.show()
+			thoughtBubbleNoPath.show()
+			thoughtBubbleIcon.hide()
+			return
+		
+		thoughtBubble.hide()
 		var mesh : ImmediateMesh = lineDrawer.mesh
 		mesh.clear_surfaces()
 		mesh.surface_begin(Mesh.PRIMITIVE_LINE_STRIP)
