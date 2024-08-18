@@ -46,6 +46,5 @@ func _on_player_begin_trial(image: Image) -> void:
 
 
 func _on_player_flag_marker_placed(index: int, position: Vector3) -> void:
-	if len(navigator_spawn_points) + 1 < index: return
+	if index >= len(navigator_spawn_points): return
 	navigator_spawn_points[index].target.position = position
-	pass # Replace with function body.

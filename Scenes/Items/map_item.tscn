@@ -59,7 +59,7 @@ texture_filter = 0
 transform = Transform3D(1, 0, 0, 0, 0.82806, 0.560639, 0, -0.560639, 0.82806, 0, -0.139, -1.067)
 script = ExtResource("1_bm0m2")
 TargetMesh = NodePath("Map")
-Collider = NodePath("Map/StaticBody3D")
+Collider = NodePath("Map/MapCollider")
 DrawSize = 0.1
 WaterToolButton = NodePath("ToolPalette/WaterToolButton")
 CliffToolButton = NodePath("ToolPalette/CliffToolButton")
@@ -92,12 +92,12 @@ transform = Transform3D(1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, 0, 0, 0)
 material_override = ExtResource("1_lpqoy")
 mesh = SubResource("QuadMesh_sjhvp")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Map"]
+[node name="MapCollider" type="StaticBody3D" parent="Map"]
 transform = Transform3D(1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, 0, 0, 0)
 collision_layer = 32768
 collision_mask = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/MapCollider"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.025)
 shape = SubResource("BoxShape3D_o22g7")
 
@@ -246,7 +246,8 @@ surface_material_override/2 = ExtResource("14_4dbmf")
 [node name="RedFlag" type="Node3D" parent="Node3D"]
 
 [node name="RedFlag" type="MeshInstance3D" parent="Node3D/RedFlag"]
-transform = Transform3D(0.141394, 0, 0, 0, 0.133406, -2.23517e-08, 0, 0, 0.248819, 0, 0, 0.1)
+transform = Transform3D(0.141394, 0, 0, 0, 0.133406, -2.23517e-08, 0, 0, 0.248819, 0, 0, 0)
+sorting_offset = 1.0
 material_override = SubResource("StandardMaterial3D_s50oa")
 mesh = SubResource("QuadMesh_hr3vy")
 skeleton = NodePath("../../../FlagPalette/RedFlagButton")
@@ -254,7 +255,8 @@ skeleton = NodePath("../../../FlagPalette/RedFlagButton")
 [node name="BlueFlag" type="Node3D" parent="Node3D"]
 
 [node name="BlueFlag" type="MeshInstance3D" parent="Node3D/BlueFlag"]
-transform = Transform3D(0.141394, 0, 0, 0, 0.133406, -2.23517e-08, 0, 0, 0.248819, 0, 0, 0.1)
+transform = Transform3D(0.141394, 0, 0, 0, 0.133406, -2.23517e-08, 0, 0, 0.248819, 0, 0, 0)
+sorting_offset = 1.0
 material_override = SubResource("StandardMaterial3D_2ltoa")
 mesh = SubResource("QuadMesh_hr3vy")
 skeleton = NodePath("../../../FlagPalette/RedFlagButton")
@@ -262,7 +264,8 @@ skeleton = NodePath("../../../FlagPalette/RedFlagButton")
 [node name="GreenFlag" type="Node3D" parent="Node3D"]
 
 [node name="GreenFlag" type="MeshInstance3D" parent="Node3D/GreenFlag"]
-transform = Transform3D(0.141394, 0, 0, 0, 0.133406, -2.23517e-08, 0, 0, 0.248819, 0, 0, 0.1)
+transform = Transform3D(0.141394, 0, 0, 0, 0.133406, -2.23517e-08, 0, 0, 0.248819, 0, 0, 0)
+sorting_offset = 1.0
 material_override = SubResource("StandardMaterial3D_bmttq")
 mesh = SubResource("QuadMesh_hr3vy")
 skeleton = NodePath("../../../FlagPalette/RedFlagButton")
@@ -273,7 +276,8 @@ skeleton = NodePath("../../../FlagPalette/RedFlagButton")
 transform = Transform3D(1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, -256, 0, 0)
 
 [node name="RedFlag" type="MeshInstance3D" parent="MapFlags/RedFlagMarker"]
-transform = Transform3D(0.141394, 0, 0, 0, 0.133406, -2.23517e-08, 0, 0, 0.248819, 0, 0, 0.05)
+transform = Transform3D(0.141394, 0, 0, 0, 0.133406, -2.23517e-08, 0, 0, 0.248819, 0, 0, 0)
+sorting_offset = 1.0
 material_override = SubResource("StandardMaterial3D_s50oa")
 mesh = SubResource("QuadMesh_hr3vy")
 skeleton = NodePath("../../../FlagPalette/RedFlagButton")
@@ -282,7 +286,8 @@ skeleton = NodePath("../../../FlagPalette/RedFlagButton")
 transform = Transform3D(1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, -256, 0, 0)
 
 [node name="BlueFlag" type="MeshInstance3D" parent="MapFlags/BlueFlagMarker"]
-transform = Transform3D(0.141394, 0, 0, 0, 0.133406, -2.23517e-08, 0, 0, 0.248819, 0, 0, 0.05)
+transform = Transform3D(0.141394, 0, 0, 0, 0.133406, -2.23517e-08, 0, 0, 0.248819, 0, 0, 0)
+sorting_offset = 1.0
 material_override = SubResource("StandardMaterial3D_2ltoa")
 mesh = SubResource("QuadMesh_hr3vy")
 skeleton = NodePath("../../../FlagPalette/RedFlagButton")
@@ -291,7 +296,8 @@ skeleton = NodePath("../../../FlagPalette/RedFlagButton")
 transform = Transform3D(1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, -256, 0, 0)
 
 [node name="GreenFlag" type="MeshInstance3D" parent="MapFlags/GreenFlagMarker"]
-transform = Transform3D(0.141394, 0, 0, 0, 0.133406, -2.23517e-08, 0, 0, 0.248819, 0, 0, 0.05)
+transform = Transform3D(0.141394, 0, 0, 0, 0.133406, -2.23517e-08, 0, 0, 0.248819, 0, 0, 0)
+sorting_offset = 1.0
 material_override = SubResource("StandardMaterial3D_bmttq")
 mesh = SubResource("QuadMesh_hr3vy")
 skeleton = NodePath("../../../FlagPalette/RedFlagButton")
