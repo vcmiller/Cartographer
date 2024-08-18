@@ -32,7 +32,7 @@ text = "?"
 font_size = 46
 depth = 0.0
 
-[node name="Navigator" type="CharacterBody3D" node_paths=PackedStringArray("Model", "remote", "anim", "cameraArm", "thoughtBubble", "thoughtBubbleIcon", "thoughtBubbleNoDest", "body", "hairs", "facialHairs")]
+[node name="Navigator" type="CharacterBody3D" node_paths=PackedStringArray("Model", "remote", "anim", "cameraArm", "thoughtBubble", "thoughtBubbleIcon", "thoughtBubbleNoDest", "body", "hairs", "facialHairs", "bodyAttach")]
 axis_lock_angular_x = true
 axis_lock_angular_z = true
 script = ExtResource("1_dle6y")
@@ -50,6 +50,7 @@ skinColors = Array[Color]([Color(0.870283, 0.706282, 0.629122, 1), Color(0.62332
 hairColors = Array[Color]([Color(0.41881, 0.352475, 0.321652, 1), Color(0.735273, 0.200193, 0.191977, 1), Color(0.69, 0.54303, 0.2001, 1), Color(0.18, 0.066, 0, 1), Color(0, 0, 0, 1), Color(0, 0.745098, 0, 1), Color(0, 0, 0.72549, 1), Color(0.0905625, 0.0495592, 0.0116016, 1), Color(0.780702, 0.780702, 0.780702, 1)])
 eyeColors = Array[Color]([Color(0.175446, 0.0549022, 0.00962464, 1), Color(0.218414, 0.600838, 0.215416, 1), Color(0.0403767, 0.278228, 0.999993, 1)])
 clothesColors = Array[Color]([Color(0.122213, 0.186244, 0.33624, 1), Color(0.770255, 0.218197, 0.470758, 1), Color(0.448897, 0.574281, 0.165106, 1), Color(0.235235, 0.188599, 0.0986695, 1), Color(0, 0.121333, 0.28, 1), Color(0.417257, 0.417257, 0.417257, 1), Color(0.575466, 0.484795, 0.0132383, 1)])
+bodyAttach = NodePath("Dude/Armature/Skeleton3D/BodyAttach")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_coyju")
@@ -62,6 +63,7 @@ mesh = SubResource("ImmediateMesh_axs1q")
 transform = Transform3D(0.59, 0, 0, 0, 0.59, 0, 0, 0, 0.59, 0, -1, 0)
 
 [node name="FacialHair1" parent="Dude" index="0"]
+transform = Transform3D(-0.995248, 0.0969522, -0.00901812, 0.0967598, 0.995112, 0.0197609, 0.0108899, 0.0187944, -0.999764, 0.871134, 1.44702, -0.715854)
 visible = false
 
 [node name="Hair2_Medium" parent="Dude" index="1"]
@@ -95,22 +97,29 @@ visible = false
 visible = false
 
 [node name="Prop_Sword" parent="Dude" index="11"]
-transform = Transform3D(-0.0488635, 0.00350469, -0.0100266, -0.00298889, 0.0407596, 0.0288125, 0.0101924, 0.0287545, -0.0396197, 0.737386, 2.00894, -0.924954)
+transform = Transform3D(-0.0497686, 0.00484819, -0.00045096, 0.0048386, 0.0497616, 0.000988164, 0.000544563, 0.000939834, -0.0499942, 0.871134, 1.44702, -0.715854)
 visible = false
 
 [node name="Skeleton3D" parent="Dude/Armature" index="0"]
-bones/2/rotation = Quaternion(0.0138964, 0.301749, 0.940218, 0.157304)
-bones/4/rotation = Quaternion(0.945091, 0, 0, -0.326808)
+bones/1/rotation = Quaternion(0.00129293, -0.00695756, 0.973934, -0.226722)
+bones/1/scale = Vector3(1, 1, 1)
+bones/2/rotation = Quaternion(-0.00129293, -0.00695756, 0.973934, 0.226722)
+bones/2/scale = Vector3(1, 1, 1)
 
-[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Dude/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.867687, 0.456385, 0.197065, -0.479962, -0.66588, -0.571175, -0.129454, -0.590184, 0.796821, 0.590047, 1.99674, 0.03887)
+[node name="HandAttach" type="BoneAttachment3D" parent="Dude/Armature/Skeleton3D" index="1"]
+transform = Transform3D(-0.897192, 0.441607, 0.00567332, -0.441644, -0.897097, -0.0129661, -0.000636413, -0.0141387, 0.9999, 0.590047, 1.99674, 0.03887)
 bone_name = "Arm_R"
 bone_idx = 1
 
-[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Dude/Armature/Skeleton3D/BoneAttachment3D"]
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Dude/Armature/Skeleton3D/HandAttach"]
 transform = Transform3D(0.850187, -0.526481, -7.45058e-09, -0.526466, -0.850163, -0.00757468, 0.00398789, 0.00643983, -0.999971, -0.00892674, 0.627956, -0.745926)
 remote_path = NodePath("../../../../Prop_Sword")
 update_scale = false
+
+[node name="BodyAttach" type="BoneAttachment3D" parent="Dude/Armature/Skeleton3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.815705, 0)
+bone_name = "Root"
+bone_idx = 0
 
 [node name="CameraArm" type="Node3D" parent="."]
 

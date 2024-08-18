@@ -15,6 +15,7 @@ class_name LevelController
 static var savedMap: EditableMap
 
 var navigator_count: int
+var has_failed: bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -72,8 +73,9 @@ func _on_player_begin_trial(map: EditableMap) -> void:
 	
 func fail():
 	playback_canvas.fuck_label.show()
+	has_failed = true
 	
 func succccess():
 	navigator_count -= 1
-	if navigator_count <= 0:
+	if navigator_count <= 0 and not has_failed:
 		playback_canvas.win_label.show()

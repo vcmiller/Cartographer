@@ -105,7 +105,7 @@ transform = Transform3D(-0.999579, 0, 0.0290204, 0, 1, 0, -0.0290204, 0, -0.9995
 transform = Transform3D(-0.0605606, 0, 0.998164, 0, 1, 0, -0.998164, 0, -0.0605606, 9.79081, 10.0247, 8.37394)
 
 [node name="Dragon" parent="." instance=ExtResource("14_ndxgu")]
-transform = Transform3D(-0.0605606, 0, 0.998164, 0, 1, 0, -0.998164, 0, -0.0605606, 29.7943, 3.34604, 19.0821)
+transform = Transform3D(-0.0605606, 0, 0.998164, 0, 1, 0, -0.998164, 0, -0.0605606, 30.0785, 4.07013, 16.9969)
 is_hazard = true
 marker_sprite = ExtResource("14_tb18f")
 

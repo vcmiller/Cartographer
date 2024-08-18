@@ -17,6 +17,7 @@ class_name Navigator
 @export var clothesColors: Array[Color]
 @export var hairChance: float = 0.8
 @export var facialHairChance: float = 0.3
+@export var bodyAttach: Node3D
 
 @onready var lineDrawer: MeshInstance3D = $LineDrawer
 
@@ -29,6 +30,7 @@ var map: EditableMap
 var destIndex: int
 var goal: Goal
 var level_controller: LevelController
+var is_dead = false
 
 func _ready() -> void:
 	anim.play("Walk")
@@ -48,6 +50,8 @@ func check_goal(hit_goal: Goal):
 		level_controller.succccess()
 	elif hit_goal.is_hazard:
 		level_controller.fail()
+		is_dead = true
+		anim.play("Die")
 
 #debug nonsense: ignore
 func draw_path(img: Image, from: Vector2i, to: Vector2i, color: Color):
@@ -89,6 +93,10 @@ func randomize_mesh():
 		hairMat.albedo_color = hairColor
 		hair.set_surface_override_material(0, hairMat)
 		hair.show()
+		var transform = hair.global_transform
+		Model.remove_child(hair)
+		bodyAttach.add_child(hair)
+		hair.global_transform = transform
 		
 	if rng.randf() < facialHairChance:
 		var facialHair = facialHairs[rng.randi_range(0, len(facialHairs) - 1)]
@@ -96,6 +104,10 @@ func randomize_mesh():
 		facialHairMat.albedo_color = hairColor
 		facialHair.set_surface_override_material(0, facialHairMat)
 		facialHair.show()
+		var transform = facialHair.global_transform
+		Model.remove_child(facialHair)
+		bodyAttach.add_child(facialHair)
+		facialHair.global_transform = transform
 	
 func vec2i(from: Vector3): return Vector2i(roundi(from.x), roundi(from.z))	
 func vec3(from: Vector2i): return Vector3(from.x,position.y,from.y)
@@ -106,7 +118,7 @@ func _process(_delta: float) -> void:
 	thoughtBubbleNoDest.hide()
 	elapsed += _delta
 	
-	if elapsed < MOVE_DELAY:
+	if elapsed < MOVE_DELAY or is_dead:
 		return
 		
 	thoughtBubble.hide()
