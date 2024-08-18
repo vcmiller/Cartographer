@@ -7,12 +7,16 @@ class_name PlayerCanvas
 
 @export var submit_button: Button
 @export var close_map_button: Button
+@export_range(1,3) var num_items_shown: int = 3
 
 var player: PlayerController
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	on_selected_item_changed(0)
+	while item_select.get_child_count() > num_items_shown: 
+		var child = item_select.get_child(num_items_shown) 
+		item_select.remove_child(child)
 	pass # Replace with function body.
 
 

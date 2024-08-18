@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://dgqwjkwa2ckuq" path="res://Textures/Cliff_normal.png" id="9_ff7x0"]
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_detail_layer.gd" id="10_mvm6s"]
 [ext_resource type="Texture2D" uid="uid://6jmdwj3vn6m0" path="res://addons/zylann.hterrain/tools/icons/icon_detail_layer_node.svg" id="11_8siu6"]
-[ext_resource type="PackedScene" uid="uid://dtab7c0bq186o" path="res://Scenes/house.tscn" id="12_ain71"]
+[ext_resource type="PackedScene" path="res://Scenes/house.tscn" id="12_ain71"]
 [ext_resource type="PackedScene" uid="uid://7jfrr44c1tir" path="res://Scenes/chest.tscn" id="13_rhw22"]
 [ext_resource type="Script" path="res://navigator_spawn.gd" id="14_nmrc2"]
 [ext_resource type="PackedScene" uid="uid://url466m8etkf" path="res://navigator.tscn" id="16_7r0ls"]
@@ -53,9 +53,10 @@ shadow_enabled = true
 shadow_bias = 0.0
 shadow_reverse_cull_face = true
 
-[node name="Player" parent="." instance=ExtResource("1_ad445")]
+[node name="Player" parent="." node_paths=PackedStringArray("player_canvas") instance=ExtResource("1_ad445")]
 transform = Transform3D(-0.999469, 0, -0.0325969, 0, 1, 0, 0.0325969, 0, -0.999469, 8.79673, 0.994233, 7.7106)
 Map = SubResource("Resource_5we7l")
+player_canvas = NodePath("../PlayerCanvas")
 
 [node name="HTerrain" type="Node3D" parent="."]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 50, 0, 50)
@@ -106,3 +107,4 @@ visible = false
 level_controller = NodePath("..")
 
 [node name="PlayerCanvas" parent="." instance=ExtResource("18_400c0")]
+num_items_shown = 3

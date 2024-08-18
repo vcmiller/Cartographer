@@ -51,7 +51,7 @@ func _birth_player():
 		
 	player.player_canvas = player_canvas
 	player.CameraNode.make_current()
-	player.connect("begin_trial",_on_player_begin_trial)
+	player.connect("begin_trial",_on_player_begin_trial) 
 	
 func SaveMap():
 	savedMap = player.Map
