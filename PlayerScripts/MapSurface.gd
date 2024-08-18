@@ -108,15 +108,17 @@ func _ready() -> void:
 			MarkerButtons[i].get_parent().remove_child(MarkerButtons[i])
 		
 func WorldToMapSpace(worldPos: Vector3) -> Vector3:
+	var aspect = map.Width / float(map.Height)
 	var local = Vector3(worldPos.x, worldPos.z, 0)
 	local /= (map.Height * 0.5)
 	local.y = 1 - local.y
-	local -= Vector3(0.5, 0.5, 0)
+	local -= Vector3(0.5 * aspect, 0.5, 0)
 	return local
 	
 func MapToWorldSpace(mapPos: Vector3) -> Vector3:
+	var aspect = map.Width / float(map.Height)
 	var world = Vector3(mapPos.x, 0, mapPos.y)
-	world += Vector3(0.5, 0, 0.5)
+	world += Vector3(0.5 * aspect, 0, 0.5)
 	world.z = 1 - world.z
 	world *= (map.Height * 0.5)
 	return world

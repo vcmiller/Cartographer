@@ -1,7 +1,8 @@
-[gd_scene load_steps=26 format=3 uid="uid://d1ypaifgivgvd"]
+[gd_scene load_steps=28 format=3 uid="uid://d1ypaifgivgvd"]
 
 [ext_resource type="Script" path="res://LevelController.gd" id="1_t3b22"]
 [ext_resource type="PackedScene" uid="uid://c56yvex4g3pif" path="res://Scenes/player.tscn" id="2_s5h3j"]
+[ext_resource type="Texture2D" uid="uid://b40qi0acguhr8" path="res://FLAGRed.png" id="2_yp7xa"]
 [ext_resource type="Script" path="res://EditableMap.gd" id="3_87vbk"]
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="4_sqftk"]
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_texture_set.gd" id="6_4gba7"]
@@ -18,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://url466m8etkf" path="res://navigator.tscn" id="16_f256h"]
 [ext_resource type="PackedScene" uid="uid://dkv2gdruwmqqp" path="res://Scenes/playback_canvas.tscn" id="17_ls85u"]
 [ext_resource type="PackedScene" uid="uid://cpyuibv7in8lg" path="res://Scenes/player_canvas.tscn" id="18_xbvxu"]
+[ext_resource type="PackedScene" uid="uid://bkpvpnsmwlkuy" path="res://Models/Flag.glb" id="19_ndh0y"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_a5k6u"]
 
@@ -44,11 +46,13 @@ radius = 8.293
 [sub_resource type="BoxShape3D" id="BoxShape3D_sspvq"]
 size = Vector3(75, 20, 50)
 
-[node name="Level4" type="Node3D" node_paths=PackedStringArray("navigator_spawn_points", "player", "goals")]
+[node name="Level4" type="Node3D" node_paths=PackedStringArray("navigator_spawn_points", "player", "goals", "extraMarkerPositions")]
 script = ExtResource("1_t3b22")
 navigator_spawn_points = [NodePath("Start")]
 player = NodePath("Player")
 goals = [NodePath("Chest"), NodePath("Dragon")]
+extraMarkerSprites = Array[Texture2D]([ExtResource("2_yp7xa")])
+extraMarkerPositions = [NodePath("Flag2")]
 nextLevel = "res://Scenes/Levels/level2.tscn"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -109,7 +113,7 @@ marker_sprite = ExtResource("14_tb18f")
 shape = SubResource("SphereShape3D_448bg")
 
 [node name="Start" type="Marker3D" parent="."]
-transform = Transform3D(0.989816, 0, 0.142352, 0, 1, 0, -0.142352, 0, 0.989816, 64.2473, 1, 37.6537)
+transform = Transform3D(0.989816, 0, 0.142352, 0, 1, 0, -0.142352, 0, 0.989816, 65.7755, 1, 35.9011)
 script = ExtResource("15_31cjw")
 navigator_scene = ExtResource("16_f256h")
 
@@ -127,5 +131,8 @@ level_controller = NodePath("..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MapBounds"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.5, 10, 25)
 shape = SubResource("BoxShape3D_sspvq")
+
+[node name="Flag2" parent="." instance=ExtResource("19_ndh0y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65.7761, 0, 36.9675)
 
 [editable path="Dragon"]
