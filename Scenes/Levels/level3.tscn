@@ -48,13 +48,14 @@ goals = [NodePath("Chest")]
 environment = SubResource("Environment_yanan")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.951718, 0.306975, 0, -0.306975, 0.951718, -0.00377464, -0.0199896, 0.00757551)
+transform = Transform3D(1, 0, 0, 0, 0.744661, 0.667443, 0, -0.667443, 0.744661, -0.00377464, -0.0199896, 0.00757551)
 
 [node name="Player" parent="." instance=ExtResource("1_ad445")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.1989, 0.994233, 45.031)
+transform = Transform3D(-0.999469, 0, -0.0325969, 0, 1, 0, 0.0325969, 0, -0.999469, 8.79673, 0.994233, 7.7106)
 Map = SubResource("Resource_5we7l")
 
 [node name="HTerrain" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 50, 0, 50)
 script = ExtResource("3_c7gw5")
 map_scale = Vector3(0.781, 1, 0.781)
 _terrain_data = ExtResource("5_64bt0")
@@ -87,12 +88,13 @@ shader_params/u_roughness = 0.9
 metadata/_editor_icon = ExtResource("11_8siu6")
 
 [node name="House" parent="." instance=ExtResource("12_ain71")]
-transform = Transform3D(0.913907, 0, -0.405923, 0, 1, 0, 0.405923, 0, 0.913907, 44.0488, 0, 34.9483)
+transform = Transform3D(-0.932834, 0, 0.360306, 0, 1, 0, -0.360306, 0, -0.932834, 6.49862, 0, 15.8412)
 
 [node name="Chest" parent="." instance=ExtResource("13_rhw22")]
+transform = Transform3D(0.0732033, 0, -0.997317, 0, 1, 0, 0.997317, 0, 0.0732033, 44.5247, 0.000106811, 42.9082)
 
 [node name="Start" type="Marker3D" parent="."]
-transform = Transform3D(0.0387366, 0, 0.999249, 0, 1, 0, -0.999249, 0, 0.0387366, 42.6072, 1, 38.5438)
+transform = Transform3D(0.0387366, 0, 0.999249, 0, 1, 0, -0.999249, 0, 0.0387366, 7.60069, 1, 12.0256)
 script = ExtResource("14_nmrc2")
 navigator_scene = ExtResource("16_7r0ls")
 
@@ -101,6 +103,3 @@ visible = false
 level_controller = NodePath("..")
 
 [node name="PlayerCanvas" parent="." instance=ExtResource("18_400c0")]
-
-[node name="SpectatorCamera" type="Camera3D" parent="."]
-transform = Transform3D(0.999998, 0.00171881, -0.000303073, 0, 0.173648, 0.984808, 0.00174533, -0.984806, 0.173648, 25, 34.213, 33.164)
