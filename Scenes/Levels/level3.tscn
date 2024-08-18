@@ -90,10 +90,9 @@ transform = Transform3D(0.913907, 0, -0.405923, 0, 1, 0, 0.405923, 0, 0.913907, 
 
 [node name="Chest" parent="." instance=ExtResource("13_rhw22")]
 
-[node name="Start" type="Marker3D" parent="." node_paths=PackedStringArray("target")]
+[node name="Start" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.904, 1, 38.216)
 script = ExtResource("14_nmrc2")
-target = NodePath("../Marker3D2")
 navigator_scene = ExtResource("16_7r0ls")
 
 [node name="Marker3D2" type="Marker3D" parent="."]

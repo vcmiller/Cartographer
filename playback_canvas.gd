@@ -2,6 +2,7 @@ extends CanvasLayer
 class_name PlaybackCanvas
 
 @onready var fuck_label: Label = $FuckLabel
+@onready var win_label: Label = $WinLabel
 
 @export var level_controller: LevelController
 @export var ViewportsLeft: CanvasItem
@@ -70,3 +71,7 @@ func activate():
 
 func deactivate():
 	hide()
+
+
+func _on_next_button_pressed() -> void:
+	get_tree().change_scene_to_file(level_controller.nextLevel)

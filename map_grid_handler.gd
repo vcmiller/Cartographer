@@ -1,10 +1,8 @@
 extends Node
 class_name GlobalGrid
 
-var grid: AStarGrid2D
-
-func ParseImage(image: Image):
-	grid = AStarGrid2D.new()
+static func ParseImage(image: Image) -> AStarGrid2D:
+	var grid = AStarGrid2D.new()
 	grid.region = Rect2i(Vector2i.ZERO, image.get_size() * 0.5)
 	grid.update()
 	for i in range(grid.region.size.x): 
@@ -18,4 +16,5 @@ func ParseImage(image: Image):
 				if solid:
 					break
 			grid.set_point_solid(Vector2i(i,j),solid)
+	return grid
 	pass

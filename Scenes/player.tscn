@@ -11,11 +11,12 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_18swh"]
 radius = 0.4
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("CameraNode")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("CameraNode", "MapItemInst")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.03934)
 script = ExtResource("1_fb5hj")
 CameraNode = NodePath("Camera3D")
 LookSpeedWhenNotCaptured = 2
+MapItemInst = NodePath("Camera3D/ItemManager/MapItem")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_18swh")

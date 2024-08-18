@@ -1,7 +1,6 @@
 extends CharacterBody3D
 class_name Navigator
-  
-@export var target: Node3D 
+
 @export var Model: Node3D
 @export var remote: RemoteTransform3D
 @export var anim: AnimationPlayer
@@ -22,15 +21,30 @@ const SPEED = 15
 const MOVE_DELAY = 1
 
 var elapsed: float
+var grid: AStarGrid2D
+var map: EditableMap
+var destIndex: int
+var goal: Goal
+var level_controller: LevelController
 
 func _ready() -> void:
 	anim.play("Walk")
 	cameraArm.rotation = Vector3(0, PI, 0)
 	randomize_mesh()
+	
+func create_grid(map: EditableMap):
+	grid = MapGridHandler.ParseImage(map.image)
+	self.map = map
+	
+func check_goal(hit_goal: Goal):
+	if hit_goal == goal:
+		level_controller.succccess()
+	elif hit_goal.is_hazard:
+		level_controller.fail()
 
 #debug nonsense: ignore
 func draw_path(img: Image, from: Vector2i, to: Vector2i, color: Color):
-	var path = MapGridHandler.grid.get_point_path(from,to)
+	var path = grid.get_point_path(from,to)
 	for node in path: img.set_pixelv(node, color)
 	
 func randomize_mesh():
@@ -81,13 +95,13 @@ func vec3(from: Vector2i): return Vector3(from.x,position.y,from.y)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:  
-	if(not target): return
+	if !map.markersPlaced[destIndex]: return
 	elapsed += _delta
 	
 	if elapsed < MOVE_DELAY:
 		return
 	
-	var path = MapGridHandler.grid.get_point_path(vec2i(position),vec2i(target.position), true)
+	var path = grid.get_point_path(vec2i(position),vec2i(map.markerLocations[destIndex]), true)
 	
 	var mesh : ImmediateMesh = lineDrawer.mesh
 	mesh.clear_surfaces()

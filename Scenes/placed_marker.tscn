@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=3 uid="uid://2qaq5sjhof7o"]
+
+[ext_resource type="Texture2D" uid="uid://bgb6577o4d701" path="res://Textures/Marker.png" id="1_vtdpc"]
+[ext_resource type="Texture2D" uid="uid://bkbe4frwi0nur" path="res://FLAG.png" id="2_klq83"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_udkmq"]
+transparency = 1
+albedo_texture = ExtResource("1_vtdpc")
+texture_filter = 0
+
+[sub_resource type="QuadMesh" id="QuadMesh_hr3vy"]
+center_offset = Vector3(0, 0.5, 0)
+
+[sub_resource type="QuadMesh" id="QuadMesh_by8d8"]
+size = Vector2(0.6, 0.6)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1q2rl"]
+transparency = 1
+albedo_color = Color(0.147327, 0.368855, 0.0185969, 1)
+albedo_texture = ExtResource("2_klq83")
+
+[node name="PlacedMarker" type="MeshInstance3D"]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0)
+sorting_offset = 50.0
+material_override = SubResource("StandardMaterial3D_udkmq")
+mesh = SubResource("QuadMesh_hr3vy")
+skeleton = NodePath("../FlagPalette/RedFlagButton")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0.644682, 1.49012e-08)
+sorting_offset = 51.0
+mesh = SubResource("QuadMesh_by8d8")
+surface_material_override/0 = SubResource("StandardMaterial3D_1q2rl")

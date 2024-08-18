@@ -10,9 +10,8 @@ signal flag_marker_placed(index: int, position: Vector3)
 @export var WaterToolButton: StaticBody3D
 @export var CliffToolButton: StaticBody3D
 @export var EraserToolButton: StaticBody3D
-@export var RedFlagButton: StaticBody3D
-@export var BlueFlagButton: StaticBody3D
-@export var GreenFlagButton: StaticBody3D
+@export var MarkerButtons: Array[StaticBody3D]
+@export var MarkerButtonMeshes: Array[MeshInstance3D]
 @export var ButtonDefaultScale = 0.18
 @export var ButtonPressedScale = 0.25
 @export var ToolParent: Node3D
@@ -21,14 +20,11 @@ signal flag_marker_placed(index: int, position: Vector3)
 @export var MarkerCliff: Node3D
 @export var MarkerWater: Node3D
 @export var Eraser: Node3D
-@export var RedFlag: Node3D
-@export var BlueFlag: Node3D
-@export var GreenFlag: Node3D
-@export var RedFlagMarker: Node3D
-@export var BlueFlagMarker: Node3D
-@export var GreenFlagMarker: Node3D
+@export var MarkerItem: MeshInstance3D
 @export var Scale: Node3D
 @export var Player: PlayerController
+@export var MarkerScene: PackedScene
+@export var ExtraMarkerScene: PackedScene
 
 var material: ShaderMaterial
 var isPainting: bool
@@ -37,6 +33,13 @@ var highlightedButton: StaticBody3D
 var currentButton: StaticBody3D
 var currentToolModel: Node3D
 var map: EditableMap
+
+var extraMarkerPositions: Array[Vector3]
+var extraMarkerSprites: Array[Texture2D]
+var markerSprites: Array[Texture2D]
+var currentPlacingMarker: int
+
+var createdMarkers: Array[MeshInstance3D]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -65,9 +68,57 @@ func _ready() -> void:
 	ToolModelParent.remove_child(Eraser)
 	ToolModelParent.remove_child(MarkerWater)
 	ToolModelParent.remove_child(MarkerCliff)
-	ToolModelParent.remove_child(RedFlag)
-	ToolModelParent.remove_child(BlueFlag)
-	ToolModelParent.remove_child(GreenFlag)
+	ToolModelParent.remove_child(MarkerItem)
+	
+	for i in range(len(extraMarkerPositions)):
+		var localPos = WorldToMapSpace(extraMarkerPositions[i])
+		var newMarker = ExtraMarkerScene.instantiate() as MeshInstance3D
+		var mat = StandardMaterial3D.new()
+		mat.albedo_texture = extraMarkerSprites[i]
+		mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+		mat.blend_mode = BaseMaterial3D.BLEND_MODE_MIX
+		newMarker.set_surface_override_material(0, mat)
+		newMarker.position = localPos
+		add_child(newMarker)
+		
+	for i in range(len(map.markerLocations)):
+		var newMarker = MarkerScene.instantiate() as MeshInstance3D
+		var mat = StandardMaterial3D.new()
+		mat.albedo_texture = markerSprites[i]
+		mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+		mat.blend_mode = BaseMaterial3D.BLEND_MODE_MIX
+		(newMarker.get_child(0) as MeshInstance3D).set_surface_override_material(0, mat)
+		
+		if map.markersPlaced[i]:
+			var localPos = WorldToMapSpace(map.markerLocations[i])
+			newMarker.position = localPos
+		else:
+			newMarker.hide()
+		add_child(newMarker)
+		createdMarkers.append(newMarker)
+	
+	for i in range(len(MarkerButtons)):
+		if i < len(markerSprites):
+			var mat = StandardMaterial3D.new()
+			mat.albedo_texture = markerSprites[i]
+			mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+			MarkerButtonMeshes[i].set_surface_override_material(0, mat)
+		else:
+			MarkerButtons[i].get_parent().remove_child(MarkerButtons[i])
+		
+func WorldToMapSpace(worldPos: Vector3) -> Vector3:
+	var local = Vector3(worldPos.x, worldPos.z, 0)
+	local /= (map.Height * 0.5)
+	local.y = 1 - local.y
+	local -= Vector3(0.5, 0.5, 0)
+	return local
+	
+func MapToWorldSpace(mapPos: Vector3) -> Vector3:
+	var world = Vector3(mapPos.x, 0, mapPos.y)
+	world += Vector3(0.5, 0, 0.5)
+	world.z = 1 - world.z
+	world *= (map.Height * 0.5)
+	return world
 
 func _enter_tree() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -121,12 +172,12 @@ func _unhandled_input(event: InputEvent):
 						currentToolModel = MarkerWater
 					EraserToolButton:
 						currentToolModel = Eraser
-					RedFlagButton:
-						currentToolModel = RedFlag	
-					BlueFlagButton:
-						currentToolModel = BlueFlag	
-					GreenFlagButton:
-						currentToolModel = GreenFlag	
+				
+				var markerIndex = MarkerButtons.find(currentButton)
+				if markerIndex >= 0:
+					currentToolModel = MarkerItem
+					(MarkerItem.get_child(0) as MeshInstance3D).set_surface_override_material(0, MarkerButtonMeshes[markerIndex].get_surface_override_material(0))
+					currentPlacingMarker = markerIndex
 				
 				if currentToolModel:
 					ToolModelParent.add_child(currentToolModel)
@@ -160,29 +211,21 @@ func _unhandled_input(event: InputEvent):
 				
 				lastPosition = imagePoint
 			elif isPainting:
-				var localPoint = TargetMesh.to_local(result.position)
-				var imagePoint = Vector2(localPoint.x, localPoint.y)
-				imagePoint += Vector2(0.5, 0.5)
-				imagePoint.y = 1.0 - imagePoint.y
-				imagePoint.x *= map.Width / 2
-				imagePoint.y *= map.Height / 2
-				match(currentToolModel):
-					RedFlag:
-						RedFlagMarker.position=  currentToolModel.position
-						flag_marker_placed.emit(0,Vector3(imagePoint.x,0,imagePoint.y))
-					BlueFlag:
-						BlueFlagMarker.position=  currentToolModel.position
-						flag_marker_placed.emit(1,Vector3(imagePoint.x,0,imagePoint.y))
-					GreenFlag:
-						GreenFlagMarker.position=  currentToolModel.position
-						flag_marker_placed.emit(2,Vector3(imagePoint.x,0,imagePoint.y))
+				var mapPos = currentToolModel.position
+				var worldPos = MapToWorldSpace(mapPos)
+				
+				map.markersPlaced[currentPlacingMarker] = true
+				map.markerLocations[currentPlacingMarker] = worldPos
+				createdMarkers[currentPlacingMarker].show()
+				createdMarkers[currentPlacingMarker].position = mapPos
+				flag_marker_placed.emit(currentPlacingMarker, worldPos)
 		else:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 			if currentToolModel:
 				ToolModelParent.remove_child(currentToolModel)
 				currentToolModel = null
 			
-		if [CliffToolButton,WaterToolButton,EraserToolButton,RedFlagButton,BlueFlagButton,GreenFlagButton].has(result.collider):
+		if [CliffToolButton,WaterToolButton,EraserToolButton].has(result.collider) or MarkerButtons.has(result.collider):
 			newHighlightButton = result.collider
 			
 		if newHighlightButton != highlightedButton:

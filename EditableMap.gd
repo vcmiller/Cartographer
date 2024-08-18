@@ -6,6 +6,8 @@ class_name EditableMap
 
 var image: Image
 var texture: ImageTexture
+var markerLocations: Array[Vector3]
+var markersPlaced: Array[bool]
 
 func CreateImageIfNecessary():
 	if image:

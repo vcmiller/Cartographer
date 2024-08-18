@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://buih1jbdn4cip"]
+
+[ext_resource type="Texture2D" uid="uid://bkbe4frwi0nur" path="res://FLAG.png" id="1_26dkt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s50oa"]
+transparency = 1
+albedo_color = Color(1, 0.14, 0.14, 1)
+albedo_texture = ExtResource("1_26dkt")
+texture_filter = 0
+
+[sub_resource type="QuadMesh" id="QuadMesh_hr3vy"]
+center_offset = Vector3(0, 0.5, 0)
+
+[node name="ExtraMarker" type="MeshInstance3D"]
+transform = Transform3D(0.07, 0, 0, 0, 0.07, 0, 0, 0, 0.07, 0.276323, 0, 0)
+sorting_offset = 1.0
+material_override = SubResource("StandardMaterial3D_s50oa")
+mesh = SubResource("QuadMesh_hr3vy")
+skeleton = NodePath("../FlagPalette/RedFlagButton")

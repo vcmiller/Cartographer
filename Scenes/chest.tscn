@@ -1,16 +1,30 @@
-[gd_scene load_steps=3 format=3 uid="uid://7jfrr44c1tir"]
+[gd_scene load_steps=6 format=3 uid="uid://7jfrr44c1tir"]
 
+[ext_resource type="Script" path="res://gooooaaaal.gd" id="1_g4it4"]
 [ext_resource type="PackedScene" uid="uid://2qrou3qhhn48" path="res://Models/Chest.glb" id="1_nt3dc"]
+[ext_resource type="Texture2D" uid="uid://dqg4d5yeh53gk" path="res://Textures/treasure-chest.png" id="2_cyaql"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sgc8r"]
 size = Vector3(1.56445, 1.39746, 1.1272)
 
-[node name="Chest" type="StaticBody3D"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_r6nua"]
+radius = 3.0
+
+[node name="Chest" type="StaticBody3D" node_paths=PackedStringArray("trigger")]
 transform = Transform3D(0.00715579, 0, 0.999974, 0, 1, 0, -0.999974, 0, 0.00715579, 5.53735, 0.000104904, 7.33634)
+script = ExtResource("1_g4it4")
+trigger = NodePath("Area3D")
+marker_sprite = ExtResource("2_cyaql")
 
 [node name="Model" parent="." instance=ExtResource("1_nt3dc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 2.14196e-08, 0, 1, 0, -2.14196e-08, 0, 1, 0, 0.19873, 0)
 shape = SubResource("BoxShape3D_sgc8r")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 4.65661e-10, 0, 1, 0, -4.65661e-10, 0, 1, 0, 0, 0)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, -4.65661e-10, 0, 1, 0, 4.65661e-10, 0, 1, 0, 0, 0)
+shape = SubResource("SphereShape3D_r6nua")

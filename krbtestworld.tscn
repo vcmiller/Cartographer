@@ -38,10 +38,9 @@ script = ExtResource("1_ggm0a")
 navigator_spawn_points = [NodePath("NavigatorSpawn")]
 player = NodePath("Player")
 
-[node name="NavigatorSpawn" type="Marker3D" parent="." node_paths=PackedStringArray("target")]
+[node name="NavigatorSpawn" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.7543, 0, 12.2798)
 script = ExtResource("5_vwqx6")
-target = NodePath("../Target")
 navigator_scene = ExtResource("2_ap437")
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="NavigatorSpawn"]

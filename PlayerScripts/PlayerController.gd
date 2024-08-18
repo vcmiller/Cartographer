@@ -1,7 +1,7 @@
 extends CharacterBody3D
 class_name PlayerController
 
-signal begin_trial(image: Image)
+signal begin_trial(map: EditableMap)
 signal flag_marker_placed(index: int, position: Vector3)
 
 const SPEED = 5.0
@@ -13,6 +13,7 @@ const JUMP_VELOCITY = 4.5
 @export var MouseBoundWhenNotCaptured: float = 0.1
 @export var LookSpeedWhenNotCaptured = 1
 @export var Map: EditableMap
+@export var MapItemInst: MapItem
 @export var player_canvas: PlayerCanvas
 
 @onready var item_manager: ItemManager = $Camera3D/ItemManager 
@@ -23,13 +24,12 @@ var distanceWalked: float
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	CameraNode.rotation = eulerAngles
+	eulerAngles = CameraNode.global_rotation
 	if player_canvas: item_manager.selected_item_changed.connect(player_canvas.on_selected_item_changed)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-			print(event.screen_relative)
 			var delta = event.screen_relative * MouseSensitivity * -PI / 180
 			eulerAngles.x = clamp(eulerAngles.x + delta.y, -LookLimit * PI / 180, LookLimit * PI / 180)
 			eulerAngles.y += delta.x
@@ -39,7 +39,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		lastMousePos = event.position
 	
 	if event.is_action_pressed("map_submit"): 
-		begin_trial.emit(Map.image)
+		begin_trial.emit(Map)
 	
 func _process(delta: float) -> void:
 	if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE: 
