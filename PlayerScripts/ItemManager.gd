@@ -4,6 +4,7 @@ class_name ItemManager
 signal selected_item_changed(item_index)
 
 @export var Items: Array[ItemBase]
+@export var startItem: int = 0
 
 var currentItem : ItemBase
 var lastItem : ItemBase
@@ -11,6 +12,8 @@ var lastItem : ItemBase
 func _ready() -> void:
 	for item in Items:
 		remove_child(item)
+	if startItem >= 0:
+		SetItem(Items[startItem])
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("next_item"):

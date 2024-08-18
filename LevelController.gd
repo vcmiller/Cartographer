@@ -9,6 +9,7 @@ class_name LevelController
 @export var goals: Array[Goal]
 @export var extraMarkerSprites: Array[Texture2D]
 @export var extraMarkerPositions: Array[Node3D]
+@export var remove_items: Array[int]
 @export_file(".tscn") var nextLevel: String
 
 static var savedMap: EditableMap
@@ -17,12 +18,17 @@ var navigator_count: int
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	player_canvas.player = player
 	_birth_player()
 	
 func _birth_player():
 	if player.get_parent() != self:
 		player.get_parent().remove_child(player)
 		add_child(player)
+		
+	remove_items.sort_custom(func(a, b): return b - a)
+	for r in remove_items:
+		player.item_manager.Items.pop_at(r)
 		
 	if savedMap and savedMap.Width == player.Map.Width and savedMap.Height == player.Map.Height:
 		player.Map = savedMap
@@ -38,6 +44,7 @@ func _birth_player():
 		
 	for i in range(len(goals)):
 		player.MapItemInst.markerSprites.append(goals[i].marker_sprite)
+		player.MapItemInst.markersLocked.append(goals[i].start_marked)
 	for i in range(len(extraMarkerSprites)):
 		player.MapItemInst.extraMarkerPositions.append(extraMarkerPositions[i].position)
 		player.MapItemInst.extraMarkerSprites.append(extraMarkerSprites[i])

@@ -29,7 +29,7 @@ script = ExtResource("2_pemao")
 Items = [NodePath("MapItem"), NodePath("CompassItem"), NodePath("StepCounterItem")]
 
 [node name="MapItem" parent="Camera3D/ItemManager" node_paths=PackedStringArray("Camera", "Player") instance=ExtResource("3_pixbx")]
-transform = Transform3D(1, 0, 0, 0, 0.987414, 0.158158, 0, -0.158158, 0.987414, 0, -0.059, -0.892)
+transform = Transform3D(1, 0, 0, 0, 0.987414, 0.158158, 0, -0.158158, 0.987414, 0, 0.0739737, -0.892)
 Camera = NodePath("../..")
 Player = NodePath("../../..")
 

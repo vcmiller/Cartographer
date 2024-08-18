@@ -17,7 +17,7 @@
 [ext_resource type="Script" path="res://navigator_spawn.gd" id="14_nmrc2"]
 [ext_resource type="PackedScene" uid="uid://url466m8etkf" path="res://navigator.tscn" id="16_7r0ls"]
 [ext_resource type="PackedScene" uid="uid://dkv2gdruwmqqp" path="res://Scenes/playback_canvas.tscn" id="17_0p3wf"]
-[ext_resource type="PackedScene" path="res://Scenes/player_canvas.tscn" id="18_400c0"]
+[ext_resource type="PackedScene" uid="uid://cpyuibv7in8lg" path="res://Scenes/player_canvas.tscn" id="18_400c0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_a5k6u"]
 
@@ -38,10 +38,11 @@ script = ExtResource("5_3qa8x")
 mode = 0
 textures = [[ExtResource("6_andtf"), ExtResource("7_x6axp")], [ExtResource("8_jb2gq"), ExtResource("9_ff7x0")]]
 
-[node name="Level3" type="Node3D" node_paths=PackedStringArray("navigator_spawn_points", "player")]
+[node name="Level3" type="Node3D" node_paths=PackedStringArray("navigator_spawn_points", "player", "goals")]
 script = ExtResource("1_7gly0")
 navigator_spawn_points = [NodePath("Start")]
 player = NodePath("Player")
+goals = [NodePath("Chest")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_yanan")
@@ -51,6 +52,9 @@ transform = Transform3D(1, 0, 0, 0, 0.951718, 0.306975, 0, -0.306975, 0.951718, 
 
 [node name="Player" parent="." instance=ExtResource("1_ad445")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.1989, 0.994233, 45.031)
+LookLimit = 80.0
+MouseSensitivity = 0.5
+MouseBoundWhenNotCaptured = 0.1
 Map = SubResource("Resource_5we7l")
 
 [node name="HTerrain" type="Node3D" parent="."]
@@ -91,14 +95,12 @@ transform = Transform3D(0.913907, 0, -0.405923, 0, 1, 0, 0.405923, 0, 0.913907, 
 [node name="Chest" parent="." instance=ExtResource("13_rhw22")]
 
 [node name="Start" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.904, 1, 38.216)
+transform = Transform3D(0.0387366, 0, 0.999249, 0, 1, 0, -0.999249, 0, 0.0387366, 42.6072, 1, 38.5438)
 script = ExtResource("14_nmrc2")
 navigator_scene = ExtResource("16_7r0ls")
 
-[node name="Marker3D2" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.62, 1, 7.13)
-
 [node name="PlaybackCanvas" parent="." node_paths=PackedStringArray("level_controller") instance=ExtResource("17_0p3wf")]
+visible = false
 level_controller = NodePath("..")
 
 [node name="PlayerCanvas" parent="." instance=ExtResource("18_400c0")]

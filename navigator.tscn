@@ -1,13 +1,38 @@
-[gd_scene load_steps=5 format=3 uid="uid://url466m8etkf"]
+[gd_scene load_steps=13 format=3 uid="uid://url466m8etkf"]
 
 [ext_resource type="Script" path="res://navigator.gd" id="1_dle6y"]
 [ext_resource type="PackedScene" uid="uid://dxu8ruvox87at" path="res://Models/Dude.glb" id="2_lan0h"]
+[ext_resource type="Texture2D" uid="uid://comwk3u5sipfq" path="res://Textures/ThougthBubble.png" id="3_m4lqk"]
+[ext_resource type="Texture2D" uid="uid://dqg4d5yeh53gk" path="res://Textures/treasure-chest.png" id="4_h17we"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_coyju"]
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_axs1q"]
 
-[node name="Navigator" type="CharacterBody3D" node_paths=PackedStringArray("Model", "remote", "anim", "cameraArm", "body", "hairs", "facialHairs")]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j7gbt"]
+transparency = 1
+albedo_texture = ExtResource("3_m4lqk")
+
+[sub_resource type="QuadMesh" id="QuadMesh_tcdv0"]
+center_offset = Vector3(0.055, 0.5, 0)
+
+[sub_resource type="QuadMesh" id="QuadMesh_ttbnm"]
+size = Vector2(0.4, 0.4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p8sk5"]
+transparency = 1
+albedo_texture = ExtResource("4_h17we")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6tcf3"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_k51fy"]
+material = SubResource("StandardMaterial3D_6tcf3")
+text = "?"
+font_size = 46
+depth = 0.0
+
+[node name="Navigator" type="CharacterBody3D" node_paths=PackedStringArray("Model", "remote", "anim", "cameraArm", "thoughtBubble", "thoughtBubbleIcon", "thoughtBubbleNoDest", "body", "hairs", "facialHairs")]
 axis_lock_angular_x = true
 axis_lock_angular_z = true
 script = ExtResource("1_dle6y")
@@ -15,6 +40,9 @@ Model = NodePath("Dude")
 remote = NodePath("CameraArm/Remote")
 anim = NodePath("Dude/AnimationPlayer")
 cameraArm = NodePath("CameraArm")
+thoughtBubble = NodePath("ThoughtBubble")
+thoughtBubbleIcon = NodePath("ThoughtBubble/ThoughtIcon")
+thoughtBubbleNoDest = NodePath("ThoughtBubble/ThoughtIcon/NoDest")
 body = NodePath("Dude/Armature/Skeleton3D/Body")
 hairs = [NodePath("Dude/Hair1_Short"), NodePath("Dude/Hair2_Medium"), NodePath("Dude/Hair3_Long"), NodePath("Dude/Hair4_Bowl")]
 facialHairs = [NodePath("Dude/FacialHair1"), NodePath("Dude/FacialHair2"), NodePath("Dude/FacialHair3"), NodePath("Dude/FacialHair4"), NodePath("Dude/FacialHair5")]
@@ -89,5 +117,33 @@ update_scale = false
 [node name="Remote" type="RemoteTransform3D" parent="CameraArm"]
 transform = Transform3D(1, 0, 0, 0, 0.925633, 0.378422, 0, -0.378422, 0.925633, 0, 1.44609, 2.41653)
 update_scale = false
+
+[node name="ThoughtBubble" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 1.07661, 0)
+material_override = SubResource("StandardMaterial3D_j7gbt")
+mesh = SubResource("QuadMesh_tcdv0")
+
+[node name="ThoughtIcon" type="MeshInstance3D" parent="ThoughtBubble"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0710531, 0.595822, 0)
+sorting_offset = 1.0
+mesh = SubResource("QuadMesh_ttbnm")
+surface_material_override/0 = SubResource("StandardMaterial3D_p8sk5")
+
+[node name="NoDest" type="Node3D" parent="ThoughtBubble/ThoughtIcon"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ThoughtBubble/ThoughtIcon/NoDest"]
+transform = Transform3D(0.864731, 0.502235, 0, -0.502235, 0.864731, 0, 0, 0, 1, 0.180861, -0.12936, 0.0381204)
+mesh = SubResource("TextMesh_k51fy")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="ThoughtBubble/ThoughtIcon/NoDest"]
+transform = Transform3D(0.99389, -0.110376, 0, 0.110376, 0.99389, 0, 0, 0, 1, -0.236186, -0.0853933, 0.0381203)
+mesh = SubResource("TextMesh_k51fy")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="ThoughtBubble/ThoughtIcon/NoDest"]
+transform = Transform3D(0.981074, 0.193635, 0, -0.193635, 0.981074, 0, 0, 0, 1, -0.00421804, 0.187386, 0.0381203)
+mesh = SubResource("TextMesh_k51fy")
+skeleton = NodePath("../..")
 
 [editable path="Dude"]

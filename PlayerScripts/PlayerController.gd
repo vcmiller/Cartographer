@@ -38,28 +38,35 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 		lastMousePos = event.position
 	
-	if event.is_action_pressed("map_submit"): 
-		begin_trial.emit(Map)
+	if event.is_action_pressed("map_submit"):
+		if item_manager.currentItem is MapItem:
+			item_manager.SetItem(null)
+		else:
+			item_manager.SetItem(item_manager.Items[0])
+		
+func submit():
+	begin_trial.emit(Map)
 	
 func _process(delta: float) -> void:
-	if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE: 
-		var size = get_viewport().size
-		
-		var bound = MouseBoundWhenNotCaptured * size.y
-		var rotDelta = Vector3(0, 0, 0)
-		if lastMousePos.x < bound:
-			rotDelta.y += LookSpeedWhenNotCaptured * delta
-		if lastMousePos.x > size.x - bound:
-			rotDelta.y -= LookSpeedWhenNotCaptured * delta
-		if lastMousePos.y < bound:
-			rotDelta.x += LookSpeedWhenNotCaptured * delta
-		if lastMousePos.y > size.y - bound:
-			rotDelta.x -= LookSpeedWhenNotCaptured * delta
-		
-		eulerAngles.x = clamp(eulerAngles.x + rotDelta.x, -LookLimit * PI / 180, LookLimit * PI / 180)
-		eulerAngles.y += rotDelta.y
-		CameraNode.rotation = Vector3(eulerAngles.x, 0, 0)
-		rotation = Vector3(0, eulerAngles.y, 0)
+	if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
+		pass
+		#var size = get_viewport().size
+		#
+		#var bound = MouseBoundWhenNotCaptured * size.y
+		#var rotDelta = Vector3(0, 0, 0)
+		#if lastMousePos.x < bound:
+			#rotDelta.y += LookSpeedWhenNotCaptured * delta
+		#if lastMousePos.x > size.x - bound:
+			#rotDelta.y -= LookSpeedWhenNotCaptured * delta
+		#if lastMousePos.y < bound:
+			#rotDelta.x += LookSpeedWhenNotCaptured * delta
+		#if lastMousePos.y > size.y - bound:
+			#rotDelta.x -= LookSpeedWhenNotCaptured * delta
+		#
+		#eulerAngles.x = clamp(eulerAngles.x + rotDelta.x, -LookLimit * PI / 180, LookLimit * PI / 180)
+		#eulerAngles.y += rotDelta.y
+		#CameraNode.rotation = Vector3(eulerAngles.x, 0, 0)
+		#rotation = Vector3(0, eulerAngles.y, 0)
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.

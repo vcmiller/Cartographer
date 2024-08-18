@@ -5,6 +5,9 @@ class_name Navigator
 @export var remote: RemoteTransform3D
 @export var anim: AnimationPlayer
 @export var cameraArm: Node3D
+@export var thoughtBubble: Node3D
+@export var thoughtBubbleIcon: MeshInstance3D
+@export var thoughtBubbleNoDest: Node3D
 @export var body: MeshInstance3D
 @export var hairs: Array[MeshInstance3D]
 @export var facialHairs: Array[MeshInstance3D]
@@ -30,6 +33,10 @@ var level_controller: LevelController
 func _ready() -> void:
 	anim.play("Walk")
 	cameraArm.rotation = Vector3(0, PI, 0)
+	var mat = StandardMaterial3D.new()
+	mat.albedo_texture = goal.marker_sprite
+	mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	thoughtBubbleIcon.set_surface_override_material(0, mat)
 	randomize_mesh()
 	
 func create_grid(map: EditableMap):
@@ -96,10 +103,13 @@ func vec3(from: Vector2i): return Vector3(from.x,position.y,from.y)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:  
 	if !map.markersPlaced[destIndex]: return
+	thoughtBubbleNoDest.hide()
 	elapsed += _delta
 	
 	if elapsed < MOVE_DELAY:
 		return
+		
+	thoughtBubble.hide()
 	
 	var path = grid.get_point_path(vec2i(position),vec2i(map.markerLocations[destIndex]), true)
 	
@@ -113,8 +123,7 @@ func _process(_delta: float) -> void:
 	mesh.surface_end()
 	
 	var target_pos := position
-	if len(path) == 0: return
-	elif len(path) == 1: target_pos = vec3(path[0])
+	if len(path) < 2: return
 	else: 
 		target_pos = vec3(path[1])
 		var dist_0 = position.distance_to(vec3(path[0]))

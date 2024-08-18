@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://url466m8etkf" path="res://navigator.tscn" id="16_f256h"]
 [ext_resource type="PackedScene" uid="uid://dkv2gdruwmqqp" path="res://Scenes/playback_canvas.tscn" id="17_ls85u"]
 [ext_resource type="PackedScene" uid="uid://bkpvpnsmwlkuy" path="res://Models/Flag.glb" id="17_t54wn"]
-[ext_resource type="PackedScene" path="res://Scenes/player_canvas.tscn" id="18_xbvxu"]
+[ext_resource type="PackedScene" uid="uid://cpyuibv7in8lg" path="res://Scenes/player_canvas.tscn" id="18_xbvxu"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_a5k6u"]
 
@@ -38,13 +38,11 @@ script = ExtResource("6_4gba7")
 mode = 0
 textures = [[ExtResource("7_h37f5"), ExtResource("8_8iwbd")], [ExtResource("9_u54t8"), ExtResource("10_cxcxb")]]
 
-[node name="Level2" type="Node3D" node_paths=PackedStringArray("navigator_spawn_points", "player", "goals", "extraMarkerPositions")]
+[node name="Level2" type="Node3D" node_paths=PackedStringArray("player")]
 script = ExtResource("1_t3b22")
-navigator_spawn_points = [NodePath("Start")]
 player = NodePath("Player")
-goals = [NodePath("Chest2")]
 extraMarkerSprites = Array[Texture2D]([ExtResource("2_sa5gq"), ExtResource("2_sa5gq"), ExtResource("2_sa5gq"), ExtResource("2_sa5gq")])
-extraMarkerPositions = [NodePath("FlagMarkers/Flag2"), NodePath("FlagMarkers/Flag3"), NodePath("FlagMarkers/Flag4"), NodePath("FlagMarkers/Flag5")]
+remove_items = Array[int]([2])
 nextLevel = "res://Scenes/Levels/level3.tscn"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -55,6 +53,9 @@ transform = Transform3D(1, 0, 0, 0, 0.951718, 0.306975, 0, -0.306975, 0.951718, 
 
 [node name="Player" parent="." instance=ExtResource("2_s5h3j")]
 transform = Transform3D(0.119565, 0, -0.992826, 0, 1, 0, 0.992826, 0, 0.119565, 5.16028, 0.994233, 37.7684)
+LookLimit = 80.0
+MouseSensitivity = 0.5
+MouseBoundWhenNotCaptured = 0.1
 Map = SubResource("Resource_5we7l")
 
 [node name="HTerrain" type="Node3D" parent="."]

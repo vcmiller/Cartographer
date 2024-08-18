@@ -37,6 +37,7 @@ var map: EditableMap
 var extraMarkerPositions: Array[Vector3]
 var extraMarkerSprites: Array[Texture2D]
 var markerSprites: Array[Texture2D]
+var markersLocked: Array[bool]
 var currentPlacingMarker: int
 
 var createdMarkers: Array[MeshInstance3D]
@@ -98,7 +99,7 @@ func _ready() -> void:
 		createdMarkers.append(newMarker)
 	
 	for i in range(len(MarkerButtons)):
-		if i < len(markerSprites):
+		if i < len(markerSprites) and not markersLocked[i]:
 			var mat = StandardMaterial3D.new()
 			mat.albedo_texture = markerSprites[i]
 			mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA

@@ -17,9 +17,12 @@ class_name PlaybackCanvas
 @export var CameraBR: Camera3D
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("map_submit") and is_visible(): 
-		level_controller.SaveMap()
-		get_tree().reload_current_scene()
+	if event.is_action_pressed("map_submit") and is_visible():
+		retry()
+		
+func retry():
+	level_controller.SaveMap()
+	get_tree().reload_current_scene()
 		
 func _ready() -> void:
 	ViewportsLeft.hide()
