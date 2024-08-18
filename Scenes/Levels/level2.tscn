@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://doeyfpmulhmiq" path="res://Textures/Cliff_basecolor.png" id="8_8iwbd"]
 [ext_resource type="Texture2D" uid="uid://7m5c5uxiaa3m" path="res://Textures/grass_1_normal-1K.png" id="9_u54t8"]
 [ext_resource type="Texture2D" uid="uid://dgqwjkwa2ckuq" path="res://Textures/Cliff_normal.png" id="10_cxcxb"]
-[ext_resource type="PackedScene" path="res://Scenes/house.tscn" id="13_00hr0"]
+[ext_resource type="PackedScene" uid="uid://dtab7c0bq186o" path="res://Scenes/house.tscn" id="13_00hr0"]
 [ext_resource type="PackedScene" uid="uid://7jfrr44c1tir" path="res://Scenes/chest.tscn" id="14_ndxgu"]
 [ext_resource type="Script" path="res://navigator_spawn.gd" id="15_31cjw"]
 [ext_resource type="PackedScene" uid="uid://url466m8etkf" path="res://navigator.tscn" id="16_f256h"]
@@ -38,10 +38,11 @@ script = ExtResource("6_4gba7")
 mode = 0
 textures = [[ExtResource("7_h37f5"), ExtResource("8_8iwbd")], [ExtResource("9_u54t8"), ExtResource("10_cxcxb")]]
 
-[node name="Level2" type="Node3D" node_paths=PackedStringArray("player")]
+[node name="Level2" type="Node3D" node_paths=PackedStringArray("player", "extraMarkerPositions")]
 script = ExtResource("1_t3b22")
 player = NodePath("Player")
 extraMarkerSprites = Array[Texture2D]([ExtResource("2_sa5gq"), ExtResource("2_sa5gq"), ExtResource("2_sa5gq"), ExtResource("2_sa5gq")])
+extraMarkerPositions = [NodePath("FlagMarkers/Flag2"), NodePath("FlagMarkers/Flag3"), NodePath("FlagMarkers/Flag4"), NodePath("FlagMarkers/Flag5")]
 remove_items = Array[int]([2])
 nextLevel = "res://Scenes/Levels/level3.tscn"
 

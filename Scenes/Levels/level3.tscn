@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://dgqwjkwa2ckuq" path="res://Textures/Cliff_normal.png" id="9_ff7x0"]
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_detail_layer.gd" id="10_mvm6s"]
 [ext_resource type="Texture2D" uid="uid://6jmdwj3vn6m0" path="res://addons/zylann.hterrain/tools/icons/icon_detail_layer_node.svg" id="11_8siu6"]
-[ext_resource type="PackedScene" path="res://Scenes/house.tscn" id="12_ain71"]
+[ext_resource type="PackedScene" uid="uid://dtab7c0bq186o" path="res://Scenes/house.tscn" id="12_ain71"]
 [ext_resource type="PackedScene" uid="uid://7jfrr44c1tir" path="res://Scenes/chest.tscn" id="13_rhw22"]
 [ext_resource type="Script" path="res://navigator_spawn.gd" id="14_nmrc2"]
 [ext_resource type="PackedScene" uid="uid://url466m8etkf" path="res://navigator.tscn" id="16_7r0ls"]
@@ -107,4 +107,3 @@ visible = false
 level_controller = NodePath("..")
 
 [node name="PlayerCanvas" parent="." instance=ExtResource("18_400c0")]
-num_items_shown = 3
