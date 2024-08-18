@@ -37,6 +37,5 @@ func _on_player_begin_trial(image: Image) -> void:
 	playback_canvas.activate()
 	
 	MapGridHandler.ParseImage(image)
-	#%TextureRect.texture = ImageTexture.create_from_image(image)
 	
 	for nsp in navigator_spawn_points: nsp.spawn_navigator() 

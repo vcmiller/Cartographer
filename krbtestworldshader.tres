@@ -1,4 +1,4 @@
-[gd_resource type="VisualShader" load_steps=6 format=3 uid="uid://dboa4uyma6kh2"]
+[gd_resource type="VisualShader" load_steps=6 format=3 uid="uid://d360cikowpanp"]
 
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_ph1wi"]
 input_name = "normal"
