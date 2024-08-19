@@ -49,8 +49,11 @@ func show_last_info():
 	info_screen.show()
 	SettingsPopup.enabled = false
 	
-func show_info(portrait: Texture2D, title: String, paragraph: String):
-	info_screen.show()
+func show_info(portrait: Texture2D, title: String, paragraph: String, show: bool):
+	if show:
+		info_screen.show()
+	else:
+		info_screen.hide()
 	SettingsPopup.enabled = false
 	
 	portrait_box.texture = portrait

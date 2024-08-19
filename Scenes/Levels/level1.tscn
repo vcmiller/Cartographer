@@ -52,9 +52,11 @@ info_title = "Welome, cartographer!"
 info_portrait = ExtResource("3_0cvqa")
 info_text = "Welcome to Cartographomancer! in this game you will draw maps to help adventurers navigate the area. You'll have various tools at your disposal to help build an accurate map.
 
-In this level, you'll learn to draw the map. Normally, you'll need to measure spaces yourself, but for now, the mountains in this area are marked out with red flags. Use the black marker to color in the space between the flags, then press \"Submit Map\" to see how you did! If the adventurer doesn't make it to the end, you can retry by pressing the \"Reset\" button.
+In this level, you'll learn to draw the map. Normally, you'll need to measure spaces yourself, but for now, the mountains in this area are marked out with red flags.
 
-If you close the map, you can reopen it by presseing Tab."
+Use the black marker to [b]color in the cliffs[/b] between the flags, then press [b]Submit Map[/b] to see how you did! If the adventurer doesn't make it to the end, you can retry by pressing the [b]Reset[/b] button.
+
+If you close the map, you can reopen it by pressing [b]Tab[/b]."
 attemps_for_3_stars = 1
 attemps_for_2_stars = 2
 
@@ -118,13 +120,13 @@ num_items_shown = 1
 [node name="FlagMarkers" type="Node3D" parent="."]
 
 [node name="Flag2" parent="FlagMarkers" instance=ExtResource("18_katun")]
-transform = Transform3D(0.702973, 0, 0.711217, 0, 1, 0, -0.711217, 0, 0.702973, 48.2239, 0, 33.5039)
+transform = Transform3D(-0.0926835, 0, 0.995696, 0, 1, 0, -0.995696, 0, -0.0926835, 48.2239, 4.05028, 33.5039)
 
 [node name="Flag3" parent="FlagMarkers" instance=ExtResource("18_katun")]
 transform = Transform3D(0.364763, 0, -0.9311, 0, 1, 0, 0.9311, 0, 0.364763, 15, 0, 33.5039)
 
 [node name="Flag4" parent="FlagMarkers" instance=ExtResource("18_katun")]
-transform = Transform3D(0.653685, 0, -0.756767, 0, 1, 0, 0.756767, 0, 0.653685, 48.2239, 0, 15)
+transform = Transform3D(-0.429802, 0, -0.902923, 0, 1, 0, 0.902923, 0, -0.429802, 48.2239, 5.16628, 15)
 
 [node name="Flag5" parent="FlagMarkers" instance=ExtResource("18_katun")]
 transform = Transform3D(0.604585, 0, 0.79654, 0, 1, 0, -0.79654, 0, 0.604585, 15, 0, 15)

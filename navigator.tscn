@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://url466m8etkf"]
+[gd_scene load_steps=22 format=3 uid="uid://url466m8etkf"]
 
 [ext_resource type="Script" path="res://navigator.gd" id="1_dle6y"]
 [ext_resource type="PackedScene" uid="uid://dxu8ruvox87at" path="res://Models/Dude.glb" id="2_lan0h"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://dqg4d5yeh53gk" path="res://Textures/treasure-chest.png" id="4_h17we"]
 [ext_resource type="Texture2D" uid="uid://b0o3t8ccx7ajm" path="res://Textures/path.png" id="5_dtgrq"]
 [ext_resource type="Texture2D" uid="uid://tuql1ycuq4rs" path="res://Textures/x.png" id="6_im3ft"]
+[ext_resource type="Texture2D" uid="uid://dkpevpkr5l17l" path="res://Textures/scared.png" id="7_6wtfp"]
+[ext_resource type="Texture2D" uid="uid://dgehecsxh8uf0" path="res://Textures/dragon.png" id="7_wv2lt"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_coyju"]
 
@@ -50,7 +52,18 @@ albedo_color = Color(1, 0, 0, 1)
 albedo_texture = ExtResource("6_im3ft")
 texture_repeat = false
 
-[node name="Navigator" type="CharacterBody3D" node_paths=PackedStringArray("Model", "remote", "anim", "cameraArm", "thoughtBubble", "thoughtBubbleIcon", "thoughtBubbleNoDest", "thoughtBubbleNoPath", "body", "hairs", "facialHairs", "bodyAttach")]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_osvmt"]
+transparency = 1
+albedo_texture = ExtResource("7_wv2lt")
+texture_repeat = false
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2xhqi"]
+transparency = 1
+albedo_color = Color(0.803325, 0.803325, 0.803325, 1)
+albedo_texture = ExtResource("7_6wtfp")
+texture_repeat = false
+
+[node name="Navigator" type="CharacterBody3D" node_paths=PackedStringArray("Model", "remote", "anim", "cameraArm", "thoughtBubble", "thoughtBubbleIcon", "thoughtBubbleNoDest", "thoughtBubbleNoPath", "thoughtBubbleMonster", "body", "hairs", "facialHairs", "bodyAttach")]
 axis_lock_angular_x = true
 axis_lock_angular_z = true
 script = ExtResource("1_dle6y")
@@ -62,6 +75,7 @@ thoughtBubble = NodePath("ThoughtBubble")
 thoughtBubbleIcon = NodePath("ThoughtBubble/ThoughtIcon")
 thoughtBubbleNoDest = NodePath("ThoughtBubble/ThoughtIcon/NoDest")
 thoughtBubbleNoPath = NodePath("ThoughtBubble/NoPathIcon")
+thoughtBubbleMonster = NodePath("ThoughtBubble/ScaryMonsterIcon")
 body = NodePath("Dude/Armature/Skeleton3D/Body")
 hairs = [NodePath("Dude/Hair1_Short"), NodePath("Dude/Hair2_Medium"), NodePath("Dude/Hair3_Long"), NodePath("Dude/Hair4_Bowl")]
 facialHairs = [NodePath("Dude/FacialHair1"), NodePath("Dude/FacialHair2"), NodePath("Dude/FacialHair3"), NodePath("Dude/FacialHair4"), NodePath("Dude/FacialHair5")]
@@ -191,5 +205,19 @@ sorting_offset = 2.0
 mesh = SubResource("QuadMesh_ttbnm")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_iyfo2")
+
+[node name="ScaryMonsterIcon" type="MeshInstance3D" parent="ThoughtBubble"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0543038, 0.56795, 1.46427e-09)
+visible = false
+sorting_offset = 1.0
+mesh = SubResource("QuadMesh_ttbnm")
+surface_material_override/0 = SubResource("StandardMaterial3D_osvmt")
+
+[node name="AHHHHHH" type="MeshInstance3D" parent="ThoughtBubble/ScaryMonsterIcon"]
+transform = Transform3D(0.595, 0, 0, 0, 0.595, 0, 0, 0, 0.595, 0.223068, 0.150412, -1.95012e-08)
+sorting_offset = 2.0
+mesh = SubResource("QuadMesh_ttbnm")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_2xhqi")
 
 [editable path="Dude"]

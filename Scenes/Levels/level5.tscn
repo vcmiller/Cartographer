@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://doxnu2k871um4"]
+[gd_scene load_steps=28 format=3 uid="uid://doxnu2k871um4"]
 
 [ext_resource type="Script" path="res://LevelController.gd" id="1_7gly0"]
 [ext_resource type="PackedScene" uid="uid://c56yvex4g3pif" path="res://Scenes/player.tscn" id="1_ad445"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://dia0af0h1mn1v" path="res://Scenes/dragon.tscn" id="17_dwt5v"]
 [ext_resource type="PackedScene" uid="uid://cpyuibv7in8lg" path="res://Scenes/player_canvas.tscn" id="18_400c0"]
 [ext_resource type="PackedScene" uid="uid://bkpvpnsmwlkuy" path="res://Models/Flag.glb" id="18_jywsr"]
+[ext_resource type="PackedScene" uid="uid://c1sm311lwpsoc" path="res://Scenes/tent.tscn" id="21_axtl8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_a5k6u"]
 
@@ -104,12 +105,12 @@ shader_params/u_specular = 0.5
 transform = Transform3D(0.0732033, 0, -0.997317, 0, 1, 0, 0.997317, 0, 0.0732033, 36.5036, 0.000106811, 7.17767)
 
 [node name="Start1" type="Marker3D" parent="."]
-transform = Transform3D(0.506229, 0, -0.862398, 0, 1, 0, 0.862398, 0, 0.506229, 25.1756, 1, 71.8429)
+transform = Transform3D(0.997475, 0, -0.07101, 0, 1, 0, 0.07101, 0, 0.997475, 25.5393, 1, 68.9164)
 script = ExtResource("14_nmrc2")
 navigator_scene = ExtResource("16_7r0ls")
 
 [node name="Start2" type="Marker3D" parent="."]
-transform = Transform3D(0.190432, 0, 0.9817, 0, 1, 0, -0.9817, 0, 0.190432, 35.7573, 1, 65.2502)
+transform = Transform3D(0.190432, 0, 0.9817, 0, 1, 0, -0.9817, 0, 0.190432, 34.6694, 1, 64.5733)
 script = ExtResource("14_nmrc2")
 navigator_scene = ExtResource("16_7r0ls")
 special_props = Array[String](["KnightArmor", "KnightHelmet", "Prop_Sword"])
@@ -131,3 +132,11 @@ transform = Transform3D(-0.872239, 0, 0.489078, 0, 1, 0, -0.489078, 0, -0.872239
 
 [node name="Flag2" parent="." instance=ExtResource("18_jywsr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.8282, 0, 64.3789)
+
+[node name="Tent" parent="." instance=ExtResource("21_axtl8")]
+
+[node name="Tent2" parent="." instance=ExtResource("21_axtl8")]
+transform = Transform3D(0.529179, 0, 0.84851, 0, 1, 0, -0.84851, 0, 0.529179, 36.8307, 0, 65.6294)
+
+[node name="Tent3" parent="." instance=ExtResource("21_axtl8")]
+transform = Transform3D(0.993946, 0, 0.109873, 0, 1, 0, -0.109873, 0, 0.993946, 25.4913, 0, 71.566)

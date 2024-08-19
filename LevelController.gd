@@ -11,6 +11,7 @@ class_name LevelController
 @export var extraMarkerPositions: Array[Node3D]
 @export var remove_items: Array[int]
 @export_file(".tscn") var nextLevel: String
+@export var has_water: bool
 
 @export var info_title: String
 @export var info_portrait: Texture2D
@@ -64,14 +65,14 @@ func _birth_player():
 		player.MapItemInst.extraMarkerPositions.append(extraMarkerPositions[i].position)
 		player.MapItemInst.extraMarkerSprites.append(extraMarkerSprites[i])
 		
+	if not has_water:
+		player.MapItemInst.WaterToolButton.get_parent().remove_child(player.MapItemInst.WaterToolButton)
+		
 	player.player_canvas = player_canvas
 	player.CameraNode.make_current()
 	player.connect("begin_trial",_on_player_begin_trial)
 	
-	if not didLoad:
-		player_canvas.show_info(info_portrait, info_title, info_text)
-	else:
-		player_canvas.hide_info()
+	player_canvas.show_info(info_portrait, info_title, info_text, not didLoad)
 	
 func SaveMap():
 	savedMap = player.Map

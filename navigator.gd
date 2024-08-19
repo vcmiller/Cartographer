@@ -9,6 +9,7 @@ class_name Navigator
 @export var thoughtBubbleIcon: MeshInstance3D
 @export var thoughtBubbleNoDest: Node3D
 @export var thoughtBubbleNoPath: Node3D
+@export var thoughtBubbleMonster: MeshInstance3D
 @export var body: MeshInstance3D
 @export var hairs: Array[MeshInstance3D]
 @export var facialHairs: Array[MeshInstance3D]
@@ -124,6 +125,22 @@ func randomize_mesh():
 	
 func vec2i(from: Vector3): return Vector2i(roundi(from.x), roundi(from.z))	
 func vec3(from: Vector2i): return Vector3(from.x,position.y,from.y)
+
+func show_no_path_bubble():
+	thoughtBubble.show()
+	thoughtBubbleNoPath.show()
+	thoughtBubbleIcon.hide()
+	
+	for i in range(len(level_controller.goals)):
+		var item = level_controller.goals[i]
+		if item != goal and (not item.is_dead) and item.is_hazard and map.markersPlaced[i]:
+			thoughtBubbleNoPath.hide()
+			thoughtBubbleMonster.show()
+			var mat = StandardMaterial3D.new()
+			mat.albedo_texture = item.marker_sprite
+			mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+			thoughtBubbleMonster.set_surface_override_material(0, mat)
+			break
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -142,16 +159,12 @@ func _process(_delta: float) -> void:
 	
 	var target_pos := position
 	if len(path) < 2:
-		thoughtBubble.show()
-		thoughtBubbleNoPath.show()
-		thoughtBubbleIcon.hide()
+		show_no_path_bubble()
 		return
 	else:
 		var lastPos = path[-1]
 		if lastPos.distance_to(dest2d) > 2:
-			thoughtBubble.show()
-			thoughtBubbleNoPath.show()
-			thoughtBubbleIcon.hide()
+			show_no_path_bubble()
 			return
 		
 		thoughtBubble.hide()

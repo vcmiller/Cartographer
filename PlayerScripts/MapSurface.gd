@@ -57,7 +57,6 @@ func _ready() -> void:
 	ToolParent.position = Vector3(aspect * -0.5 - 0.138, 0, 0)
 	FlagParent.position = Vector3(aspect * 0.5 + 0.138, 0, 0)
 	
-	
 	var scaleWidth = 20.0 / map.Height
 	Scale.scale = Vector3(scaleWidth, scaleWidth, 1)
 	Scale.position = Vector3(aspect * -0.5, Scale.position.y, 0)
