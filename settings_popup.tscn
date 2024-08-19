@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bsw3mpdjch04c"]
 
-[ext_resource type="Theme" uid="uid://b3jfopflobcuo" path="res://ui_theme.tres" id="1_nvutc"]
+[ext_resource type="Theme" path="res://ui_theme.tres" id="1_nvutc"]
 [ext_resource type="Script" path="res://settings_popup.gd" id="2_g1ghg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ruis7"]
@@ -16,7 +16,7 @@ auto_translate_mode = 1
 transparent_bg = true
 title = "Paused"
 initial_position = 1
-size = Vector2i(1600, 900)
+size = Vector2i(2007, 900)
 visible = true
 transparent = true
 theme = ExtResource("1_nvutc")
@@ -34,16 +34,18 @@ offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(225, 175)
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 self_modulate = Color(1, 1, 1, 0)
 offset_left = 4.0
 offset_top = 4.0
-offset_right = 1596.0
+offset_right = 2003.0
 offset_bottom = 896.0
-theme_override_constants/margin_left = 512
+theme_override_constants/margin_left = 700
 theme_override_constants/margin_top = 256
-theme_override_constants/margin_right = 512
+theme_override_constants/margin_right = 700
 theme_override_constants/margin_bottom = 256
 
 [node name="Panel" type="Panel" parent="MarginContainer"]

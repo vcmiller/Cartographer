@@ -15,12 +15,18 @@ var last_mouse_mode: Input.MouseMode
 @onready var main_menu_button: Button = $MarginContainer/Panel/VBoxContainer/MainMenuButton
 const mm_string = "Return to Main Menu"
 const mm_string_2 = "Are You Sure?"
+
+func _ready() -> void:
+	hide()
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("pause") \
-	and enabled \
-	and get_tree().current_scene.scene_file_path != "res://main_menu.tscn": 
-		display()
+	if Input.is_action_just_pressed("pause"):
+		if !visible and enabled and get_tree().current_scene.scene_file_path != "res://main_menu.tscn": 
+			display()
+		elif visible:
+			hide()
+		
 		
 func display():
 	show()

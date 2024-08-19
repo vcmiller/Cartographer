@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cl4hvidr4g456" path="res://Textures/cartographomancerlogo.png" id="1_mci62"]
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="1_ptx06"]
 [ext_resource type="Script" path="res://main_menu.gd" id="1_yoyxs"]
-[ext_resource type="Theme" uid="uid://b3jfopflobcuo" path="res://ui_theme.tres" id="2_cvubr"]
+[ext_resource type="Theme" path="res://ui_theme.tres" id="2_cvubr"]
 [ext_resource type="Resource" path="res://Scenes/Levels/level4/data.hterrain" id="2_f0jt8"]
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_texture_set.gd" id="3_2xltm"]
 [ext_resource type="Texture2D" uid="uid://dbtnnv53ap7d7" path="res://Textures/grass_1_basecolor-1K.png" id="4_qqy4o"]
@@ -11,11 +11,11 @@
 [ext_resource type="Texture2D" uid="uid://dwdxtpum8euki" path="res://Textures/1K-snow_3_Base Color.jpg" id="6_r4hvq"]
 [ext_resource type="Texture2D" uid="uid://7m5c5uxiaa3m" path="res://Textures/grass_1_normal-1K.png" id="7_ovltv"]
 [ext_resource type="Texture2D" uid="uid://dgqwjkwa2ckuq" path="res://Textures/Cliff_normal.png" id="8_f6hi0"]
-[ext_resource type="PackedScene" path="res://Scenes/house.tscn" id="9_maeh1"]
+[ext_resource type="PackedScene" uid="uid://dtab7c0bq186o" path="res://Scenes/house.tscn" id="9_maeh1"]
 [ext_resource type="PackedScene" uid="uid://7jfrr44c1tir" path="res://Scenes/chest.tscn" id="10_xc7eb"]
-[ext_resource type="PackedScene" path="res://Scenes/dragon.tscn" id="11_n31po"]
+[ext_resource type="PackedScene" uid="uid://dia0af0h1mn1v" path="res://Scenes/dragon.tscn" id="11_n31po"]
 [ext_resource type="Script" path="res://noise_jiggle.gd" id="12_ptxol"]
-[ext_resource type="PackedScene" uid="uid://b6vvcrc8yvo7d" path="res://level_button.tscn" id="16_m3kik"]
+[ext_resource type="PackedScene" path="res://level_button.tscn" id="16_m3kik"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_a5k6u"]
 
