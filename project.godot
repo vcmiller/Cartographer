@@ -10,10 +10,11 @@ config_version=5
 
 [application]
 
-config/name="Cartographer"
+config/name="Cartographomancer"
 run/main_scene="res://main_menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
-config/icon="res://icon.svg"
+boot_splash/image="res://Textures/coolshitteamlogo.png"
+config/icon="res://Textures/icon.png"
 
 [autoload]
 
