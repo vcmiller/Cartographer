@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://67kq4c7qivrh"]
+[gd_scene load_steps=42 format=3 uid="uid://67kq4c7qivrh"]
 
 [ext_resource type="Script" path="res://PlayerScripts/MapSurface.gd" id="1_bm0m2"]
 [ext_resource type="Material" uid="uid://c4u0te7x41n41" path="res://Materials/Map.tres" id="1_lpqoy"]
@@ -8,6 +8,7 @@
 [ext_resource type="Material" uid="uid://cl2nlqr3dqeqo" path="res://Materials/ButtonBG.tres" id="3_wd5aj"]
 [ext_resource type="Material" uid="uid://b5o0gu7ahor2g" path="res://Materials/ButtonWater.tres" id="4_ris4b"]
 [ext_resource type="Texture2D" uid="uid://bvdyt6jhg42oc" path="res://Textures/ButtonWater.png" id="5_0lwdd"]
+[ext_resource type="Texture2D" uid="uid://i14klc427dfs" path="res://Textures/MapButtons.png" id="5_bkghn"]
 [ext_resource type="Texture2D" uid="uid://mdjrntbg1vpi" path="res://Textures/map_compass.png" id="5_xao42"]
 [ext_resource type="Material" uid="uid://cxumquffv4q3t" path="res://Materials/ButtonCliff.tres" id="6_4dqc2"]
 [ext_resource type="Texture2D" uid="uid://bkbe4frwi0nur" path="res://FLAG.png" id="6_dx62p"]
@@ -30,6 +31,14 @@ albedo_texture = ExtResource("3_qs0ip")
 [sub_resource type="QuadMesh" id="QuadMesh_kkb6y"]
 size = Vector2(1.333, 1.333)
 center_offset = Vector3(0.505, 0.667, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4grf3"]
+transparency = 1
+albedo_texture = ExtResource("5_bkghn")
+
+[sub_resource type="QuadMesh" id="QuadMesh_leuh3"]
+size = Vector2(2.666, 0.667)
+center_offset = Vector3(-1.334, 0.333, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2maqh"]
 transparency = 1
@@ -106,6 +115,11 @@ ExtraMarkerScene = ExtResource("2_i55ax")
 transform = Transform3D(0.18, 0, 0, 0, 0.18, -3.72529e-08, 0, 3.72529e-08, 0.18, -0.499038, 0.51, 0)
 material_override = SubResource("StandardMaterial3D_u00ct")
 mesh = SubResource("QuadMesh_kkb6y")
+
+[node name="MouseHint" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.18, 0, 0, 0, 0.18, -3.72529e-08, 0, 3.72529e-08, 0.18, 0.5, 0.5, 0)
+material_override = SubResource("StandardMaterial3D_4grf3")
+mesh = SubResource("QuadMesh_leuh3")
 
 [node name="Compass" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.15, 0, 0, 0, 0.15, -2.98023e-08, 0, 2.98023e-08, 0.15, 0.4, -0.4, 0)

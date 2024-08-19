@@ -30,6 +30,7 @@ signal flag_marker_placed(index: int, position: Vector3)
 @onready var erasing_sound: AudioStreamPlayer = $ErasingSound
 @onready var compass_quad: Node3D = $Compass
 @onready var draw_size_indicator: MeshInstance3D = $"3DTools/DrawSizeIndicator"
+@onready var mouse_hint: Node3D = $MouseHint
 
 var draw_size_mesh: TorusMesh;
 
@@ -62,6 +63,7 @@ func _ready() -> void:
 	ToolParent.position = Vector3(aspect * -0.5 - 0.138, 0, 0)
 	FlagParent.position = Vector3(aspect * 0.5 + 0.138, 0, 0)
 	compass_quad.position = Vector3(aspect * 0.5 - 0.1, -0.4, 0)
+	mouse_hint.position = Vector3(aspect * 0.5, 0.5, 0)
 	
 	var scaleWidth = 20.0 / map.Height
 	Scale.scale = Vector3(scaleWidth, scaleWidth, 1)
