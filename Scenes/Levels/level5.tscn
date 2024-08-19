@@ -1,10 +1,11 @@
-[gd_scene load_steps=26 format=3 uid="uid://doxnu2k871um4"]
+[gd_scene load_steps=27 format=3 uid="uid://doxnu2k871um4"]
 
 [ext_resource type="Script" path="res://LevelController.gd" id="1_7gly0"]
 [ext_resource type="PackedScene" uid="uid://c56yvex4g3pif" path="res://Scenes/player.tscn" id="1_ad445"]
 [ext_resource type="Texture2D" uid="uid://b40qi0acguhr8" path="res://FLAGRed.png" id="2_fa5xc"]
 [ext_resource type="Script" path="res://EditableMap.gd" id="2_tkkob"]
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="3_c7gw5"]
+[ext_resource type="Texture2D" uid="uid://bng8i0wvogpuq" path="res://Textures/living_armor_04.png" id="3_qgiue"]
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_texture_set.gd" id="5_3qa8x"]
 [ext_resource type="Resource" path="res://Scenes/Levels/level5/data.hterrain" id="5_iyj1v"]
 [ext_resource type="Texture2D" uid="uid://dbtnnv53ap7d7" path="res://Textures/grass_1_basecolor-1K.png" id="6_andtf"]
@@ -50,6 +51,11 @@ goals = [NodePath("Chest"), NodePath("Dragon")]
 extraMarkerSprites = Array[Texture2D]([ExtResource("2_fa5xc")])
 extraMarkerPositions = [NodePath("Flag2")]
 nextLevel = "res://Scenes/Levels/level4.tscn"
+info_title = "Here There Be Dragons!"
+info_portrait = ExtResource("3_qgiue")
+info_text = "My esteemed cartogrpaher, be careful! A dragon lurks in this ravine, and there's no way around it! But fear not, for I shall slay the foul beast!
+
+Once I've removed this abomination, this ravine shall be safe for travelers once more!"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_yanan")
