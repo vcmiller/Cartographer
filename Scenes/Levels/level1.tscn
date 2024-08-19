@@ -50,7 +50,7 @@ remove_items = Array[int]([1, 2])
 nextLevel = "res://Scenes/Levels/level2.tscn"
 info_title = "Welome, cartographer!"
 info_portrait = ExtResource("3_0cvqa")
-info_text = "Welcome to Cartographomancer! in this game you will draw maps to help adventurers navigate the area. You'll have various tools at your disposal to help build an accurate map.
+info_text = "Welcome to Cartographomancer! Get ready to draw maps to help adventurers navigate the area. You'll have various tools at your disposal to help build an accurate map.
 
 In this level, you'll learn to draw the map. Normally, you'll need to measure spaces yourself, but for now, the mountains in this area are marked out with red flags.
 

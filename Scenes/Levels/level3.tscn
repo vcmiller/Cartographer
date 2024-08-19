@@ -51,11 +51,11 @@ extraMarkerPositions = [NodePath("Flag2")]
 nextLevel = "res://Scenes/Levels/level4.tscn"
 info_title = "Ten-Step Program"
 info_portrait = ExtResource("3_lo7l6")
-info_text = "This level has no flags to mark the cliffs for you! You'll have to explore and find all the cliffs yourself.
+info_text = "This level does not mark the cliffs for you! You'll have to explore and find all the cliffs yourself.
 
-You now have a third tool at your disposal! The step counter will measure the distance you travel, helping to establish the proper scale for your map. The step counter is always counting, regardless of whether it's equipped.
+You now have a third tool at your disposal! The [b]step counter[/b] will measure the distance you travel, helping to establish the proper scale for your map. The step counter is always counting, regardless of whether it's equipped.
 
-Switch to the step counter using the mouse wheel or number keys. Pressing LMB will reset the counter to zero."
+Switch to the step counter using the mouse wheel or number keys. Pressing [b]LMB will reset the counter[/b] to zero."
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_yanan")

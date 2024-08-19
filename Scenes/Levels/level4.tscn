@@ -56,9 +56,9 @@ extraMarkerPositions = [NodePath("Flag2")]
 nextLevel = "res://Scenes/Levels/level5.tscn"
 info_title = "Where There Be Dragons??"
 info_portrait = ExtResource("3_mu3r3")
-info_text = "Watch out! There's a dragon lurking around these parts, but we don't know exactly where. If you're not careful, our brave adventurer will run headfirst into the beast and meet a brutal end.
+info_text = "Watch out! There's a [b]dragon[/b] lurking around these parts, but we don't know exactly where. If you're not careful, our brave adventurer will run headfirst into the beast and meet a brutal end.
 
-In addition to mapping out cliffs and the dragon's treasure, make sure to drop a marker on the dragon itself so the adventurer can avoid it!
+In addition to mapping out cliffs and the dragon's treasure, make sure to [b]drop a marker on the dragon[/b] itself so the adventurer can avoid it!
 
 Fortunately, you remembered your dragon repellant spray, so it won't bother you. Others might not be so lucky..."
 attemps_for_3_stars = 5

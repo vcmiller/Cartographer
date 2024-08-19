@@ -49,11 +49,11 @@ remove_items = Array[int]([2])
 nextLevel = "res://Scenes/Levels/level3.tscn"
 info_title = "Red Flags!"
 info_portrait = ExtResource("2_sa5gq")
-info_text = "In this level, you'll need to explore to gather enough information to fill out the map. Our adventurer doesn't know where the treasure they seek is, so you'll need to drop a marker on the map to help them find it.
+info_text = "In this level, you'll need to explore to gather enough information to fill out the map. Our adventurer doesn't know where the treasure they seek is, so you'll need to [b]drop a marker[/b] on the map to help them find it.
 
 There are also some cliffs that are not in the flagged area, so you'll need to add those yourself too.
 
-To move around, use the W A S D keys and the mouse to look around (when not holding the map). From now on, you'll also have access to a compass! Switch items using the mouse wheel or number keys, or switch to the map with Tab.
+To move around, use the [b]WASD[/b] keys and the mouse to look around (when not holding the map). From now on, you'll also have access to a [b]compass[/b]! Switch items using the [b]mouse wheel[/b] or [b]number keys[/b], or switch to the map with Tab.
 
 Be aware that you won't start in the same corner of the map every level! Use the compass to figure out where you are in relation to the map."
 attemps_for_3_stars = 2
