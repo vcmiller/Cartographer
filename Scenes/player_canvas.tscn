@@ -1,11 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://cpyuibv7in8lg"]
+[gd_scene load_steps=15 format=3 uid="uid://cpyuibv7in8lg"]
 
 [ext_resource type="Script" path="res://player_canvas.gd" id="1_h22vk"]
 [ext_resource type="Texture2D" uid="uid://kgme0al5qkto" path="res://Textures/maps.png" id="2_n7pw8"]
 [ext_resource type="Texture2D" uid="uid://cblyipbdlfhs5" path="res://icon.svg" id="2_yx018"]
 [ext_resource type="Texture2D" uid="uid://c03o1cdqx0qdb" path="res://Textures/compass.png" id="3_052lg"]
 [ext_resource type="Texture2D" uid="uid://d16t1f5tolr2a" path="res://Textures/counter.png" id="4_da5ew"]
-[ext_resource type="Texture2D" uid="uid://bmfoaemiyhtke" path="res://Textures/Paper.png" id="6_hr5id"]
+[ext_resource type="StyleBox" uid="uid://drvsm6ee57htw" path="res://paper_style.tres" id="6_grncm"]
 [ext_resource type="Texture2D" uid="uid://cp8luvdgqkc46" path="res://Textures/Tex_badge_35.PNG" id="7_hl57o"]
 [ext_resource type="FontFile" uid="uid://cqscieat857g1" path="res://Fonts/CONSTAN.TTF" id="8_5sq87"]
 [ext_resource type="Texture2D" uid="uid://c4d7afjj60t8n" path="res://Textures/ButtonBG.png" id="9_uj8jv"]
@@ -21,10 +21,6 @@ corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_51bny"]
-texture = ExtResource("6_hr5id")
-modulate_color = Color(0.636649, 0.574883, 0.533144, 1)
 
 [sub_resource type="FontVariation" id="FontVariation_qd10m"]
 base_font = ExtResource("8_5sq87")
@@ -146,7 +142,7 @@ offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(225, 175)
-theme_override_styles/panel = SubResource("StyleBoxTexture_51bny")
+theme_override_styles/panel = ExtResource("6_grncm")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="InfoScreen/Panel"]
 layout_mode = 1

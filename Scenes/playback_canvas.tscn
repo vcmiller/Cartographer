@@ -3,19 +3,14 @@
 [ext_resource type="Script" path="res://playback_canvas.gd" id="1_btobm"]
 [ext_resource type="AudioStream" uid="uid://hj5lgujb8we2" path="res://Audio/413203__joepayne__clean-and-pompous-fanfare-trumpet.mp3" id="2_1g7wd"]
 [ext_resource type="PackedScene" uid="uid://pmx552qq7m24" path="res://volume_parasite.tscn" id="3_jdxwn"]
+[ext_resource type="Texture2D" uid="uid://dddaley1lt2ou" path="res://Textures/check-mark.png" id="2_7rfu6"]
+[ext_resource type="FontFile" uid="uid://cqscieat857g1" path="res://Fonts/CONSTAN.TTF" id="3_mpdu6"]
+[ext_resource type="StyleBox" uid="uid://drvsm6ee57htw" path="res://paper_style.tres" id="5_1yy56"]
+[ext_resource type="Texture2D" uid="uid://clnck4bwsnvc7" path="res://Textures/treasure-map.png" id="6_fkwu7"]
+[ext_resource type="Texture2D" uid="uid://ycvbqes74o86" path="res://Textures/star.png" id="7_ufuns"]
 
-[node name="PlaybackCanvas" type="CanvasLayer" node_paths=PackedStringArray("ViewportsLeft", "ViewportsRight", "ViewportParentTL", "ViewportParentBL", "ViewportParentTR", "ViewportParentBR", "CameraTL", "CameraTR", "CameraBL", "CameraBR")]
+[node name="PlaybackCanvas" type="CanvasLayer"]
 script = ExtResource("1_btobm")
-ViewportsLeft = NodePath("HBoxContainer/Left")
-ViewportsRight = NodePath("HBoxContainer/Right")
-ViewportParentTL = NodePath("HBoxContainer/Left/TL")
-ViewportParentBL = NodePath("HBoxContainer/Left/BL")
-ViewportParentTR = NodePath("HBoxContainer/Right/TR")
-ViewportParentBR = NodePath("HBoxContainer/Right/BR")
-CameraTL = NodePath("HBoxContainer/Left/TL/SubViewport/CameraTL")
-CameraTR = NodePath("HBoxContainer/Right/TR/SubViewport3/CameraTR")
-CameraBL = NodePath("HBoxContainer/Left/BL/SubViewport2/CameraBL")
-CameraBR = NodePath("HBoxContainer/Right/BR/SubViewport4/CameraBR")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 anchors_preset = 15
@@ -29,57 +24,161 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TL" type="SubViewportContainer" parent="HBoxContainer/Left"]
+[node name="TL_Parent" type="Control" parent="HBoxContainer/Left"]
 layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TL" type="SubViewportContainer" parent="HBoxContainer/Left/TL_Parent"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_vertical = 3
 stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="HBoxContainer/Left/TL"]
+[node name="SubViewport" type="SubViewport" parent="HBoxContainer/Left/TL_Parent/TL"]
 handle_input_locally = false
 size = Vector2i(798, 448)
 render_target_update_mode = 4
 
-[node name="CameraTL" type="Camera3D" parent="HBoxContainer/Left/TL/SubViewport"]
+[node name="CameraTL" type="Camera3D" parent="HBoxContainer/Left/TL_Parent/TL/SubViewport"]
 
-[node name="BL" type="SubViewportContainer" parent="HBoxContainer/Left"]
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Left/TL_Parent"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_7rfu6")
+expand_mode = 1
+
+[node name="BL_Parent" type="Control" parent="HBoxContainer/Left"]
 layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BL" type="SubViewportContainer" parent="HBoxContainer/Left/BL_Parent"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_vertical = 3
 stretch = true
 
-[node name="SubViewport2" type="SubViewport" parent="HBoxContainer/Left/BL"]
+[node name="SubViewport2" type="SubViewport" parent="HBoxContainer/Left/BL_Parent/BL"]
 handle_input_locally = false
 size = Vector2i(798, 448)
 render_target_update_mode = 4
 
-[node name="CameraBL" type="Camera3D" parent="HBoxContainer/Left/BL/SubViewport2"]
+[node name="CameraBL" type="Camera3D" parent="HBoxContainer/Left/BL_Parent/BL/SubViewport2"]
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Left/BL_Parent"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_7rfu6")
+expand_mode = 1
 
 [node name="Right" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TR" type="SubViewportContainer" parent="HBoxContainer/Right"]
+[node name="TR_Parent" type="Control" parent="HBoxContainer/Right"]
 layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TR" type="SubViewportContainer" parent="HBoxContainer/Right/TR_Parent"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_vertical = 3
 stretch = true
 
-[node name="SubViewport3" type="SubViewport" parent="HBoxContainer/Right/TR"]
+[node name="SubViewport3" type="SubViewport" parent="HBoxContainer/Right/TR_Parent/TR"]
 handle_input_locally = false
 size = Vector2i(798, 448)
 render_target_update_mode = 4
 
-[node name="CameraTR" type="Camera3D" parent="HBoxContainer/Right/TR/SubViewport3"]
+[node name="CameraTR" type="Camera3D" parent="HBoxContainer/Right/TR_Parent/TR/SubViewport3"]
 
-[node name="BR" type="SubViewportContainer" parent="HBoxContainer/Right"]
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Right/TR_Parent"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_7rfu6")
+expand_mode = 1
+
+[node name="BR_Parent" type="Control" parent="HBoxContainer/Right"]
 layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BR" type="SubViewportContainer" parent="HBoxContainer/Right/BR_Parent"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_vertical = 3
 stretch = true
 
-[node name="SubViewport4" type="SubViewport" parent="HBoxContainer/Right/BR"]
+[node name="SubViewport4" type="SubViewport" parent="HBoxContainer/Right/BR_Parent/BR"]
 handle_input_locally = false
 size = Vector2i(798, 448)
 render_target_update_mode = 4
 
-[node name="CameraBR" type="Camera3D" parent="HBoxContainer/Right/BR/SubViewport4"]
+[node name="CameraBR" type="Camera3D" parent="HBoxContainer/Right/BR_Parent/BR/SubViewport4"]
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Right/BR_Parent"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_7rfu6")
+expand_mode = 1
 
 [node name="Retry" type="Button" parent="."]
 anchors_preset = 3
@@ -87,14 +186,14 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -447.0
-offset_top = -149.0
-offset_right = -28.0
-offset_bottom = -30.0
+offset_left = -1246.0
+offset_top = -129.0
+offset_right = -827.0
+offset_bottom = -10.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 81
-text = "Reset"
+text = "Retry"
 
 [node name="FuckLabel" type="Label" parent="."]
 visible = false
@@ -114,33 +213,6 @@ text = "FUCK"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="WinLabel" type="Label" parent="."]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -326.0
-offset_top = -174.5
-offset_right = 326.0
-offset_bottom = 174.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 256
-text = "COOL"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Button" type="Button" parent="WinLabel"]
-layout_mode = 0
-offset_left = 479.0
-offset_top = 305.5
-offset_right = 898.0
-offset_bottom = 424.5
-theme_override_font_sizes/font_size = 81
-text = "Next Level"
-
 [node name="TextureRect" type="TextureRect" parent="."]
 unique_name_in_owner = true
 offset_right = 40.0
@@ -149,8 +221,201 @@ offset_bottom = 40.0
 [node name="VictorySound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_1g7wd")
 
+[node name="WinScreen" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="WinScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -150.0
+offset_right = 250.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("5_1yy56")
+
+[node name="WinLabel" type="Label" parent="WinScreen/Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -390.0
+offset_top = 8.0
+offset_right = 391.0
+offset_bottom = 100.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.103744, 0.103744, 0.103744, 1)
+theme_override_fonts/font = ExtResource("3_mpdu6")
+theme_override_font_sizes/font_size = 46
+text = "All Goals Complete!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AdvanceButton" type="Button" parent="WinScreen/Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -72.0
+offset_right = 100.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 25
+text = "Next Level"
+
+[node name="TextureRect" type="TextureRect" parent="WinScreen/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -75.0
+offset_right = 60.0
+offset_bottom = 45.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_fkwu7")
+expand_mode = 1
+
+[node name="StarParent1" type="TextureRect" parent="WinScreen/Panel"]
+self_modulate = Color(0.171637, 0.171637, 0.171637, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -55.0
+offset_top = 40.77
+offset_right = -25.0
+offset_bottom = 70.77
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_ufuns")
+expand_mode = 1
+
 [node name="VolumeParasite" parent="VictorySound" instance=ExtResource("3_jdxwn")]
 volume_type = 2
 
+[node name="Star1" type="TextureRect" parent="WinScreen/Panel/StarParent1"]
+self_modulate = Color(1, 0.788235, 0, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -13.0
+offset_top = -13.0
+offset_right = 13.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(13, 13)
+texture = ExtResource("7_ufuns")
+expand_mode = 1
+
+[node name="StarParent2" type="TextureRect" parent="WinScreen/Panel"]
+self_modulate = Color(0.171637, 0.171637, 0.171637, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = 35.0
+offset_right = 15.0
+offset_bottom = 65.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+pivot_offset = Vector2(15, 15)
+texture = ExtResource("7_ufuns")
+expand_mode = 1
+
+[node name="Star2" type="TextureRect" parent="WinScreen/Panel/StarParent2"]
+self_modulate = Color(1, 0.788235, 0, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -13.0
+offset_top = -13.0
+offset_right = 13.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(13, 13)
+texture = ExtResource("7_ufuns")
+expand_mode = 1
+
+[node name="StarParent3" type="TextureRect" parent="WinScreen/Panel"]
+self_modulate = Color(0.171637, 0.171637, 0.171637, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 25.0
+offset_top = 40.77
+offset_right = 55.0
+offset_bottom = 70.77
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_ufuns")
+expand_mode = 1
+
+[node name="Star3" type="TextureRect" parent="WinScreen/Panel/StarParent3"]
+self_modulate = Color(1, 0.788235, 0, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -13.0
+offset_top = -14.77
+offset_right = 13.0
+offset_bottom = 11.23
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(13, 13)
+texture = ExtResource("7_ufuns")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="WinScreen/Panel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 24.0
+offset_top = -11.0
+offset_right = 105.0
+offset_bottom = 12.0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_mpdu6")
+theme_override_font_sizes/font_size = 20
+text = "Attempts: 4"
+
 [connection signal="pressed" from="Retry" to="." method="retry"]
-[connection signal="pressed" from="WinLabel/Button" to="." method="_on_next_button_pressed"]
+[connection signal="pressed" from="WinScreen/Panel/AdvanceButton" to="." method="_on_next_button_pressed"]

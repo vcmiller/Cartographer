@@ -15,8 +15,11 @@ class_name LevelController
 @export var info_title: String
 @export var info_portrait: Texture2D
 @export_multiline var info_text: String
+@export var attemps_for_3_stars: int = 3
+@export var attemps_for_2_stars: int = 6
 
 static var savedMap: EditableMap
+static var attempts: int
 
 var navigator_count: int
 var has_failed: bool
@@ -42,6 +45,7 @@ func _birth_player():
 		player.Map = savedMap
 		savedMap = null
 		didLoad = true
+		attempts += 1
 	else:
 		for i in range(len(goals)):
 			if goals[i].start_marked:
@@ -50,6 +54,7 @@ func _birth_player():
 			else:
 				player.Map.markerLocations.append(Vector3.ZERO)
 				player.Map.markersPlaced.append(false)
+		attempts = 1
 		
 	for i in range(len(goals)):
 		player.MapItemInst.markerSprites.append(goals[i].marker_sprite)
