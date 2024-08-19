@@ -12,6 +12,10 @@ class_name LevelController
 @export var remove_items: Array[int]
 @export_file(".tscn") var nextLevel: String
 
+@export var info_title: String
+@export var info_portrait: Texture2D
+@export_multiline var info_text: String
+
 static var savedMap: EditableMap
 
 var navigator_count: int
@@ -32,10 +36,12 @@ func _birth_player():
 	remove_items.sort_custom(func(a, b): return b - a)
 	for r in remove_items:
 		player.item_manager.Items.pop_at(r)
-		
+	
+	var didLoad = false
 	if savedMap and savedMap.Width == player.Map.Width and savedMap.Height == player.Map.Height:
 		player.Map = savedMap
 		savedMap = null
+		didLoad = true
 	else:
 		for i in range(len(goals)):
 			if goals[i].start_marked:
@@ -54,7 +60,12 @@ func _birth_player():
 		
 	player.player_canvas = player_canvas
 	player.CameraNode.make_current()
-	player.connect("begin_trial",_on_player_begin_trial) 
+	player.connect("begin_trial",_on_player_begin_trial)
+	
+	if not didLoad:
+		player_canvas.show_info(info_portrait, info_title, info_text)
+	else:
+		player_canvas.hide_info()
 	
 func SaveMap():
 	savedMap = player.Map

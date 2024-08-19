@@ -1,7 +1,8 @@
-[gd_scene load_steps=24 format=3 uid="uid://cy446v6rlxcd5"]
+[gd_scene load_steps=25 format=3 uid="uid://cy446v6rlxcd5"]
 
 [ext_resource type="Script" path="res://LevelController.gd" id="1_t3b22"]
 [ext_resource type="PackedScene" uid="uid://c56yvex4g3pif" path="res://Scenes/player.tscn" id="2_s5h3j"]
+[ext_resource type="Texture2D" uid="uid://cp8luvdgqkc46" path="res://Textures/Tex_badge_35.PNG" id="3_0cvqa"]
 [ext_resource type="Script" path="res://EditableMap.gd" id="3_87vbk"]
 [ext_resource type="Texture2D" uid="uid://b40qi0acguhr8" path="res://FLAGRed.png" id="3_ty0vp"]
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="4_sqftk"]
@@ -47,6 +48,13 @@ extraMarkerSprites = Array[Texture2D]([ExtResource("3_ty0vp"), ExtResource("3_ty
 extraMarkerPositions = [NodePath("FlagMarkers/Flag2"), NodePath("FlagMarkers/Flag3"), NodePath("FlagMarkers/Flag4"), NodePath("FlagMarkers/Flag5")]
 remove_items = Array[int]([1, 2])
 nextLevel = "res://Scenes/Levels/level2.tscn"
+info_title = "Welome, cartographer!"
+info_portrait = ExtResource("3_0cvqa")
+info_text = "Welcome to Cartographomancer! in this game you will draw maps to help adventurers navigate the area. You'll have various tools at your disposal to help build an accurate map.
+
+In this level, you'll learn to draw the map. Normally, you'll need to measure spaces yourself, but for now, the mountains in this area are marked out with red flags. Use the black marker to color in the space between the flags, then press \"Submit Map\" to see how you did! If the adventurer doesn't make it to the end, you can retry by pressing the \"Reset\" button.
+
+If you close the map, you can reopen it by presseing Tab."
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_yanan")

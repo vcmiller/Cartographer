@@ -47,6 +47,15 @@ extraMarkerSprites = Array[Texture2D]([ExtResource("2_sa5gq"), ExtResource("2_sa
 extraMarkerPositions = [NodePath("FlagMarkers/Flag2"), NodePath("FlagMarkers/Flag3"), NodePath("FlagMarkers/Flag4"), NodePath("FlagMarkers/Flag5")]
 remove_items = Array[int]([2])
 nextLevel = "res://Scenes/Levels/level3.tscn"
+info_title = "Red Flags!"
+info_portrait = ExtResource("2_sa5gq")
+info_text = "In this level, you'll need to explore to gather enough information to fill out the map. Our adventurer doesn't know where the treasure they seek is, so you'll need to drop a marker on the map to help them find it.
+
+There are also some cliffs that are not in the flagged area, so you'll need to add those yourself too.
+
+To move around, use the W A S D keys and the mouse to look around (when not holding the map). From now on, you'll also have access to a compass! Switch items using the mouse wheel or number keys, or switch to the map with Tab.
+
+Be aware that you won't start in the same corner of the map every level! Use the compass to figure out where you are in relation to the map."
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_yanan")
