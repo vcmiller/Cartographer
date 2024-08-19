@@ -24,6 +24,7 @@ class_name PlaybackCanvas
 @onready var Star2: Control = $WinScreen/Panel/StarParent2/Star2
 @onready var Star3: Control = $WinScreen/Panel/StarParent3/Star3
 @onready var attemps_label: Label = $WinScreen/Panel/Label
+@onready var new_best_label: Label = $WinScreen/Panel/NewBestLabel
 
 var checkmarks: Array[Control]
 var navigators: Array[Navigator]
@@ -47,6 +48,7 @@ func _ready() -> void:
 	Star1.hide()
 	Star2.hide()
 	Star3.hide()
+	new_best_label.hide()
 	
 func _process(delta: float) -> void:
 	if navigators and checkmarks:
@@ -66,18 +68,33 @@ func on_victory():
 	else:
 		stars = 3
 		
+	var star_dict = SaveStateManger.get_star_dict()
+	var scene = get_tree().current_scene.name
+	
+	var is_new_best = true
+	if scene in star_dict:
+		var old_best = star_dict[scene] as int
+		if stars <= old_best:
+			is_new_best = false
+			
+	if is_new_best:
+		star_dict[scene] = stars
+		SaveStateManger.set_star_dict(star_dict)
+		
 	await get_tree().create_timer(0.5).timeout
 	animate_star(Star1)
 	
-	if stars < 2: return
+	if stars > 1:
+		await get_tree().create_timer(0.5).timeout
+		animate_star(Star2)
 	
-	await get_tree().create_timer(0.5).timeout
-	animate_star(Star2)
-	
-	if stars < 3: return
-	
-	await get_tree().create_timer(0.5).timeout
-	animate_star(Star3)
+	if stars > 2:
+		await get_tree().create_timer(0.5).timeout
+		animate_star(Star3)
+		
+	if is_new_best:
+		await get_tree().create_timer(0.5).timeout
+		animate_star(new_best_label)
 		
 func animate_star(star: Control):
 	star.show()

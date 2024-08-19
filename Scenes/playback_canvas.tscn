@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dkv2gdruwmqqp"]
+[gd_scene load_steps=10 format=3 uid="uid://dkv2gdruwmqqp"]
 
 [ext_resource type="Script" path="res://playback_canvas.gd" id="1_btobm"]
 [ext_resource type="AudioStream" uid="uid://hj5lgujb8we2" path="res://Audio/413203__joepayne__clean-and-pompous-fanfare-trumpet.mp3" id="2_1g7wd"]
@@ -8,6 +8,9 @@
 [ext_resource type="StyleBox" uid="uid://drvsm6ee57htw" path="res://paper_style.tres" id="5_1yy56"]
 [ext_resource type="Texture2D" uid="uid://clnck4bwsnvc7" path="res://Textures/treasure-map.png" id="6_fkwu7"]
 [ext_resource type="Texture2D" uid="uid://ycvbqes74o86" path="res://Textures/star.png" id="7_ufuns"]
+
+[sub_resource type="FontVariation" id="FontVariation_h5tcq"]
+base_font = ExtResource("3_mpdu6")
 
 [node name="PlaybackCanvas" type="CanvasLayer"]
 script = ExtResource("1_btobm")
@@ -416,6 +419,28 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_mpdu6")
 theme_override_font_sizes/font_size = 20
 text = "Attempts: 4"
+
+[node name="NewBestLabel" type="Label" parent="WinScreen/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = 10.0
+offset_right = 39.0
+offset_bottom = 41.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.314159
+pivot_offset = Vector2(64, 15)
+theme_override_colors/font_color = Color(1, 0.788235, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = SubResource("FontVariation_h5tcq")
+theme_override_font_sizes/font_size = 30
+text = "New Best!"
 
 [connection signal="pressed" from="Retry" to="." method="retry"]
 [connection signal="pressed" from="WinScreen/Panel/AdvanceButton" to="." method="_on_next_button_pressed"]
