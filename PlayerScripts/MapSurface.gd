@@ -28,6 +28,7 @@ signal flag_marker_placed(index: int, position: Vector3)
 
 @onready var drawing_sound: AudioStreamPlayer = $DrawingSound
 @onready var erasing_sound: AudioStreamPlayer = $ErasingSound
+@onready var compass_quad: Node3D = $Compass
 
 var material: ShaderMaterial
 var isPainting: bool
@@ -56,6 +57,7 @@ func _ready() -> void:
 	TargetMesh.scale = Vector3(aspect, 1, 1)
 	ToolParent.position = Vector3(aspect * -0.5 - 0.138, 0, 0)
 	FlagParent.position = Vector3(aspect * 0.5 + 0.138, 0, 0)
+	compass_quad.position = Vector3(aspect * 0.5 - 0.1, -0.4, 0)
 	
 	var scaleWidth = 20.0 / map.Height
 	Scale.scale = Vector3(scaleWidth, scaleWidth, 1)

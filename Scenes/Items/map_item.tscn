@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://67kq4c7qivrh"]
+[gd_scene load_steps=37 format=3 uid="uid://67kq4c7qivrh"]
 
 [ext_resource type="Script" path="res://PlayerScripts/MapSurface.gd" id="1_bm0m2"]
 [ext_resource type="Material" uid="uid://c4u0te7x41n41" path="res://Materials/Map.tres" id="1_lpqoy"]
@@ -8,6 +8,7 @@
 [ext_resource type="Material" uid="uid://cl2nlqr3dqeqo" path="res://Materials/ButtonBG.tres" id="3_wd5aj"]
 [ext_resource type="Material" uid="uid://b5o0gu7ahor2g" path="res://Materials/ButtonWater.tres" id="4_ris4b"]
 [ext_resource type="Texture2D" uid="uid://bvdyt6jhg42oc" path="res://Textures/ButtonWater.png" id="5_0lwdd"]
+[ext_resource type="Texture2D" uid="uid://mdjrntbg1vpi" path="res://Textures/map_compass.png" id="5_xao42"]
 [ext_resource type="Material" uid="uid://cxumquffv4q3t" path="res://Materials/ButtonCliff.tres" id="6_4dqc2"]
 [ext_resource type="Texture2D" uid="uid://bkbe4frwi0nur" path="res://FLAG.png" id="6_dx62p"]
 [ext_resource type="Material" uid="uid://iln7dat2vyml" path="res://Materials/ButtonEraser.tres" id="7_gvfga"]
@@ -20,7 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://bgb6577o4d701" path="res://Textures/Marker.png" id="17_cgaph"]
 [ext_resource type="AudioStream" uid="uid://i8m13xe5pkjf" path="res://Audio/79163__atha89__writing-with-dry-erase-marker.wav" id="19_tw3ry"]
 [ext_resource type="AudioStream" uid="uid://ghhd7pavdsb4" path="res://Audio/85701__tmkappelt__pencil_erasing.mp3" id="20_8imnb"]
-[ext_resource type="PackedScene" uid="uid://pmx552qq7m24" path="res://volume_parasite.tscn" id="20_osj73"]
+[ext_resource type="PackedScene" path="res://volume_parasite.tscn" id="20_osj73"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u00ct"]
 transparency = 1
@@ -29,6 +30,13 @@ albedo_texture = ExtResource("3_qs0ip")
 [sub_resource type="QuadMesh" id="QuadMesh_kkb6y"]
 size = Vector2(1.333, 1.333)
 center_offset = Vector3(0.505, 0.667, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2maqh"]
+transparency = 1
+albedo_color = Color(0.694767, 0.627419, 0.246165, 1)
+albedo_texture = ExtResource("5_xao42")
+
+[sub_resource type="QuadMesh" id="QuadMesh_wkidr"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_sjhvp"]
 
@@ -87,7 +95,12 @@ ExtraMarkerScene = ExtResource("2_i55ax")
 transform = Transform3D(0.18, 0, 0, 0, 0.18, -3.72529e-08, 0, 3.72529e-08, 0.18, -0.499038, 0.51, 0)
 material_override = SubResource("StandardMaterial3D_u00ct")
 mesh = SubResource("QuadMesh_kkb6y")
-skeleton = NodePath("../ToolPalette/WaterToolButton")
+
+[node name="Compass" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, -2.98023e-08, 0, 2.98023e-08, 0.15, 0.4, -0.4, 0)
+sorting_offset = 1.0
+material_override = SubResource("StandardMaterial3D_2maqh")
+mesh = SubResource("QuadMesh_wkidr")
 
 [node name="Map" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, 0, 0, 0)
