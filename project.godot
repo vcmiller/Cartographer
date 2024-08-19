@@ -14,6 +14,7 @@ config/name="Cartographomancer"
 run/main_scene="res://main_menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 boot_splash/image="res://Textures/coolshitteamlogo.png"
+boot_splash/fullsize=false
 config/icon="res://Textures/icon.png"
 
 [autoload]

@@ -1,0 +1,143 @@
+[gd_scene load_steps=30 format=3 uid="uid://cc8ujwm7oqfyx"]
+
+[ext_resource type="Script" path="res://LevelController.gd" id="1_7gly0"]
+[ext_resource type="PackedScene" uid="uid://c56yvex4g3pif" path="res://Scenes/player.tscn" id="1_ad445"]
+[ext_resource type="Texture2D" uid="uid://b40qi0acguhr8" path="res://FLAGRed.png" id="2_6ov3p"]
+[ext_resource type="Script" path="res://EditableMap.gd" id="2_tkkob"]
+[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="3_c7gw5"]
+[ext_resource type="Texture2D" uid="uid://kgfkvk5k7r4n" path="res://Textures/footsteps.png" id="3_lo7l6"]
+[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_texture_set.gd" id="5_3qa8x"]
+[ext_resource type="Texture2D" uid="uid://dbtnnv53ap7d7" path="res://Textures/grass_1_basecolor-1K.png" id="6_andtf"]
+[ext_resource type="Resource" path="res://Scenes/Levels/level6/data.hterrain" id="7_kxke3"]
+[ext_resource type="Texture2D" uid="uid://doeyfpmulhmiq" path="res://Textures/Cliff_basecolor.png" id="7_x6axp"]
+[ext_resource type="Texture2D" uid="uid://7m5c5uxiaa3m" path="res://Textures/grass_1_normal-1K.png" id="8_jb2gq"]
+[ext_resource type="Texture2D" uid="uid://dgqwjkwa2ckuq" path="res://Textures/Cliff_normal.png" id="9_ff7x0"]
+[ext_resource type="Texture2D" uid="uid://caa44rwiqc0bd" path="res://Textures/1K-ground_4-diffuse.jpg" id="11_uvrct"]
+[ext_resource type="PackedScene" uid="uid://7jfrr44c1tir" path="res://Scenes/chest.tscn" id="13_rhw22"]
+[ext_resource type="Script" path="res://navigator_spawn.gd" id="14_nmrc2"]
+[ext_resource type="PackedScene" uid="uid://url466m8etkf" path="res://navigator.tscn" id="16_7r0ls"]
+[ext_resource type="PackedScene" uid="uid://dkv2gdruwmqqp" path="res://Scenes/playback_canvas.tscn" id="17_0p3wf"]
+[ext_resource type="PackedScene" uid="uid://cpyuibv7in8lg" path="res://Scenes/player_canvas.tscn" id="18_400c0"]
+[ext_resource type="PackedScene" uid="uid://bkpvpnsmwlkuy" path="res://Models/Flag.glb" id="20_121sd"]
+[ext_resource type="Material" uid="uid://krb4nj4k42qq" path="res://Materials/water_mat.tres" id="20_ytfek"]
+[ext_resource type="PackedScene" uid="uid://c1sm311lwpsoc" path="res://Scenes/tent.tscn" id="21_kn6tq"]
+[ext_resource type="PackedScene" uid="uid://dtab7c0bq186o" path="res://Scenes/house.tscn" id="22_v5niw"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_a5k6u"]
+
+[sub_resource type="Sky" id="Sky_gagda"]
+sky_material = SubResource("ProceduralSkyMaterial_a5k6u")
+
+[sub_resource type="Environment" id="Environment_yanan"]
+background_mode = 2
+sky = SubResource("Sky_gagda")
+
+[sub_resource type="Resource" id="Resource_5we7l"]
+script = ExtResource("2_tkkob")
+Width = 100
+Height = 100
+
+[sub_resource type="Resource" id="Resource_v8bm5"]
+script = ExtResource("5_3qa8x")
+mode = 0
+textures = [[ExtResource("6_andtf"), ExtResource("7_x6axp"), ExtResource("11_uvrct")], [ExtResource("8_jb2gq"), ExtResource("9_ff7x0"), null]]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8gbcr"]
+size = Vector3(75, 20, 75)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_f1guq"]
+size = Vector2(100, 100)
+subdivide_width = 25
+subdivide_depth = 25
+
+[node name="Level6" type="Node3D" node_paths=PackedStringArray("navigator_spawn_points", "player", "goals", "extraMarkerPositions")]
+script = ExtResource("1_7gly0")
+navigator_spawn_points = [NodePath("Start")]
+player = NodePath("Player")
+goals = [NodePath("Chest")]
+extraMarkerSprites = Array[Texture2D]([ExtResource("2_6ov3p")])
+extraMarkerPositions = [NodePath("Flag2")]
+nextLevel = "res://Scenes/Levels/level4.tscn"
+info_title = "Ten-Step Program"
+info_portrait = ExtResource("3_lo7l6")
+info_text = "Hi friend! It looks like that knight got trapped on an island. No way they can swim with that armor on!
+
+I think there's a broken bridge around here. If you can find it, I'll fix it for you! Don't worry about me, I can swim just fine."
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_yanan")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0.878784, -0.47722, 0, 0.47722, 0.878784, 1, 3.84128e-08, -2.086e-08, -0.00377464, -0.0199896, 0.00757551)
+shadow_enabled = true
+shadow_bias = 0.0
+shadow_reverse_cull_face = true
+
+[node name="Player" parent="." node_paths=PackedStringArray("player_canvas") instance=ExtResource("1_ad445")]
+transform = Transform3D(-0.834666, 0, -0.550758, 0, 1, 0, 0.550758, 0, -0.834666, 34.7858, 0.994233, 1.91341)
+LookLimit = null
+MouseSensitivity = null
+MouseBoundWhenNotCaptured = null
+Map = SubResource("Resource_5we7l")
+player_canvas = NodePath("../PlayerCanvas")
+
+[node name="HTerrain" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, 0, -12.5)
+script = ExtResource("3_c7gw5")
+map_scale = Vector3(0.781, 1, 0.781)
+_terrain_data = ExtResource("7_kxke3")
+chunk_size = 16
+collision_enabled = true
+collision_layer = 1
+collision_mask = 1
+shader_type = "Classic4"
+custom_shader = null
+custom_globalmap_shader = null
+texture_set = SubResource("Resource_v8bm5")
+render_layers = 1
+cast_shadow = 1
+shader_params/u_ground_uv_scale_per_texture = Vector4(10, 5, 20, 20)
+shader_params/u_depth_blending = true
+shader_params/u_triplanar = false
+shader_params/u_tile_reduction = Vector4(0, 1, 0, 0)
+shader_params/u_globalmap_blend_start = null
+shader_params/u_globalmap_blend_distance = null
+shader_params/u_colormap_opacity_per_texture = Vector4(1, 1, 1, 1)
+shader_params/u_specular = 0.5
+
+[node name="Chest" parent="." instance=ExtResource("13_rhw22")]
+transform = Transform3D(-0.564448, 0, 0.825468, 0, 1, 0, -0.825468, 0, -0.564448, 7.83287, 0.000106811, 54.691)
+
+[node name="Start" type="Marker3D" parent="."]
+transform = Transform3D(0.05007, 0, -0.998745, 0, 1, 0, 0.998745, 0, 0.05007, 7.60069, 1, 12.0256)
+script = ExtResource("14_nmrc2")
+navigator_scene = ExtResource("16_7r0ls")
+
+[node name="PlaybackCanvas" parent="." node_paths=PackedStringArray("level_controller") instance=ExtResource("17_0p3wf")]
+visible = false
+level_controller = NodePath("..")
+
+[node name="PlayerCanvas" parent="." instance=ExtResource("18_400c0")]
+
+[node name="Flag2" parent="." instance=ExtResource("20_121sd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.4167, -0.0444798, 6.33623)
+
+[node name="Flag3" parent="." instance=ExtResource("20_121sd")]
+transform = Transform3D(0.397196, 0, 0.917734, 0, 1, 0, -0.917734, 0, 0.397196, 62.0244, 0.818141, 29.5943)
+
+[node name="MapBounds" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MapBounds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.5, 10, 37.5)
+shape = SubResource("BoxShape3D_8gbcr")
+
+[node name="WaterPlane" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.5, -0.5, 37.5)
+mesh = SubResource("PlaneMesh_f1guq")
+surface_material_override/0 = ExtResource("20_ytfek")
+
+[node name="Tent" parent="." instance=ExtResource("21_kn6tq")]
+transform = Transform3D(0.0256361, 0, 0.999671, 0, 1, 0, -0.999671, 0, 0.0256361, 65.468, 0.988092, 29.4858)
+
+[node name="House" parent="." instance=ExtResource("22_v5niw")]
+transform = Transform3D(0.199334, 0, 0.979932, 0, 1, 0, -0.979932, 0, 0.199334, 26.7461, 4.76837e-07, 6.68673)

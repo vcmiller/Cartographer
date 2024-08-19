@@ -1,0 +1,18 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://krb4nj4k42qq"]
+
+[ext_resource type="Shader" uid="uid://wk50chbrqerf" path="res://Shaders/water_shader.tres" id="1_vbh4c"]
+[ext_resource type="Texture2D" uid="uid://b8dfc1187jil5" path="res://Textures/Water 0339normal.jpg" id="2_4mjy4"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_vbh4c")
+shader_parameter/BaseColor = Color(0, 0.0470588, 0.247059, 0.772549)
+shader_parameter/Metallic = 0.0
+shader_parameter/Roughness = 0.08
+shader_parameter/Vec1 = Vector2(1, 0.1)
+shader_parameter/TimeScale1 = 0.1
+shader_parameter/NormalMapScale = 3.0
+shader_parameter/Vec2 = Vector2(-1, -0.3)
+shader_parameter/TimeScale2 = 0.05
+shader_parameter/NormalStrength = 0.24
+shader_parameter/NormalMap = ExtResource("2_4mjy4")

@@ -6,7 +6,6 @@
 size = Vector3(3.5, 4, 3.5)
 
 [node name="House" type="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.5351, 0, 35.8617)
 
 [node name="Model" parent="." instance=ExtResource("1_f5gik")]
 
