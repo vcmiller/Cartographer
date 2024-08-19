@@ -29,8 +29,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 4.0
 offset_top = 4.0
-offset_right = 1596.0
-offset_bottom = 896.0
+offset_right = -4.0
+offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(225, 175)
@@ -134,13 +134,18 @@ value = 50.0
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 
+[node name="MainMenuButton" type="Button" parent="MarginContainer/Panel/VBoxContainer"]
+layout_mode = 2
+text = "Return to Main Menu"
+
 [node name="Button" type="Button" parent="MarginContainer/Panel/VBoxContainer"]
 layout_mode = 2
-text = "Save"
+text = "Continue"
 
 [connection signal="popup_hide" from="." to="." method="_on_popup_hide"]
 [connection signal="value_changed" from="MarginContainer/Panel/VBoxContainer/BGMSlider/BGMSlider" to="." method="_on_bgm_slider_value_changed"]
 [connection signal="value_changed" from="MarginContainer/Panel/VBoxContainer/AmbienceSlider/AmbienceSlider" to="." method="_on_ambience_slider_value_changed"]
 [connection signal="value_changed" from="MarginContainer/Panel/VBoxContainer/SFXSlider/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
 [connection signal="value_changed" from="MarginContainer/Panel/VBoxContainer/MouseSensitivity/SensitivitySlider" to="." method="_on_sensitivity_slider_value_changed"]
+[connection signal="pressed" from="MarginContainer/Panel/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
 [connection signal="pressed" from="MarginContainer/Panel/VBoxContainer/Button" to="." method="hide"]
