@@ -1,13 +1,62 @@
-[gd_scene load_steps=10 format=3 uid="uid://dkv2gdruwmqqp"]
+[gd_scene load_steps=16 format=3 uid="uid://dkv2gdruwmqqp"]
 
 [ext_resource type="Script" path="res://playback_canvas.gd" id="1_btobm"]
 [ext_resource type="AudioStream" uid="uid://hj5lgujb8we2" path="res://Audio/413203__joepayne__clean-and-pompous-fanfare-trumpet.mp3" id="2_1g7wd"]
 [ext_resource type="Texture2D" uid="uid://dddaley1lt2ou" path="res://Textures/check-mark.png" id="2_7rfu6"]
 [ext_resource type="PackedScene" path="res://volume_parasite.tscn" id="3_jdxwn"]
 [ext_resource type="FontFile" uid="uid://cqscieat857g1" path="res://Fonts/CONSTAN.TTF" id="3_mpdu6"]
+[ext_resource type="Texture2D" uid="uid://dlth21b34erir" path="res://Textures/skull.png" id="3_to53w"]
 [ext_resource type="StyleBox" uid="uid://drvsm6ee57htw" path="res://paper_style.tres" id="5_1yy56"]
 [ext_resource type="Texture2D" uid="uid://clnck4bwsnvc7" path="res://Textures/treasure-map.png" id="6_fkwu7"]
 [ext_resource type="Texture2D" uid="uid://ycvbqes74o86" path="res://Textures/star.png" id="7_ufuns"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uyx4x"]
+bg_color = Color(0.196078, 0.196078, 0.196078, 1)
+border_color = Color(0.101961, 0.101961, 0.101961, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vo1y"]
+bg_color = Color(0.101961, 0.101961, 0.101961, 1)
+border_color = Color(0.101961, 0.101961, 0.101961, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m0lb6"]
+bg_color = Color(0.196078, 0.196078, 0.196078, 1)
+border_color = Color(0.101961, 0.101961, 0.101961, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_48d41"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.196078, 0.196078, 0.196078, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wvryj"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.101961, 0.101961, 0.101961, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [sub_resource type="FontVariation" id="FontVariation_h5tcq"]
 base_font = ExtResource("3_mpdu6")
@@ -43,12 +92,12 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="HBoxContainer/Left/TL_Parent/TL"]
 handle_input_locally = false
-size = Vector2i(798, 448)
+size = Vector2i(2, 2)
 render_target_update_mode = 4
 
 [node name="CameraTL" type="Camera3D" parent="HBoxContainer/Left/TL_Parent/TL/SubViewport"]
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Left/TL_Parent"]
+[node name="CheckMark" type="TextureRect" parent="HBoxContainer/Left/TL_Parent"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 1
 anchors_preset = 8
@@ -63,6 +112,24 @@ offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_7rfu6")
+expand_mode = 1
+
+[node name="Skull" type="TextureRect" parent="HBoxContainer/Left/TL_Parent"]
+modulate = Color(0.713726, 0, 0, 1)
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_to53w")
 expand_mode = 1
 
 [node name="BL_Parent" type="Control" parent="HBoxContainer/Left"]
@@ -81,12 +148,12 @@ stretch = true
 
 [node name="SubViewport2" type="SubViewport" parent="HBoxContainer/Left/BL_Parent/BL"]
 handle_input_locally = false
-size = Vector2i(798, 448)
+size = Vector2i(2, 2)
 render_target_update_mode = 4
 
 [node name="CameraBL" type="Camera3D" parent="HBoxContainer/Left/BL_Parent/BL/SubViewport2"]
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Left/BL_Parent"]
+[node name="CheckMark" type="TextureRect" parent="HBoxContainer/Left/BL_Parent"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 1
 anchors_preset = 8
@@ -101,6 +168,24 @@ offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_7rfu6")
+expand_mode = 1
+
+[node name="Skull" type="TextureRect" parent="HBoxContainer/Left/BL_Parent"]
+modulate = Color(0.713726, 0, 0, 1)
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_to53w")
 expand_mode = 1
 
 [node name="Right" type="VBoxContainer" parent="HBoxContainer"]
@@ -123,12 +208,12 @@ stretch = true
 
 [node name="SubViewport3" type="SubViewport" parent="HBoxContainer/Right/TR_Parent/TR"]
 handle_input_locally = false
-size = Vector2i(798, 448)
+size = Vector2i(2, 2)
 render_target_update_mode = 4
 
 [node name="CameraTR" type="Camera3D" parent="HBoxContainer/Right/TR_Parent/TR/SubViewport3"]
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Right/TR_Parent"]
+[node name="CheckMark" type="TextureRect" parent="HBoxContainer/Right/TR_Parent"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 1
 anchors_preset = 8
@@ -143,6 +228,24 @@ offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_7rfu6")
+expand_mode = 1
+
+[node name="Skull" type="TextureRect" parent="HBoxContainer/Right/TR_Parent"]
+modulate = Color(0.713726, 0, 0, 1)
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_to53w")
 expand_mode = 1
 
 [node name="BR_Parent" type="Control" parent="HBoxContainer/Right"]
@@ -161,12 +264,12 @@ stretch = true
 
 [node name="SubViewport4" type="SubViewport" parent="HBoxContainer/Right/BR_Parent/BR"]
 handle_input_locally = false
-size = Vector2i(798, 448)
+size = Vector2i(2, 2)
 render_target_update_mode = 4
 
 [node name="CameraBR" type="Camera3D" parent="HBoxContainer/Right/BR_Parent/BR/SubViewport4"]
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Right/BR_Parent"]
+[node name="CheckMark" type="TextureRect" parent="HBoxContainer/Right/BR_Parent"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 1
 anchors_preset = 8
@@ -183,38 +286,41 @@ grow_vertical = 2
 texture = ExtResource("2_7rfu6")
 expand_mode = 1
 
-[node name="Retry" type="Button" parent="."]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -1246.0
-offset_top = -129.0
-offset_right = -827.0
-offset_bottom = -10.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_font_sizes/font_size = 81
-text = "Retry"
-
-[node name="FuckLabel" type="Label" parent="."]
-visible = false
+[node name="Skull" type="TextureRect" parent="HBoxContainer/Right/BR_Parent"]
+modulate = Color(0.713726, 0, 0, 1)
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -326.0
-offset_top = -174.5
-offset_right = 326.0
-offset_bottom = 174.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 256
-text = "FUCK"
-horizontal_alignment = 1
-vertical_alignment = 1
+texture = ExtResource("3_to53w")
+expand_mode = 1
+
+[node name="Retry" type="Button" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -108.5
+offset_top = -105.63
+offset_right = 108.5
+offset_bottom = -20.63
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.635294, 0.576471, 0.533333, 1)
+theme_override_font_sizes/font_size = 50
+theme_override_styles/hover = SubResource("StyleBoxFlat_uyx4x")
+theme_override_styles/normal = SubResource("StyleBoxFlat_5vo1y")
+text = "Retry"
 
 [node name="TextureRect" type="TextureRect" parent="."]
 unique_name_in_owner = true
@@ -228,6 +334,7 @@ stream = ExtResource("2_1g7wd")
 volume_type = 2
 
 [node name="WinScreen" type="Panel" parent="."]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -273,14 +380,37 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -100.0
+offset_left = 5.0
 offset_top = -72.0
-offset_right = 100.0
+offset_right = 205.0
 offset_bottom = -22.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_colors/font_color = Color(0.635294, 0.576471, 0.533333, 1)
 theme_override_font_sizes/font_size = 25
+theme_override_styles/hover = SubResource("StyleBoxFlat_m0lb6")
+theme_override_styles/normal = SubResource("StyleBoxFlat_5vo1y")
 text = "Next Level"
+
+[node name="RetryButton" type="Button" parent="WinScreen/Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -205.0
+offset_top = -72.0
+offset_right = -5.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_hover_color = Color(0.195545, 0.195545, 0.195545, 1)
+theme_override_colors/font_color = Color(0.101961, 0.101961, 0.101961, 1)
+theme_override_font_sizes/font_size = 25
+theme_override_styles/hover = SubResource("StyleBoxFlat_48d41")
+theme_override_styles/normal = SubResource("StyleBoxFlat_wvryj")
+text = "Retry Level"
 
 [node name="TextureRect" type="TextureRect" parent="WinScreen/Panel"]
 layout_mode = 1
@@ -317,6 +447,7 @@ expand_mode = 1
 
 [node name="Star1" type="TextureRect" parent="WinScreen/Panel/StarParent1"]
 self_modulate = Color(1, 0.788235, 0, 1)
+z_index = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -354,6 +485,7 @@ expand_mode = 1
 
 [node name="Star2" type="TextureRect" parent="WinScreen/Panel/StarParent2"]
 self_modulate = Color(1, 0.788235, 0, 1)
+z_index = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -389,6 +521,7 @@ expand_mode = 1
 
 [node name="Star3" type="TextureRect" parent="WinScreen/Panel/StarParent3"]
 self_modulate = Color(1, 0.788235, 0, 1)
+z_index = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -396,9 +529,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -13.0
-offset_top = -14.77
+offset_top = -13.0
 offset_right = 13.0
-offset_bottom = 11.23
+offset_bottom = 13.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(13, 13)
@@ -421,6 +554,7 @@ theme_override_font_sizes/font_size = 20
 text = "Attempts: 4"
 
 [node name="NewBestLabel" type="Label" parent="WinScreen/Panel"]
+z_index = 2
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -444,3 +578,4 @@ text = "New Best!"
 
 [connection signal="pressed" from="Retry" to="." method="retry"]
 [connection signal="pressed" from="WinScreen/Panel/AdvanceButton" to="." method="_on_next_button_pressed"]
+[connection signal="pressed" from="WinScreen/Panel/RetryButton" to="." method="reset"]

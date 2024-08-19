@@ -55,6 +55,8 @@ info_text = "Welcome to Cartographomancer! in this game you will draw maps to he
 In this level, you'll learn to draw the map. Normally, you'll need to measure spaces yourself, but for now, the mountains in this area are marked out with red flags. Use the black marker to color in the space between the flags, then press \"Submit Map\" to see how you did! If the adventurer doesn't make it to the end, you can retry by pressing the \"Reset\" button.
 
 If you close the map, you can reopen it by presseing Tab."
+attemps_for_3_stars = 1
+attemps_for_2_stars = 2
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_yanan")

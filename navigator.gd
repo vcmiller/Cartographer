@@ -126,7 +126,9 @@ func vec2i(from: Vector3): return Vector2i(roundi(from.x), roundi(from.z))
 func vec3(from: Vector2i): return Vector3(from.x,position.y,from.y)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:  
+func _process(_delta: float) -> void:
+	if not is_on_floor():
+		velocity += get_gravity() * _delta
 	if !map.markersPlaced[destIndex]: return
 	thoughtBubbleNoDest.hide()
 	elapsed += _delta
@@ -166,7 +168,9 @@ func _process(_delta: float) -> void:
 		#var dist_1 = position.distance_to(vec3(path[1]))
 		target_pos = lerp(vec3(path[0]), vec3(path[1]), sqrt(2) - dist_0)
 	#position = position.move_toward(target_pos, 10 * delta)
-	velocity = position.direction_to(target_pos) * SPEED #min(position.distance_to(target_pos),  10)
+	var desiredVel = position.direction_to(target_pos) * SPEED #min(position.distance_to(target_pos),  10)
+	desiredVel.y = velocity.y
+	velocity = desiredVel
 	if velocity.length_squared() > 0.1:
 		var dir = velocity
 		dir.y = 0

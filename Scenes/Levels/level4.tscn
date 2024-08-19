@@ -61,6 +61,8 @@ info_text = "Watch out! There's a dragon lurking around these parts, but we don'
 In addition to mapping out cliffs and the dragon's treasure, make sure to drop a marker on the dragon itself so the adventurer can avoid it!
 
 Fortunately, you remembered your dragon repellant spray, so it won't bother you. Others might not be so lucky..."
+attemps_for_3_stars = 5
+attemps_for_2_stars = 10
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_yanan")

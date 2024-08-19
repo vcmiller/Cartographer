@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cpyuibv7in8lg"]
+[gd_scene load_steps=18 format=3 uid="uid://cpyuibv7in8lg"]
 
 [ext_resource type="Script" path="res://player_canvas.gd" id="1_h22vk"]
 [ext_resource type="Texture2D" uid="uid://kgme0al5qkto" path="res://Textures/maps.png" id="2_n7pw8"]
@@ -22,11 +22,35 @@ corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o6o4c"]
+bg_color = Color(0.196078, 0.196078, 0.196078, 1)
+border_color = Color(0.101961, 0.101961, 0.101961, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8hili"]
+bg_color = Color(0.101961, 0.101961, 0.101961, 1)
+border_color = Color(0.101961, 0.101961, 0.101961, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
 [sub_resource type="FontVariation" id="FontVariation_qd10m"]
 base_font = ExtResource("8_5sq87")
 
 [sub_resource type="FontVariation" id="FontVariation_xclm2"]
 base_font = ExtResource("8_5sq87")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1rgry"]
+bg_color = Color(0.196078, 0.196078, 0.196078, 1)
+border_color = Color(0.101961, 0.101961, 0.101961, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kp0fy"]
 texture = ExtResource("9_uj8jv")
@@ -106,19 +130,28 @@ theme_override_constants/separation = 20
 [node name="Info" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.635294, 0.576471, 0.533333, 1)
 theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxFlat_o6o4c")
+theme_override_styles/normal = SubResource("StyleBoxFlat_8hili")
 text = "Level Info"
 
 [node name="Submit" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.635294, 0.576471, 0.533333, 1)
 theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxFlat_o6o4c")
+theme_override_styles/normal = SubResource("StyleBoxFlat_8hili")
 text = "Submit Map"
 
 [node name="Close" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.635294, 0.576471, 0.533333, 1)
 theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxFlat_o6o4c")
+theme_override_styles/normal = SubResource("StyleBoxFlat_8hili")
 text = "Close Map"
 
 [node name="InfoScreen" type="Panel" parent="."]
@@ -206,10 +239,11 @@ layout_mode = 2
 [node name="CloseButton" type="Button" parent="InfoScreen/Panel/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.635294, 0.572549, 0.533333, 1)
 theme_override_fonts/font = ExtResource("8_5sq87")
 theme_override_font_sizes/font_size = 26
-theme_override_styles/hover = SubResource("StyleBoxTexture_kp0fy")
-theme_override_styles/normal = SubResource("StyleBoxTexture_gvhfw")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1rgry")
+theme_override_styles/normal = SubResource("StyleBoxFlat_8hili")
 text = "Close"
 
 [node name="Label" type="Label" parent="InfoScreen/Panel/VBoxContainer/HBoxContainer"]

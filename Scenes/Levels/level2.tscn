@@ -56,6 +56,8 @@ There are also some cliffs that are not in the flagged area, so you'll need to a
 To move around, use the W A S D keys and the mouse to look around (when not holding the map). From now on, you'll also have access to a compass! Switch items using the mouse wheel or number keys, or switch to the map with Tab.
 
 Be aware that you won't start in the same corner of the map every level! Use the compass to figure out where you are in relation to the map."
+attemps_for_3_stars = 2
+attemps_for_2_stars = 4
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_yanan")
