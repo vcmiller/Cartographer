@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://bsw3mpdjch04c"]
+[gd_scene load_steps=5 format=3 uid="uid://bsw3mpdjch04c"]
 
 [ext_resource type="Theme" uid="uid://b3jfopflobcuo" path="res://ui_theme.tres" id="1_nvutc"]
 [ext_resource type="Script" path="res://settings_popup.gd" id="2_g1ghg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ruis7"]
+bg_color = Color(0.18, 0.18, 0.18, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_eq7y1"]
 font_size = 32
@@ -10,83 +13,134 @@ shadow_color = Color(0, 0, 0, 1)
 
 [node name="SettingsPopup" type="PopupPanel"]
 auto_translate_mode = 1
+transparent_bg = true
 title = "Paused"
 initial_position = 1
-size = Vector2i(544, 254)
+size = Vector2i(1600, 900)
 visible = true
+transparent = true
 theme = ExtResource("1_nvutc")
 script = ExtResource("2_g1ghg")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="Panel" type="Panel" parent="."]
+self_modulate = Color(1, 1, 1, 0.0352941)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 offset_left = 4.0
 offset_top = 4.0
-offset_right = 540.0
-offset_bottom = 250.0
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
+offset_right = 1596.0
+offset_bottom = 896.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(225, 175)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 1596.0
+offset_bottom = 896.0
+theme_override_constants/margin_left = 512
+theme_override_constants/margin_top = 256
+theme_override_constants/margin_right = 512
+theme_override_constants/margin_bottom = 256
+
+[node name="Panel" type="Panel" parent="MarginContainer"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ruis7")
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -248.0
+offset_top = -115.0
+offset_right = 248.0
+offset_bottom = 115.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="MarginContainer/Panel/VBoxContainer"]
 layout_mode = 2
 text = "Paused"
 label_settings = SubResource("LabelSettings_eq7y1")
 horizontal_alignment = 1
 
-[node name="BGMSlider" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="BGMSlider" type="HBoxContainer" parent="MarginContainer/Panel/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 64
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/BGMSlider"]
+[node name="Label" type="Label" parent="MarginContainer/Panel/VBoxContainer/BGMSlider"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Background Volume"
 
-[node name="BGMSlider" type="HSlider" parent="MarginContainer/VBoxContainer/BGMSlider"]
+[node name="BGMSlider" type="HSlider" parent="MarginContainer/Panel/VBoxContainer/BGMSlider"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 value = 50.0
 
-[node name="AmbienceSlider" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="AmbienceSlider" type="HBoxContainer" parent="MarginContainer/Panel/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 64
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/AmbienceSlider"]
+[node name="Label" type="Label" parent="MarginContainer/Panel/VBoxContainer/AmbienceSlider"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Ambience Volume"
 
-[node name="AmbienceSlider" type="HSlider" parent="MarginContainer/VBoxContainer/AmbienceSlider"]
+[node name="AmbienceSlider" type="HSlider" parent="MarginContainer/Panel/VBoxContainer/AmbienceSlider"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 value = 50.0
 
-[node name="SFXSlider" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="SFXSlider" type="HBoxContainer" parent="MarginContainer/Panel/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 64
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/SFXSlider"]
+[node name="Label" type="Label" parent="MarginContainer/Panel/VBoxContainer/SFXSlider"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "SFX Volume"
 
-[node name="SFXSlider" type="HSlider" parent="MarginContainer/VBoxContainer/SFXSlider"]
+[node name="SFXSlider" type="HSlider" parent="MarginContainer/Panel/VBoxContainer/SFXSlider"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 value = 50.0
 
-[node name="Control" type="Control" parent="MarginContainer/VBoxContainer"]
+[node name="Control" type="Control" parent="MarginContainer/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="MouseSensitivity" type="HBoxContainer" parent="MarginContainer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 64
+
+[node name="Label" type="Label" parent="MarginContainer/Panel/VBoxContainer/MouseSensitivity"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Mouse Sensitivity"
+
+[node name="SensitivitySlider" type="HSlider" parent="MarginContainer/Panel/VBoxContainer/MouseSensitivity"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+value = 50.0
+
+[node name="Control2" type="Control" parent="MarginContainer/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="MarginContainer/Panel/VBoxContainer"]
 layout_mode = 2
 text = "Save"
 
-[connection signal="value_changed" from="MarginContainer/VBoxContainer/BGMSlider/BGMSlider" to="." method="_on_bgm_slider_value_changed"]
-[connection signal="value_changed" from="MarginContainer/VBoxContainer/AmbienceSlider/AmbienceSlider" to="." method="_on_ambience_slider_value_changed"]
-[connection signal="value_changed" from="MarginContainer/VBoxContainer/SFXSlider/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Button" to="." method="hide"]
+[connection signal="popup_hide" from="." to="." method="_on_popup_hide"]
+[connection signal="value_changed" from="MarginContainer/Panel/VBoxContainer/BGMSlider/BGMSlider" to="." method="_on_bgm_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/Panel/VBoxContainer/AmbienceSlider/AmbienceSlider" to="." method="_on_ambience_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/Panel/VBoxContainer/SFXSlider/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/Panel/VBoxContainer/MouseSensitivity/SensitivitySlider" to="." method="_on_sensitivity_slider_value_changed"]
+[connection signal="pressed" from="MarginContainer/Panel/VBoxContainer/Button" to="." method="hide"]

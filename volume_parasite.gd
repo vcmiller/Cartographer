@@ -19,5 +19,4 @@ func _ready() -> void:
 	update_volume(50)
 
 func update_volume(value):
-	audio_player.volume_db = linear_to_db(db_to_linear(initial_vol) * value/100)
-	printt(name, value,audio_player.volume_db)
+	audio_player.volume_db = linear_to_db(db_to_linear(initial_vol) * value/100) 

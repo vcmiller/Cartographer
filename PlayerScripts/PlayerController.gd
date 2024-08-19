@@ -27,6 +27,7 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	eulerAngles = CameraNode.global_rotation
 	if player_canvas: item_manager.selected_item_changed.connect(player_canvas.on_selected_item_changed)
+	SettingsPopup.sensitivity_value_changed.connect(on_sensitivity_changed)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -68,7 +69,8 @@ func _process(delta: float) -> void:
 		#eulerAngles.y += rotDelta.y
 		#CameraNode.rotation = Vector3(eulerAngles.x, 0, 0)
 		#rotation = Vector3(0, eulerAngles.y, 0)
-
+func on_sensitivity_changed(value):
+	MouseSensitivity = value / 100
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
