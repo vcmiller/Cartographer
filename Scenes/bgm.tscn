@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dp8t1xl1cx433"]
+[gd_scene load_steps=5 format=3 uid="uid://dp8t1xl1cx433"]
 
 [ext_resource type="AudioStream" uid="uid://4g87c1nql426" path="res://Audio/743474__gregorquendel__dvorak-humoresques-op-101-b-187-no.mp3" id="1_rt0ww"]
 [ext_resource type="AudioStream" uid="uid://crqw8bc315l0c" path="res://Audio/405246__tferrino__ambient-mountain-creek-ms-48k24b.wav" id="2_8k1ht"]
 [ext_resource type="AudioStream" uid="uid://cr4ncb6xkfdj8" path="res://Audio/733782__salome_lubczanski__ambient-summer-field-french-mountain-birds-stereo.wav" id="3_4ubkr"]
+[ext_resource type="PackedScene" uid="uid://pmx552qq7m24" path="res://volume_parasite.tscn" id="3_xrdvh"]
 
 [node name="BGM" type="AudioStreamPlayer"]
 stream = ExtResource("1_rt0ww")
@@ -12,6 +13,14 @@ autoplay = true
 stream = ExtResource("2_8k1ht")
 autoplay = true
 
+[node name="VolumeParasite" parent="StreamStream" instance=ExtResource("3_xrdvh")]
+volume_type = 1
+
 [node name="BirdStream" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_4ubkr")
 autoplay = true
+
+[node name="VolumeParasite" parent="BirdStream" instance=ExtResource("3_xrdvh")]
+volume_type = 1
+
+[node name="VolumeParasite" parent="." instance=ExtResource("3_xrdvh")]

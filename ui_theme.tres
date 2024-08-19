@@ -1,0 +1,8 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://b3jfopflobcuo"]
+
+[ext_resource type="FontFile" uid="uid://71eux0qcr7v5" path="res://Macondo-Regular.ttf" id="1_0bjxw"]
+
+[resource]
+Button/font_sizes/font_size = 32
+Button/fonts/font = ExtResource("1_0bjxw")
+Label/fonts/font = ExtResource("1_0bjxw")

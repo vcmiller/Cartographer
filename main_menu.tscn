@@ -1,0 +1,152 @@
+[gd_scene load_steps=22 format=3 uid="uid://dvhs0i6dfnvuv"]
+
+[ext_resource type="Texture2D" uid="uid://cl4hvidr4g456" path="res://Textures/cartographomancerlogo.png" id="1_mci62"]
+[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="1_ptx06"]
+[ext_resource type="Script" path="res://main_menu.gd" id="1_yoyxs"]
+[ext_resource type="Theme" uid="uid://b3jfopflobcuo" path="res://ui_theme.tres" id="2_cvubr"]
+[ext_resource type="Resource" path="res://Scenes/Levels/level4/data.hterrain" id="2_f0jt8"]
+[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_texture_set.gd" id="3_2xltm"]
+[ext_resource type="Texture2D" uid="uid://dbtnnv53ap7d7" path="res://Textures/grass_1_basecolor-1K.png" id="4_qqy4o"]
+[ext_resource type="Texture2D" uid="uid://doeyfpmulhmiq" path="res://Textures/Cliff_basecolor.png" id="5_blmv8"]
+[ext_resource type="Texture2D" uid="uid://dwdxtpum8euki" path="res://Textures/1K-snow_3_Base Color.jpg" id="6_r4hvq"]
+[ext_resource type="Texture2D" uid="uid://7m5c5uxiaa3m" path="res://Textures/grass_1_normal-1K.png" id="7_ovltv"]
+[ext_resource type="Texture2D" uid="uid://dgqwjkwa2ckuq" path="res://Textures/Cliff_normal.png" id="8_f6hi0"]
+[ext_resource type="PackedScene" path="res://Scenes/house.tscn" id="9_maeh1"]
+[ext_resource type="PackedScene" uid="uid://7jfrr44c1tir" path="res://Scenes/chest.tscn" id="10_xc7eb"]
+[ext_resource type="PackedScene" path="res://Scenes/dragon.tscn" id="11_n31po"]
+[ext_resource type="Script" path="res://noise_jiggle.gd" id="12_ptxol"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_a5k6u"]
+
+[sub_resource type="Sky" id="Sky_gagda"]
+sky_material = SubResource("ProceduralSkyMaterial_a5k6u")
+
+[sub_resource type="Environment" id="Environment_yanan"]
+background_mode = 2
+sky = SubResource("Sky_gagda")
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_gyx8s"]
+dof_blur_far_enabled = true
+
+[sub_resource type="Resource" id="Resource_v8bm5"]
+script = ExtResource("3_2xltm")
+mode = 0
+textures = [[ExtResource("4_qqy4o"), ExtResource("5_blmv8"), ExtResource("6_r4hvq")], [ExtResource("7_ovltv"), ExtResource("8_f6hi0"), null]]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_drl34"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yoyxs")
+
+[node name="Level4" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Level4"]
+environment = SubResource("Environment_yanan")
+camera_attributes = SubResource("CameraAttributesPractical_gyx8s")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Level4"]
+transform = Transform3D(-0.183951, 0.617247, 0.764963, -6.80362e-08, -0.778243, 0.627963, 0.982935, 0.115515, 0.143159, -0.00377464, -0.0199896, 0.00757551)
+light_energy = 0.36
+shadow_enabled = true
+shadow_reverse_cull_face = true
+
+[node name="HTerrain" type="Node3D" parent="Level4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -24)
+script = ExtResource("1_ptx06")
+map_scale = Vector3(0.781, 1, 0.781)
+_terrain_data = ExtResource("2_f0jt8")
+chunk_size = 16
+collision_enabled = true
+collision_layer = 1
+collision_mask = 1
+shader_type = "Classic4"
+custom_shader = null
+custom_globalmap_shader = null
+texture_set = SubResource("Resource_v8bm5")
+render_layers = 1
+cast_shadow = 1
+shader_params/u_ground_uv_scale_per_texture = Vector4(10, 5, 5.005, 20)
+shader_params/u_depth_blending = true
+shader_params/u_triplanar = false
+shader_params/u_tile_reduction = Vector4(0, 1, 0, 0)
+shader_params/u_globalmap_blend_start = null
+shader_params/u_globalmap_blend_distance = null
+shader_params/u_colormap_opacity_per_texture = Vector4(1, 1, 1, 1)
+shader_params/u_specular = 0.5
+
+[node name="House" parent="Level4" instance=ExtResource("9_maeh1")]
+transform = Transform3D(-0.812531, 0, 0.582917, 0, 1, 0, -0.582917, 0, -0.812531, 59.7761, -3.8147e-06, 41.5537)
+
+[node name="House3" parent="Level4" instance=ExtResource("9_maeh1")]
+transform = Transform3D(-0.86269, 0, -0.505733, 0, 1, 0, 0.505733, 0, -0.86269, 69.749, -3.8147e-06, 41.9835)
+
+[node name="House2" parent="Level4" instance=ExtResource("9_maeh1")]
+transform = Transform3D(-0.999579, 0, 0.0290204, 0, 1, 0, -0.0290204, 0, -0.999579, 65.1548, -3.8147e-06, 43.6662)
+
+[node name="Chest" parent="Level4" instance=ExtResource("10_xc7eb")]
+transform = Transform3D(-0.0605606, 0, 0.998164, 0, 1, 0, -0.998164, 0, -0.0605606, 9.79081, 10.0247, 8.37394)
+
+[node name="Dragon" parent="Level4" instance=ExtResource("11_n31po")]
+transform = Transform3D(0.686199, 0, -0.727413, 0, 1, 0, 0.727413, 0, 0.686199, 30.6388, 4.23149, 17.5609)
+
+[node name="Camera3D" type="Camera3D" parent="Level4"]
+transform = Transform3D(-0.624537, -0.0802524, 0.776861, 0, 0.994707, 0.102757, -0.780995, 0.0641753, -0.621231, 70.6327, 5.31531, 29.2865)
+script = ExtResource("12_ptxol")
+noise_tex = SubResource("FastNoiseLite_drl34")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_mci62")
+
+[node name="TextureRect2" type="TextureRect" parent="CenterContainer/VBoxContainer/TextureRect"]
+modulate = Color(0, 0, 0, 1)
+show_behind_parent = true
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 671.0
+offset_bottom = 194.0
+texture = ExtResource("1_mci62")
+
+[node name="NewGame" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("2_cvubr")
+text = "New Game"
+
+[node name="LevelSelect" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("2_cvubr")
+text = "Level Select"
+
+[node name="Settings" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("2_cvubr")
+text = "Settings"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/NewGame" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/LevelSelect" to="." method="_on_level_select_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]

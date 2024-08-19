@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Cartographer"
-run/main_scene="res://Scenes/Levels/level1.tscn"
+run/main_scene="res://main_menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 MapGridHandler="*res://map_grid_handler.gd"
 Bgm="*res://Scenes/bgm.tscn"
+SettingsPopup="*res://settings_popup.tscn"
 
 [display]
 

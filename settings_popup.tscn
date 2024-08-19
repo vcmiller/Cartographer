@@ -1,0 +1,92 @@
+[gd_scene load_steps=4 format=3 uid="uid://bsw3mpdjch04c"]
+
+[ext_resource type="Theme" uid="uid://b3jfopflobcuo" path="res://ui_theme.tres" id="1_nvutc"]
+[ext_resource type="Script" path="res://settings_popup.gd" id="2_g1ghg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_eq7y1"]
+font_size = 32
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="SettingsPopup" type="PopupPanel"]
+auto_translate_mode = 1
+title = "Paused"
+initial_position = 1
+size = Vector2i(544, 254)
+visible = true
+theme = ExtResource("1_nvutc")
+script = ExtResource("2_g1ghg")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 540.0
+offset_bottom = 250.0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Paused"
+label_settings = SubResource("LabelSettings_eq7y1")
+horizontal_alignment = 1
+
+[node name="BGMSlider" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 64
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/BGMSlider"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Background Volume"
+
+[node name="BGMSlider" type="HSlider" parent="MarginContainer/VBoxContainer/BGMSlider"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+value = 50.0
+
+[node name="AmbienceSlider" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 64
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/AmbienceSlider"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ambience Volume"
+
+[node name="AmbienceSlider" type="HSlider" parent="MarginContainer/VBoxContainer/AmbienceSlider"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+value = 50.0
+
+[node name="SFXSlider" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 64
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/SFXSlider"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "SFX Volume"
+
+[node name="SFXSlider" type="HSlider" parent="MarginContainer/VBoxContainer/SFXSlider"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+value = 50.0
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Save"
+
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/BGMSlider/BGMSlider" to="." method="_on_bgm_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/AmbienceSlider/AmbienceSlider" to="." method="_on_ambience_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/SFXSlider/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Button" to="." method="hide"]
