@@ -15,6 +15,11 @@ func spawn_navigator(map: EditableMap, level: LevelController, goal: Goal, goalI
 	navigator_inst.create_grid(map)
 	
 	for p in special_props:
-		navigator_inst.Model.get_node(p).show()
+		var node = navigator_inst.Model.get_node(p)
+		node.show()
+		var t = node.global_transform
+		navigator_inst.Model.remove_child(node)
+		navigator_inst.bodyAttach.add_child(node)
+		node.global_transform = t
 	
 	return navigator_inst

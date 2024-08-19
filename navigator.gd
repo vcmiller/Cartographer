@@ -62,6 +62,7 @@ func check_goal(hit_goal: Goal):
 	if hit_goal == goal:
 		hit_goal.die()
 		level_controller.succccess()
+		anim.play("SitDown")
 	elif hit_goal.is_hazard:
 		level_controller.fail()
 		is_dead = true
@@ -107,10 +108,10 @@ func randomize_mesh():
 		hairMat.albedo_color = hairColor
 		hair.set_surface_override_material(0, hairMat)
 		hair.show()
-		var transform = hair.global_transform
+		var t = hair.global_transform
 		Model.remove_child(hair)
 		bodyAttach.add_child(hair)
-		hair.global_transform = transform
+		hair.global_transform = t
 		
 	if rng.randf() < facialHairChance:
 		var facialHair = facialHairs[rng.randi_range(0, len(facialHairs) - 1)]

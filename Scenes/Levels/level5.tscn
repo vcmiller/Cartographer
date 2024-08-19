@@ -128,7 +128,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 10, 37.5)
 shape = SubResource("BoxShape3D_70al6")
 
 [node name="Dragon" parent="." instance=ExtResource("17_dwt5v")]
-transform = Transform3D(-0.872239, 0, 0.489078, 0, 1, 0, -0.489078, 0, -0.872239, 38.7339, 0, 36.5313)
+transform = Transform3D(-0.872239, 0, 0.489078, 0, 1, 0, -0.489078, 0, -0.872239, 39.2604, 0, 30.6186)
 
 [node name="Flag2" parent="." instance=ExtResource("18_jywsr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.8282, 0, 64.3789)
