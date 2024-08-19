@@ -67,6 +67,9 @@ shadow_reverse_cull_face = true
 
 [node name="Player" parent="." node_paths=PackedStringArray("player_canvas") instance=ExtResource("2_s5h3j")]
 transform = Transform3D(0.119565, 0, -0.992826, 0, 1, 0, 0.992826, 0, 0.119565, 5.16028, 0.994233, 37.7684)
+LookLimit = null
+MouseSensitivity = null
+MouseBoundWhenNotCaptured = null
 Map = SubResource("Resource_5we7l")
 player_canvas = NodePath("../PlayerCanvas")
 

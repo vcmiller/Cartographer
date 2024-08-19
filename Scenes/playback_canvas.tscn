@@ -1,9 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dkv2gdruwmqqp"]
+[gd_scene load_steps=9 format=3 uid="uid://dkv2gdruwmqqp"]
 
 [ext_resource type="Script" path="res://playback_canvas.gd" id="1_btobm"]
 [ext_resource type="AudioStream" uid="uid://hj5lgujb8we2" path="res://Audio/413203__joepayne__clean-and-pompous-fanfare-trumpet.mp3" id="2_1g7wd"]
-[ext_resource type="PackedScene" uid="uid://pmx552qq7m24" path="res://volume_parasite.tscn" id="3_jdxwn"]
 [ext_resource type="Texture2D" uid="uid://dddaley1lt2ou" path="res://Textures/check-mark.png" id="2_7rfu6"]
+[ext_resource type="PackedScene" path="res://volume_parasite.tscn" id="3_jdxwn"]
 [ext_resource type="FontFile" uid="uid://cqscieat857g1" path="res://Fonts/CONSTAN.TTF" id="3_mpdu6"]
 [ext_resource type="StyleBox" uid="uid://drvsm6ee57htw" path="res://paper_style.tres" id="5_1yy56"]
 [ext_resource type="Texture2D" uid="uid://clnck4bwsnvc7" path="res://Textures/treasure-map.png" id="6_fkwu7"]
@@ -221,6 +221,9 @@ offset_bottom = 40.0
 [node name="VictorySound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_1g7wd")
 
+[node name="VolumeParasite" parent="VictorySound" instance=ExtResource("3_jdxwn")]
+volume_type = 2
+
 [node name="WinScreen" type="Panel" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
@@ -308,9 +311,6 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("7_ufuns")
 expand_mode = 1
-
-[node name="VolumeParasite" parent="VictorySound" instance=ExtResource("3_jdxwn")]
-volume_type = 2
 
 [node name="Star1" type="TextureRect" parent="WinScreen/Panel/StarParent1"]
 self_modulate = Color(1, 0.788235, 0, 1)

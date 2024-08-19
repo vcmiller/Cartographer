@@ -139,7 +139,11 @@ func _process(_delta: float) -> void:
 	var path = grid.get_point_path(vec2i(position), dest2d, true)
 	
 	var target_pos := position
-	if len(path) < 2: return
+	if len(path) < 2:
+		thoughtBubble.show()
+		thoughtBubbleNoPath.show()
+		thoughtBubbleIcon.hide()
+		return
 	else:
 		var lastPos = path[-1]
 		if lastPos.distance_to(dest2d) > 2:
