@@ -47,9 +47,11 @@ func on_selected_item_changed(item: int):
 	
 func show_last_info():
 	info_screen.show()
+	SettingsPopup.enabled = false
 	
 func show_info(portrait: Texture2D, title: String, paragraph: String):
 	info_screen.show()
+	SettingsPopup.enabled = false
 	
 	portrait_box.texture = portrait
 	title_label.text = title
@@ -57,6 +59,9 @@ func show_info(portrait: Texture2D, title: String, paragraph: String):
 	
 func hide_info():
 	info_screen.hide()
+	await get_tree().create_timer(0.1).timeout
+	SettingsPopup.enabled = true
+	
 	
 func submit_map():
 	player.submit()

@@ -1,0 +1,95 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6vvcrc8yvo7d"]
+
+[ext_resource type="Script" path="res://level_select_button.gd" id="1_mw8ex"]
+[ext_resource type="Texture2D" uid="uid://ycvbqes74o86" path="res://Textures/star.png" id="2_mox1i"]
+
+[node name="Level1" type="VBoxContainer"]
+script = ExtResource("1_mw8ex")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+text = "Level 1"
+
+[node name="Stars" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="StarParent1" type="TextureRect" parent="Stars"]
+visible = false
+self_modulate = Color(0.171637, 0.171637, 0.171637, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("2_mox1i")
+expand_mode = 1
+
+[node name="Star1" type="TextureRect" parent="Stars/StarParent1"]
+self_modulate = Color(1, 0.788235, 0, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -13.0
+offset_top = -13.0
+offset_right = 13.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(13, 13)
+texture = ExtResource("2_mox1i")
+expand_mode = 1
+
+[node name="StarParent2" type="TextureRect" parent="Stars"]
+visible = false
+self_modulate = Color(0.171637, 0.171637, 0.171637, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("2_mox1i")
+expand_mode = 1
+
+[node name="Star1" type="TextureRect" parent="Stars/StarParent2"]
+self_modulate = Color(1, 0.788235, 0, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -13.0
+offset_top = -13.0
+offset_right = 13.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(13, 13)
+texture = ExtResource("2_mox1i")
+expand_mode = 1
+
+[node name="StarParent3" type="TextureRect" parent="Stars"]
+visible = false
+self_modulate = Color(0.171637, 0.171637, 0.171637, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("2_mox1i")
+expand_mode = 1
+
+[node name="Star1" type="TextureRect" parent="Stars/StarParent3"]
+self_modulate = Color(1, 0.788235, 0, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -13.0
+offset_top = -13.0
+offset_right = 13.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(13, 13)
+texture = ExtResource("2_mox1i")
+expand_mode = 1
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

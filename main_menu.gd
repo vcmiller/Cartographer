@@ -1,6 +1,7 @@
 extends Control
 
- 
+@onready var levels_to_select: HBoxContainer = $CenterContainer/VBoxContainer/LevelsToSelect
+
 
 
 func _on_new_game_pressed() -> void:
@@ -8,7 +9,12 @@ func _on_new_game_pressed() -> void:
 	pass # Replace with function body.
 
 
-func _on_level_select_pressed() -> void:
+func _on_level_select_pressed(toggled_on) -> void:
+	levels_to_select.visible = toggled_on
+	if toggled_on:
+		var tween = create_tween()
+		tween.tween_property(levels_to_select,"theme_override_constants/separation",12,0.1).from(-64)
+		tween.play()
 	pass # Replace with function body.
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dvhs0i6dfnvuv"]
+[gd_scene load_steps=23 format=3 uid="uid://dvhs0i6dfnvuv"]
 
 [ext_resource type="Texture2D" uid="uid://cl4hvidr4g456" path="res://Textures/cartographomancerlogo.png" id="1_mci62"]
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="1_ptx06"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://7jfrr44c1tir" path="res://Scenes/chest.tscn" id="10_xc7eb"]
 [ext_resource type="PackedScene" path="res://Scenes/dragon.tscn" id="11_n31po"]
 [ext_resource type="Script" path="res://noise_jiggle.gd" id="12_ptxol"]
+[ext_resource type="PackedScene" uid="uid://b6vvcrc8yvo7d" path="res://level_button.tscn" id="16_m3kik"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_a5k6u"]
 
@@ -138,7 +139,35 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("2_cvubr")
+toggle_mode = true
 text = "Level Select"
+
+[node name="LevelsToSelect" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("2_cvubr")
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="Level1" parent="CenterContainer/VBoxContainer/LevelsToSelect" instance=ExtResource("16_m3kik")]
+layout_mode = 2
+display_name = "Level 1"
+
+[node name="Level2" parent="CenterContainer/VBoxContainer/LevelsToSelect" instance=ExtResource("16_m3kik")]
+layout_mode = 2
+display_name = "Level 2"
+
+[node name="Level3" parent="CenterContainer/VBoxContainer/LevelsToSelect" instance=ExtResource("16_m3kik")]
+layout_mode = 2
+display_name = "Level 3"
+
+[node name="Level4" parent="CenterContainer/VBoxContainer/LevelsToSelect" instance=ExtResource("16_m3kik")]
+layout_mode = 2
+display_name = "Level 4"
+
+[node name="Level5" parent="CenterContainer/VBoxContainer/LevelsToSelect" instance=ExtResource("16_m3kik")]
+layout_mode = 2
+display_name = "Level 5"
 
 [node name="Settings" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
@@ -148,5 +177,5 @@ theme = ExtResource("2_cvubr")
 text = "Settings"
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/NewGame" to="." method="_on_new_game_pressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/LevelSelect" to="." method="_on_level_select_pressed"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/LevelSelect" to="." method="_on_level_select_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]

@@ -9,15 +9,18 @@ signal sensitivity_value_changed(value)
 @export var amb_volume= 50
 @export var sfx_volume= 50
 @export var sensitivity = 50
+@export var enabled = true
 
 var last_mouse_mode: Input.MouseMode
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("pause") and get_tree().current_scene.scene_file_path != "res://main_menu.tscn":
+	if Input.is_action_just_pressed("pause") \
+	and enabled \
+	and get_tree().current_scene.scene_file_path != "res://main_menu.tscn": 
 		show()
 		last_mouse_mode = Input.mouse_mode
-		Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE 
 
 func _on_bgm_slider_value_changed(value: float) -> void:
 	bgm_volume= value
