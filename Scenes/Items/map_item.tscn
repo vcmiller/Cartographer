@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://67kq4c7qivrh"]
+[gd_scene load_steps=39 format=3 uid="uid://67kq4c7qivrh"]
 
 [ext_resource type="Script" path="res://PlayerScripts/MapSurface.gd" id="1_bm0m2"]
 [ext_resource type="Material" uid="uid://c4u0te7x41n41" path="res://Materials/Map.tres" id="1_lpqoy"]
@@ -69,12 +69,23 @@ transparency = 1
 albedo_color = Color(0.147327, 0.368855, 0.0185969, 1)
 albedo_texture = ExtResource("6_dx62p")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mrp2h"]
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission = Color(0.619608, 0, 0, 1)
+
+[sub_resource type="TorusMesh" id="TorusMesh_mkiqg"]
+inner_radius = 0.015
+outer_radius = 0.025
+rings = 32
+ring_segments = 16
+
 [node name="MapItem" type="Node3D" node_paths=PackedStringArray("TargetMesh", "Collider", "WaterToolButton", "CliffToolButton", "EraserToolButton", "MarkerButtons", "MarkerButtonMeshes", "ToolParent", "FlagParent", "ToolModelParent", "MarkerCliff", "MarkerWater", "Eraser", "MarkerItem", "Scale")]
 transform = Transform3D(1, 0, 0, 0, 0.82806, 0.560639, 0, -0.560639, 0.82806, 0, -0.139, -1.067)
 script = ExtResource("1_bm0m2")
 TargetMesh = NodePath("Map")
 Collider = NodePath("Map/MapCollider")
-DrawSize = 0.1
+DrawSize = 0.033
 WaterToolButton = NodePath("ToolPalette/WaterToolButton")
 CliffToolButton = NodePath("ToolPalette/CliffToolButton")
 EraserToolButton = NodePath("ToolPalette/EraserToolButton")
@@ -285,7 +296,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_1q2rl")
 transform = Transform3D(1, 0, 0, 0, 0.0418582, -0.999124, 0, 0.999124, 0.0418582, 0, 0, 0)
 
 [node name="Cube" parent="3DTools/Eraser" index="0"]
-transform = Transform3D(-1, 2.06947e-08, 8.49381e-08, 5.19998e-08, 0.921823, 0.387612, -7.02763e-08, 0.387613, -0.921822, 0, 0, 0)
+transform = Transform3D(-1, 2.06947e-08, 8.49381e-08, 5.19998e-08, 0.921823, 0.387612, -7.02763e-08, 0.387613, -0.921822, -1.49012e-08, 0.00640718, 0.0204623)
 surface_material_override/0 = ExtResource("10_iu8h8")
 
 [node name="MarkerBlack" parent="3DTools" instance=ExtResource("10_o1gah")]
@@ -315,6 +326,12 @@ transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0.644682, 1.49012e-0
 sorting_offset = 101.0
 mesh = SubResource("QuadMesh_by8d8")
 surface_material_override/0 = SubResource("StandardMaterial3D_1q2rl")
+
+[node name="DrawSizeIndicator" type="MeshInstance3D" parent="3DTools"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.179384, -0.111628, 0.000356826)
+sorting_offset = 100.0
+material_override = SubResource("StandardMaterial3D_mrp2h")
+mesh = SubResource("TorusMesh_mkiqg")
 
 [node name="DrawingSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("19_tw3ry")

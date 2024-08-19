@@ -29,6 +29,9 @@ signal flag_marker_placed(index: int, position: Vector3)
 @onready var drawing_sound: AudioStreamPlayer = $DrawingSound
 @onready var erasing_sound: AudioStreamPlayer = $ErasingSound
 @onready var compass_quad: Node3D = $Compass
+@onready var draw_size_indicator: MeshInstance3D = $"3DTools/DrawSizeIndicator"
+
+var draw_size_mesh: TorusMesh;
 
 var material: ShaderMaterial
 var isPainting: bool
@@ -37,6 +40,7 @@ var highlightedButton: StaticBody3D
 var currentButton: StaticBody3D
 var currentToolModel: Node3D
 var map: EditableMap
+var draw_size_mul: int = 3
 
 var extraMarkerPositions: Array[Vector3]
 var extraMarkerSprites: Array[Texture2D]
@@ -74,6 +78,10 @@ func _ready() -> void:
 	ToolModelParent.remove_child(MarkerWater)
 	ToolModelParent.remove_child(MarkerCliff)
 	ToolModelParent.remove_child(MarkerItem)
+	
+	draw_size_mesh = draw_size_indicator.mesh as TorusMesh
+	ToolModelParent.remove_child(draw_size_indicator)
+	update_draw_size_indicator()
 	
 	for i in range(len(extraMarkerPositions)):
 		var localPos = WorldToMapSpace(extraMarkerPositions[i])
@@ -137,6 +145,11 @@ func _exit_tree() -> void:
 func _process(delta: float) -> void:
 	pass
 	
+func update_draw_size_indicator():
+	var radius = DrawSize * draw_size_mul * 0.5
+	draw_size_mesh.inner_radius = radius - .002
+	draw_size_mesh.outer_radius = radius + .002
+	
 func _unhandled_input(event: InputEvent):
 	var pressedThisFrame = false
 	if event.is_action_pressed("draw"):
@@ -157,6 +170,10 @@ func _unhandled_input(event: InputEvent):
 		isPainting = false
 		drawing_sound.stop()
 		erasing_sound.stop()
+		
+	if event.is_action_pressed("toggle_size"):
+		draw_size_mul = 4 - draw_size_mul
+		update_draw_size_indicator()
 			
 	if event is InputEventMouse:
 		var mouseEvent: InputEventMouse = event
@@ -171,6 +188,9 @@ func _unhandled_input(event: InputEvent):
 			if currentToolModel:
 				ToolModelParent.remove_child(currentToolModel)
 				currentToolModel = null
+			if draw_size_indicator.get_parent() == ToolModelParent:
+				ToolModelParent.remove_child(draw_size_indicator)
+				
 			return
 			
 		var newHighlightButton = null
@@ -185,6 +205,9 @@ func _unhandled_input(event: InputEvent):
 						currentToolModel = MarkerWater
 					EraserToolButton:
 						currentToolModel = Eraser
+						
+				if currentToolModel:
+					ToolModelParent.add_child(draw_size_indicator)
 				
 				var markerIndex = MarkerButtons.find(currentButton)
 				if markerIndex >= 0:
@@ -196,6 +219,7 @@ func _unhandled_input(event: InputEvent):
 					ToolModelParent.add_child(currentToolModel)
 			if currentToolModel:
 				currentToolModel.global_position = result.position
+				draw_size_indicator.global_position = result.position
 			if isPainting and [MarkerCliff,MarkerWater,Eraser].has(currentToolModel):
 				var localPoint = TargetMesh.to_local(result.position)
 				var imagePoint = Vector2(localPoint.x, localPoint.y)
@@ -210,7 +234,7 @@ func _unhandled_input(event: InputEvent):
 				if currentButton == EraserToolButton:
 					color = Color.BLACK
 					
-				var drawSize = ceili(map.Height * DrawSize)
+				var drawSize = ceili(map.Height * DrawSize * draw_size_mul)
 				var delta = drawSize * 0.25
 				var offset = imagePoint - lastPosition
 				if not pressedThisFrame and offset.length_squared() > delta * delta:
@@ -237,6 +261,8 @@ func _unhandled_input(event: InputEvent):
 			if currentToolModel:
 				ToolModelParent.remove_child(currentToolModel)
 				currentToolModel = null
+			if draw_size_indicator.get_parent() == ToolModelParent:
+				ToolModelParent.remove_child(draw_size_indicator)
 			
 		if [CliffToolButton,WaterToolButton,EraserToolButton].has(result.collider) or MarkerButtons.has(result.collider):
 			newHighlightButton = result.collider
