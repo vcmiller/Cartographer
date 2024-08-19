@@ -1,10 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://cpyuibv7in8lg"]
+[gd_scene load_steps=16 format=3 uid="uid://cpyuibv7in8lg"]
 
 [ext_resource type="Script" path="res://player_canvas.gd" id="1_h22vk"]
 [ext_resource type="Texture2D" uid="uid://kgme0al5qkto" path="res://Textures/maps.png" id="2_n7pw8"]
 [ext_resource type="Texture2D" uid="uid://cblyipbdlfhs5" path="res://icon.svg" id="2_yx018"]
 [ext_resource type="Texture2D" uid="uid://c03o1cdqx0qdb" path="res://Textures/compass.png" id="3_052lg"]
 [ext_resource type="Texture2D" uid="uid://d16t1f5tolr2a" path="res://Textures/counter.png" id="4_da5ew"]
+[ext_resource type="Texture2D" uid="uid://bmfoaemiyhtke" path="res://Textures/Paper.png" id="6_hr5id"]
+[ext_resource type="Texture2D" uid="uid://cp8luvdgqkc46" path="res://Textures/Tex_badge_35.PNG" id="7_hl57o"]
+[ext_resource type="FontFile" uid="uid://cqscieat857g1" path="res://Fonts/CONSTAN.TTF" id="8_5sq87"]
+[ext_resource type="Texture2D" uid="uid://c4d7afjj60t8n" path="res://Textures/ButtonBG.png" id="9_uj8jv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qwa8h"]
 bg_color = Color(0.32, 0.32, 0.32, 1)
@@ -18,10 +22,27 @@ corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
-[node name="PlayerCanvas" type="CanvasLayer" node_paths=PackedStringArray("submit_button", "close_map_button")]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_51bny"]
+texture = ExtResource("6_hr5id")
+modulate_color = Color(0.636649, 0.574883, 0.533144, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_qd10m"]
+base_font = ExtResource("8_5sq87")
+
+[sub_resource type="FontVariation" id="FontVariation_xclm2"]
+base_font = ExtResource("8_5sq87")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kp0fy"]
+texture = ExtResource("9_uj8jv")
+modulate_color = Color(0.905249, 0.53264, 0.484744, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gvhfw"]
+texture = ExtResource("9_uj8jv")
+modulate_color = Color(0.537713, 0.21367, 0.182106, 1)
+
+[node name="PlayerCanvas" type="CanvasLayer" node_paths=PackedStringArray("button_parent")]
 script = ExtResource("1_h22vk")
-submit_button = NodePath("Submit")
-close_map_button = NodePath("Close")
+button_parent = NodePath("VBoxContainer")
 
 [node name="ItemSelect" type="HBoxContainer" parent="."]
 anchors_preset = 12
@@ -72,35 +93,155 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_qwa8h")
 layout_mode = 2
 texture = ExtResource("2_yx018")
 
-[node name="Submit" type="Button" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -250.0
-offset_top = -220.0
-offset_right = -30.0
-offset_bottom = -145.0
+offset_left = -300.0
+offset_top = -350.0
+offset_right = -50.0
+offset_bottom = -50.0
 grow_horizontal = 0
 grow_vertical = 0
+theme_override_constants/separation = 20
+
+[node name="Info" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Level Info"
+
+[node name="Submit" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Submit Map"
 
-[node name="Close" type="Button" parent="."]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -250.0
-offset_top = -120.0
-offset_right = -30.0
-offset_bottom = -45.0
-grow_horizontal = 0
-grow_vertical = 0
+[node name="Close" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Close Map"
 
-[connection signal="pressed" from="Submit" to="." method="submit_map"]
-[connection signal="pressed" from="Close" to="." method="close_map"]
+[node name="InfoScreen" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="InfoScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -325.0
+offset_top = -250.0
+offset_right = 325.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(225, 175)
+theme_override_styles/panel = SubResource("StyleBoxTexture_51bny")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InfoScreen/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="HBoxContainer" parent="InfoScreen/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="InfoScreen/Panel/VBoxContainer/Title"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("7_hl57o")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="InfoScreen/Panel/VBoxContainer/Title"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.103744, 0.103744, 0.103744, 1)
+theme_override_fonts/font = SubResource("FontVariation_qd10m")
+theme_override_font_sizes/font_size = 42
+text = "Welcome, cartographer!"
+
+[node name="MarginContainer" type="MarginContainer" parent="InfoScreen/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 50
+
+[node name="RichTextLabel" type="RichTextLabel" parent="InfoScreen/Panel/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0.101241, 0.101241, 0.101241, 1)
+theme_override_fonts/normal_font = SubResource("FontVariation_xclm2")
+text = "In this game,
+asdfasdf
+asdfkas;ldfjl;kasjdfl;kadsf
+dfsa
+fsd
+a
+fsad
+f
+dasf
+
+sadfsdafsdafasdfsadfdsfa"
+fit_content = true
+
+[node name="FlexSpace" type="Control" parent="InfoScreen/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="InfoScreen/Panel/VBoxContainer"]
+layout_direction = 3
+layout_mode = 2
+
+[node name="CloseButton" type="Button" parent="InfoScreen/Panel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("8_5sq87")
+theme_override_font_sizes/font_size = 26
+theme_override_styles/hover = SubResource("StyleBoxTexture_kp0fy")
+theme_override_styles/normal = SubResource("StyleBoxTexture_gvhfw")
+text = "Close"
+
+[node name="Label" type="Label" parent="InfoScreen/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.103744, 0.103744, 0.103744, 1)
+theme_override_fonts/font = SubResource("FontVariation_qd10m")
+theme_override_font_sizes/font_size = 15
+text = "You can return to this screen by pressing 'Level Info' in the map screen."
+horizontal_alignment = 1
+
+[node name="CloseButton" type="Button" parent="InfoScreen/Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -39.875
+offset_top = 7.935
+offset_right = -7.875
+offset_bottom = 39.935
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("8_5sq87")
+theme_override_font_sizes/font_size = 26
+theme_override_styles/hover = SubResource("StyleBoxTexture_kp0fy")
+theme_override_styles/normal = SubResource("StyleBoxTexture_gvhfw")
+text = "X"
+
+[connection signal="pressed" from="VBoxContainer/Info" to="." method="show_last_info"]
+[connection signal="pressed" from="VBoxContainer/Submit" to="." method="submit_map"]
+[connection signal="pressed" from="VBoxContainer/Close" to="." method="close_map"]
+[connection signal="pressed" from="InfoScreen/Panel/VBoxContainer/HBoxContainer/CloseButton" to="." method="hide_info"]
+[connection signal="pressed" from="InfoScreen/Panel/CloseButton" to="." method="hide_info"]
