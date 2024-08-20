@@ -92,7 +92,7 @@ func on_victory():
 	victory_sound.play()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	
-	attemps_label.text = "Attemps: " + str(LevelController.attempts)
+	attemps_label.text = "Attempts: " + str(LevelController.attempts)
 	var stars: int
 	if LevelController.attempts > level_controller.attemps_for_2_stars:
 		stars = 1

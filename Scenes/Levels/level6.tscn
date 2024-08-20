@@ -74,6 +74,8 @@ info_text = "My friend! It looks like a knight got trapped on that island! No wa
 I think there's some [b]lumber[/b] around here. If you can find it, I'll build a bridge! Don't worry about me, I can cross the water just fine.
 
 Make sure you mark the water on your map with the [color=blue][b]blue marker[/b][/color]! Otherwise, the knight won't know it's safe to cross after I build the bridge."
+attemps_for_3_stars = 5
+attemps_for_2_stars = 10
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_yanan")
@@ -140,7 +142,7 @@ level_controller = NodePath("..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.4167, -0.0444798, 6.33623)
 
 [node name="Flag3" parent="." instance=ExtResource("20_121sd")]
-transform = Transform3D(0.397196, 0, 0.917734, 0, 1, 0, -0.917734, 0, 0.397196, 63.4052, 2.79735, 50.2449)
+transform = Transform3D(0.397196, 0, 0.917734, 0, 1, 0, -0.917734, 0, 0.397196, 63.4573, 2.79735, 51.416)
 
 [node name="MapBounds" type="Area3D" parent="."]
 
@@ -171,9 +173,12 @@ transform = Transform3D(0.199334, 0, 0.979932, 0, 1, 0, -0.979932, 0, 0.199334, 
 transform = Transform3D(0.559328, 0, -0.167083, 0, 0.58375, 0, 0.167083, 0, 0.559328, 57.9888, 3, 34.8287)
 marker_sprite = ExtResource("26_yg63l")
 show_on_die = NodePath("../Bridge")
-remove_water_origin = NodePath("../Bridge")
-remove_water_radius = 8.0
+remove_water_origin = NodePath("../RemoveWaterOrigin")
+remove_water_radius = 20.0
 
 [node name="Bridge" parent="." instance=ExtResource("24_fxp0p")]
 transform = Transform3D(1.18547, 0, 0.186169, 0, 1.2, 0, -0.186169, 0, 1.18547, 61.3812, 3.02688, 41.1511)
 visible = true
+
+[node name="RemoveWaterOrigin" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61.6059, 0, 41.0578)

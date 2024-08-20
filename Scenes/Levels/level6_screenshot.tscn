@@ -1,0 +1,111 @@
+[gd_scene load_steps=23 format=3 uid="uid://cr2hwq5awsq3n"]
+
+[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="6_68siu"]
+[ext_resource type="Resource" path="res://Scenes/Levels/level6/data.hterrain" id="7_senbj"]
+[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_texture_set.gd" id="8_ttgbc"]
+[ext_resource type="Texture2D" uid="uid://dbtnnv53ap7d7" path="res://Textures/grass_1_basecolor-1K.png" id="9_5th8y"]
+[ext_resource type="Texture2D" uid="uid://doeyfpmulhmiq" path="res://Textures/Cliff_basecolor.png" id="10_hi4io"]
+[ext_resource type="Texture2D" uid="uid://caa44rwiqc0bd" path="res://Textures/1K-ground_4-diffuse.jpg" id="11_fdpxw"]
+[ext_resource type="Texture2D" uid="uid://7m5c5uxiaa3m" path="res://Textures/grass_1_normal-1K.png" id="12_fmlh1"]
+[ext_resource type="Texture2D" uid="uid://dgqwjkwa2ckuq" path="res://Textures/Cliff_normal.png" id="13_xn680"]
+[ext_resource type="PackedScene" uid="uid://7jfrr44c1tir" path="res://Scenes/chest.tscn" id="14_0hwsr"]
+[ext_resource type="Material" uid="uid://krb4nj4k42qq" path="res://Materials/water_mat.tres" id="21_w2yak"]
+[ext_resource type="Script" path="res://navigator_detector.gd" id="22_460f7"]
+[ext_resource type="PackedScene" uid="uid://c1sm311lwpsoc" path="res://Scenes/tent.tscn" id="23_mlbn2"]
+[ext_resource type="PackedScene" uid="uid://dtab7c0bq186o" path="res://Scenes/house.tscn" id="24_66l4t"]
+[ext_resource type="PackedScene" uid="uid://dr4hqm07a1wn8" path="res://Scenes/wood_pile.tscn" id="25_243g1"]
+[ext_resource type="Texture2D" uid="uid://cstvh6hs3hg6v" path="res://Textures/wd_t_01.PNG" id="26_gra06"]
+[ext_resource type="PackedScene" uid="uid://dkwr3e4f2tmj" path="res://Scenes/bridge.tscn" id="27_t5mvm"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_a5k6u"]
+
+[sub_resource type="Sky" id="Sky_gagda"]
+sky_material = SubResource("ProceduralSkyMaterial_a5k6u")
+
+[sub_resource type="Environment" id="Environment_yanan"]
+background_mode = 2
+sky = SubResource("Sky_gagda")
+
+[sub_resource type="Resource" id="Resource_v8bm5"]
+script = ExtResource("8_ttgbc")
+mode = 0
+textures = [[ExtResource("9_5th8y"), ExtResource("10_hi4io"), ExtResource("11_fdpxw")], [ExtResource("12_fmlh1"), ExtResource("13_xn680"), null]]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_f1guq"]
+size = Vector2(100, 100)
+subdivide_width = 25
+subdivide_depth = 25
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6ri8f"]
+size = Vector3(100, 2, 100)
+
+[node name="Level6" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_yanan")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0.878784, -0.47722, 0, 0.47722, 0.878784, 1, 3.84128e-08, -2.086e-08, -0.00377464, -0.0199896, 0.00757551)
+shadow_enabled = true
+shadow_bias = 0.0
+shadow_reverse_cull_face = true
+
+[node name="HTerrain" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, 0, -12.5)
+script = ExtResource("6_68siu")
+map_scale = Vector3(0.781, 1, 0.781)
+_terrain_data = ExtResource("7_senbj")
+chunk_size = 16
+collision_enabled = true
+collision_layer = 1
+collision_mask = 1
+shader_type = "Classic4"
+custom_shader = null
+custom_globalmap_shader = null
+texture_set = SubResource("Resource_v8bm5")
+render_layers = 1
+cast_shadow = 1
+shader_params/u_ground_uv_scale_per_texture = Vector4(10, 5, 20, 20)
+shader_params/u_depth_blending = true
+shader_params/u_triplanar = false
+shader_params/u_tile_reduction = Vector4(0, 1, 0, 0)
+shader_params/u_globalmap_blend_start = null
+shader_params/u_globalmap_blend_distance = null
+shader_params/u_colormap_opacity_per_texture = Vector4(1, 1, 1, 1)
+shader_params/u_specular = 0.5
+
+[node name="Chest" parent="." instance=ExtResource("14_0hwsr")]
+transform = Transform3D(-0.564448, 0, 0.825468, 0, 1, 0, -0.825468, 0, -0.564448, 7.83287, 0.000106811, 54.691)
+
+[node name="WaterPlane" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.5, -0.5, 37.5)
+mesh = SubResource("PlaneMesh_f1guq")
+surface_material_override/0 = ExtResource("21_w2yak")
+
+[node name="Area3D" type="Area3D" parent="WaterPlane"]
+collision_mask = 3
+script = ExtResource("22_460f7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WaterPlane/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+shape = SubResource("BoxShape3D_6ri8f")
+
+[node name="Tent" parent="." instance=ExtResource("23_mlbn2")]
+transform = Transform3D(0.0256361, 0, 0.999671, 0, 1, 0, -0.999671, 0, 0.0256361, 67.0703, 1.77268, 28.158)
+
+[node name="House" parent="." instance=ExtResource("24_66l4t")]
+transform = Transform3D(0.199334, 0, 0.979932, 0, 1, 0, -0.979932, 0, 0.199334, 26.7461, 4.76837e-07, 6.68673)
+
+[node name="WoodPile" parent="." node_paths=PackedStringArray("show_on_die", "remove_water_origin") instance=ExtResource("25_243g1")]
+transform = Transform3D(0.559328, 0, -0.167083, 0, 0.58375, 0, 0.167083, 0, 0.559328, 57.9888, 3, 34.8287)
+marker_sprite = ExtResource("26_gra06")
+show_on_die = NodePath("../Bridge")
+remove_water_origin = NodePath("../Bridge")
+remove_water_radius = 8.0
+
+[node name="Bridge" parent="." instance=ExtResource("27_t5mvm")]
+transform = Transform3D(1.18547, 0, 0.186169, 0, 1.2, 0, -0.186169, 0, 1.18547, 61.3812, 3.02688, 41.1511)
+visible = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.795473, -0.17211, 0.581034, 0, 0.95882, 0.284015, -0.605988, 0.225927, -0.762716, 65.512, 8.403, 6.267)

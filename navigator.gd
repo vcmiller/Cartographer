@@ -49,6 +49,11 @@ func _ready() -> void:
 func create_grid(map: EditableMap):
 	self.map = map
 	var include_water = not can_walk_on_water
+	if include_water:
+		for other_goal in level_controller.goals:
+			if other_goal.is_dead and other_goal.remove_water_origin:
+				include_water = false
+				break
 	
 	grid = MapGridHandler.ParseImage(map.image, include_water)
 	for i in range(len(level_controller.goals)):
@@ -56,10 +61,12 @@ func create_grid(map: EditableMap):
 		if goal == self.goal or not goal.is_hazard or not map.markersPlaced[i] or goal.is_dead: continue
 		MapGridHandler.AddHazard(grid, map.markerLocations[i], goal.hazard_radius)
 		
-	if include_water:
-		for other_goal in level_controller.goals:
-			if other_goal.is_dead and other_goal.remove_water_origin:
-				MapGridHandler.RemoveWater(grid, other_goal.remove_water_origin.position, other_goal.remove_water_radius, map.image)
+	#if include_water:
+		#for other_goal in level_controller.goals:
+			#if other_goal.is_dead and other_goal.remove_water_origin:
+				#MapGridHandler.RemoveWater(grid, other_goal.remove_water_origin.position, other_goal.remove_water_radius, map.image)
+	
+	grid.update()
 		
 func _on_update_map():
 	if not goal.is_dead:
