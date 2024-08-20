@@ -99,22 +99,22 @@ func on_victory():
 		SaveStateManger.set_star_dict(star_dict)
 		
 	await get_tree().create_timer(0.5).timeout
-	if not get_tree(): return
+	if not is_inside_tree(): return
 	animate_star(Star1)
 	
 	if stars > 1:
 		await get_tree().create_timer(0.5).timeout
-		if not get_tree(): return
+		if not is_inside_tree(): return
 		animate_star(Star2)
 	
 	if stars > 2:
 		await get_tree().create_timer(0.5).timeout
-		if not get_tree(): return
+		if not is_inside_tree(): return
 		animate_star(Star3)
 		
 	if is_new_best:
 		await get_tree().create_timer(0.5).timeout
-		if not get_tree(): return
+		if not is_inside_tree(): return
 		animate_star(new_best_label)
 		
 func animate_star(star: Control):
@@ -124,12 +124,12 @@ func animate_star(star: Control):
 	
 	var elapsed = 0
 	await get_tree().process_frame
-	if not get_tree(): return
+	if not is_inside_tree(): return
 	while elapsed < 0.5:
 		elapsed += get_process_delta_time()
 		star.scale = start_scale.lerp(Vector2(1, 1), elapsed * 2.0)
 		await get_tree().process_frame
-		if not get_tree(): return
+		if not is_inside_tree(): return
 		
 	star.scale = Vector2(1, 1)
 		

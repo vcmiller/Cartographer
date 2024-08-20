@@ -221,7 +221,8 @@ func _unhandled_input(event: InputEvent):
 					ToolModelParent.add_child(currentToolModel)
 			if currentToolModel:
 				currentToolModel.global_position = result.position
-				draw_size_indicator.global_position = result.position
+				if draw_size_indicator.get_parent():
+					draw_size_indicator.global_position = result.position
 			if isPainting and [MarkerCliff,MarkerWater,Eraser].has(currentToolModel):
 				var localPoint = TargetMesh.to_local(result.position)
 				var imagePoint = Vector2(localPoint.x, localPoint.y)

@@ -1,16 +1,26 @@
-[gd_scene load_steps=22 format=3 uid="uid://cpyuibv7in8lg"]
+[gd_scene load_steps=33 format=3 uid="uid://cpyuibv7in8lg"]
 
 [ext_resource type="Script" path="res://player_canvas.gd" id="1_h22vk"]
 [ext_resource type="Texture2D" uid="uid://kgme0al5qkto" path="res://Textures/maps.png" id="2_n7pw8"]
-[ext_resource type="Texture2D" uid="uid://cblyipbdlfhs5" path="res://icon.svg" id="2_yx018"]
 [ext_resource type="Texture2D" uid="uid://c03o1cdqx0qdb" path="res://Textures/compass.png" id="3_052lg"]
+[ext_resource type="Texture2D" uid="uid://dsjrhsuagrsod" path="res://Textures/Keyboard_Black_1.png" id="3_k75hk"]
 [ext_resource type="Texture2D" uid="uid://d16t1f5tolr2a" path="res://Textures/counter.png" id="4_da5ew"]
+[ext_resource type="Texture2D" uid="uid://cdmgekdfwufx4" path="res://Textures/Keyboard_Black_2.png" id="5_5adn3"]
 [ext_resource type="StyleBox" uid="uid://drvsm6ee57htw" path="res://paper_style.tres" id="6_grncm"]
+[ext_resource type="Texture2D" uid="uid://dn7ftovhtkits" path="res://Textures/Keyboard_Black_3.png" id="7_f4sg0"]
 [ext_resource type="Texture2D" uid="uid://cp8luvdgqkc46" path="res://Textures/Tex_badge_35.PNG" id="7_hl57o"]
 [ext_resource type="FontFile" uid="uid://cqscieat857g1" path="res://Fonts/CONSTAN.TTF" id="8_5sq87"]
 [ext_resource type="FontFile" uid="uid://eiq7p2hkvkjs" path="res://Fonts/CONSTANI.TTF" id="9_c6058"]
 [ext_resource type="Texture2D" uid="uid://c4d7afjj60t8n" path="res://Textures/ButtonBG.png" id="9_uj8jv"]
 [ext_resource type="FontFile" uid="uid://bwepg7vcsdyjh" path="res://Fonts/CONSTANB.TTF" id="10_bgl22"]
+[ext_resource type="Texture2D" uid="uid://4ew3xtnxju3v" path="res://Textures/Keyboard_Black_W.png" id="14_dh7n5"]
+[ext_resource type="Texture2D" uid="uid://dele3bd025kdc" path="res://Textures/Keyboard_Black_A.png" id="15_e8pu0"]
+[ext_resource type="Texture2D" uid="uid://bfjvlnu0he86i" path="res://Textures/Keyboard_Black_S.png" id="16_iywf8"]
+[ext_resource type="Texture2D" uid="uid://dk7vo46bf5chl" path="res://Textures/Keyboard_Black_D.png" id="17_xlniy"]
+[ext_resource type="Texture2D" uid="uid://e5kct3s7w66o" path="res://Textures/Keyboard_Black_Mouse_Simple.png" id="18_cj743"]
+[ext_resource type="Texture2D" uid="uid://c03kusvdhoovb" path="res://Textures/Keyboard_Black_Tab.png" id="19_v02hp"]
+[ext_resource type="Texture2D" uid="uid://bvkewn1jndq2a" path="res://Textures/Keyboard_Black_Mouse_Middle.png" id="20_mg33m"]
+[ext_resource type="Texture2D" uid="uid://cecoivk33c5dw" path="res://Textures/Keyboard_Black_Mouse_Left.png" id="21_wnlac"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qwa8h"]
 bg_color = Color(0.32, 0.32, 0.32, 1)
@@ -23,6 +33,10 @@ corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
+
+[sub_resource type="FontVariation" id="FontVariation_r5238"]
+base_font = ExtResource("8_5sq87")
+baseline_offset = 0.145
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o6o4c"]
 bg_color = Color(0.196078, 0.196078, 0.196078, 1)
@@ -78,13 +92,14 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -132.0
+offset_top = -120.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_constants/separation = 15
 alignment = 1
 
 [node name="MapContainer" type="PanelContainer" parent="ItemSelect"]
-custom_minimum_size = Vector2(132, 132)
+custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_qwa8h")
 
@@ -93,8 +108,24 @@ layout_mode = 2
 texture = ExtResource("2_n7pw8")
 expand_mode = 2
 
+[node name="Control" type="Control" parent="ItemSelect/MapContainer"]
+layout_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="ItemSelect/MapContainer/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -30.0
+offset_top = -36.865
+offset_right = 30.0
+offset_bottom = 23.135
+grow_horizontal = 2
+texture = ExtResource("3_k75hk")
+expand_mode = 1
+
 [node name="CompassContainer" type="PanelContainer" parent="ItemSelect"]
-custom_minimum_size = Vector2(132, 132)
+custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_qwa8h")
 
@@ -103,8 +134,24 @@ layout_mode = 2
 texture = ExtResource("3_052lg")
 expand_mode = 2
 
+[node name="Control" type="Control" parent="ItemSelect/CompassContainer"]
+layout_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="ItemSelect/CompassContainer/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -30.0
+offset_top = -36.865
+offset_right = 30.0
+offset_bottom = 23.135
+grow_horizontal = 2
+texture = ExtResource("5_5adn3")
+expand_mode = 1
+
 [node name="StepCountContainer" type="PanelContainer" parent="ItemSelect"]
-custom_minimum_size = Vector2(132, 132)
+custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_qwa8h")
 
@@ -113,14 +160,181 @@ layout_mode = 2
 texture = ExtResource("4_da5ew")
 expand_mode = 2
 
-[node name="PanelContainer4" type="PanelContainer" parent="ItemSelect"]
-custom_minimum_size = Vector2(132, 132)
+[node name="Control" type="Control" parent="ItemSelect/StepCountContainer"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_qwa8h")
 
-[node name="TextureRect" type="TextureRect" parent="ItemSelect/PanelContainer4"]
+[node name="TextureRect2" type="TextureRect" parent="ItemSelect/StepCountContainer/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -30.0
+offset_top = -36.865
+offset_right = 30.0
+offset_bottom = 23.135
+grow_horizontal = 2
+texture = ExtResource("7_f4sg0")
+expand_mode = 1
+
+[node name="MoveControls" type="PanelContainer" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -165.0
+offset_right = 234.0
+offset_bottom = -20.0
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="MoveControls"]
 layout_mode = 2
-texture = ExtResource("2_yx018")
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MoveControls/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MoveControls/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MoveControls/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_r5238")
+theme_override_font_sizes/font_size = 18
+text = "Move"
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MoveControls/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = -15
+
+[node name="TextureRect" type="TextureRect" parent="MoveControls/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("14_dh7n5")
+expand_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MoveControls/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = -15
+
+[node name="TextureRect2" type="TextureRect" parent="MoveControls/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("15_e8pu0")
+expand_mode = 1
+
+[node name="TextureRect3" type="TextureRect" parent="MoveControls/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("16_iywf8")
+expand_mode = 1
+
+[node name="TextureRect4" type="TextureRect" parent="MoveControls/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("17_xlniy")
+expand_mode = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MoveControls/MarginContainer/VBoxContainer"]
+layout_direction = 2
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MoveControls/MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_r5238")
+theme_override_font_sizes/font_size = 18
+text = "Look"
+vertical_alignment = 1
+
+[node name="BoxContainer" type="BoxContainer" parent="MoveControls/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="TextureRect4" type="TextureRect" parent="MoveControls/MarginContainer/VBoxContainer/HBoxContainer2/BoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("18_cj743")
+expand_mode = 1
+
+[node name="ItemControls" type="PanelContainer" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -204.0
+offset_top = -188.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="ItemControls"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ItemControls/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ItemControls/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ItemControls/MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(110, 0)
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_r5238")
+theme_override_font_sizes/font_size = 18
+text = "Open Map"
+
+[node name="TextureRect4" type="TextureRect" parent="ItemControls/MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("19_v02hp")
+expand_mode = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="ItemControls/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ItemControls/MarginContainer/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(110, 0)
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_r5238")
+theme_override_font_sizes/font_size = 18
+text = "Cycle Items"
+
+[node name="TextureRect4" type="TextureRect" parent="ItemControls/MarginContainer/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("20_mg33m")
+expand_mode = 1
+
+[node name="WalkerItemControl" type="HBoxContainer" parent="ItemControls/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ItemControls/MarginContainer/VBoxContainer/WalkerItemControl"]
+custom_minimum_size = Vector2(110, 0)
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_r5238")
+theme_override_font_sizes/font_size = 18
+text = "Reset Count"
+
+[node name="TextureRect4" type="TextureRect" parent="ItemControls/MarginContainer/VBoxContainer/WalkerItemControl"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("21_wnlac")
+expand_mode = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchors_preset = 3
@@ -162,6 +376,23 @@ theme_override_font_sizes/font_size = 30
 theme_override_styles/hover = SubResource("StyleBoxFlat_o6o4c")
 theme_override_styles/normal = SubResource("StyleBoxFlat_8hili")
 text = "Close Map"
+
+[node name="TextureRect4" type="TextureRect" parent="VBoxContainer/Close"]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 69.0
+offset_top = -106.0
+offset_right = 139.0
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("19_v02hp")
+expand_mode = 1
 
 [node name="InfoScreen" type="Panel" parent="."]
 anchors_preset = 15

@@ -123,6 +123,7 @@ visible = false
 level_controller = NodePath("..")
 
 [node name="PlayerCanvas" parent="." instance=ExtResource("18_400c0")]
+show_move_controls = true
 
 [node name="Flag2" parent="." instance=ExtResource("20_121sd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.2457, 0, 9.99888)

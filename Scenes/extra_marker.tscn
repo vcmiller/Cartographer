@@ -16,4 +16,3 @@ transform = Transform3D(0.07, 0, 0, 0, 0.07, 0, 0, 0, 0.07, 0.276323, 0, 0)
 sorting_offset = 1.0
 material_override = SubResource("StandardMaterial3D_s50oa")
 mesh = SubResource("QuadMesh_hr3vy")
-skeleton = NodePath("../FlagPalette/RedFlagButton")

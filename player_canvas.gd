@@ -8,8 +8,12 @@ class_name PlayerCanvas
 @onready var portrait_box: TextureRect = $InfoScreen/Panel/VBoxContainer/Title/TextureRect
 @onready var title_label: Label = $InfoScreen/Panel/VBoxContainer/Title/Label
 @onready var paragraph_label: RichTextLabel =  $InfoScreen/Panel/VBoxContainer/MarginContainer/RichTextLabel
+@onready var move_controls: Control = $MoveControls
+@onready var item_controls: Control = $ItemControls
+@onready var counter_item_control: Control = $ItemControls/MarginContainer/VBoxContainer/WalkerItemControl
 
 @export var button_parent: Control
+@export var show_move_controls: bool
 @export_range(1,3) var num_items_shown: int = 3
 
 var player: PlayerController
@@ -17,6 +21,7 @@ var player: PlayerController
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	on_selected_item_changed(0)
+	move_controls.visible = show_move_controls
 	while item_select.get_child_count() > num_items_shown: 
 		var child = item_select.get_child(num_items_shown) 
 		item_select.remove_child(child)
@@ -30,8 +35,12 @@ func _unhandled_input(event: InputEvent) -> void:
 func _process(delta: float) -> void:
 	if player and player.item_manager and player.item_manager.currentItem is MapItem:
 		button_parent.show()
+		item_controls.hide()
+		if show_move_controls: move_controls.hide()
 	else:
 		button_parent.hide()
+		item_controls.show()
+		if show_move_controls: move_controls.show()
 		
 	if info_screen.visible:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -44,6 +53,7 @@ func on_selected_item_changed(item: int):
 		if index == item: color = Color.WHITE
 		tween.parallel().tween_property(item_obj,"self_modulate",color,0.21).set_trans(Tween.TRANS_QUART)
 	tween.play()
+	counter_item_control.visible = item == 2
 	
 func show_last_info():
 	info_screen.show()

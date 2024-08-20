@@ -24,7 +24,6 @@ transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0)
 sorting_offset = 50.0
 material_override = SubResource("StandardMaterial3D_udkmq")
 mesh = SubResource("QuadMesh_hr3vy")
-skeleton = NodePath("../FlagPalette/RedFlagButton")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0.644682, 1.49012e-08)

@@ -115,6 +115,7 @@ visible = false
 level_controller = NodePath("..")
 
 [node name="PlayerCanvas" parent="." instance=ExtResource("18_xbvxu")]
+show_move_controls = true
 num_items_shown = 1
 
 [node name="FlagMarkers" type="Node3D" parent="."]

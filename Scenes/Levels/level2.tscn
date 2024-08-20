@@ -117,6 +117,7 @@ visible = false
 level_controller = NodePath("..")
 
 [node name="PlayerCanvas" parent="." instance=ExtResource("18_xbvxu")]
+show_move_controls = true
 num_items_shown = 2
 
 [node name="SpectatorCamera" type="Camera3D" parent="."]
