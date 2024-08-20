@@ -54,7 +54,7 @@ info_text = "Welcome to Cartographomancer! Get ready to draw maps to help advent
 
 In this level, you'll learn to draw the map. Normally, you'll need to measure spaces yourself, but for now, the mountains in this area are marked out with red flags.
 
-Use the black marker to [b]color in the cliffs[/b] between the flags, then press [b]Submit Map[/b] to see how you did! If the adventurer doesn't make it to the end, you can retry by pressing the [b]Reset[/b] button.
+Use the [b]black marker[/b] to [b]color in the cliffs[/b] between the flags, then press [b]Submit Map[/b] to see how you did! If the adventurer doesn't make it to the end, you can retry by pressing the [b]Reset[/b] button.
 
 If you close the map, you can reopen it by pressing [b]Tab[/b]."
 attemps_for_3_stars = 1

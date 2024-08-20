@@ -71,7 +71,9 @@ info_title = "The Carpenter"
 info_portrait = ExtResource("3_ia6yn")
 info_text = "My friend! It looks like a knight got trapped on that island! No way they can swim with that armor on!
 
-I think there's some lumber around here. If you can find it, I'll build a bridge! Don't worry about me, I can cross the water just fine."
+I think there's some [b]lumber[/b] around here. If you can find it, I'll build a bridge! Don't worry about me, I can cross the water just fine.
+
+Make sure you mark the water on your map with the [color=blue][b]blue marker[/b][/color]! Otherwise, the knight won't know it's safe to cross after I build the bridge."
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_yanan")

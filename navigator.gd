@@ -166,9 +166,12 @@ func _process(_delta: float) -> void:
 	thoughtBubbleNoDest.hide()
 	elapsed += _delta
 	
-	if elapsed < MOVE_DELAY or is_dead or not goal.get_parent():
+	if elapsed < MOVE_DELAY:
 		return
 		
+	if  is_dead or not goal.get_parent() or goal.is_dead:
+		thoughtBubble.hide()
+		return
 	
 	var dest2d = vec2i(map.markerLocations[destIndex])
 	var path = grid.get_point_path(vec2i(position), dest2d, true)

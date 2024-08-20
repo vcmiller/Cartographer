@@ -139,6 +139,8 @@ func MapToWorldSpace(mapPos: Vector3) -> Vector3:
 
 func _enter_tree() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	await get_tree().process_frame
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	
 func _exit_tree() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
