@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://dkjebqk8rx4lo"]
+
+[ext_resource type="PackedScene" uid="uid://url466m8etkf" path="res://navigator.tscn" id="1_dxuxi"]
+
+[node name="Navigator" node_paths=PackedStringArray("hairs", "facialHairs") instance=ExtResource("1_dxuxi")]
+hairs = [NodePath("Dude/Hair5_Medium2")]
+facialHairs = [NodePath("Dude/FacialHair5")]
+skinColors = Array[Color]([Color(0.623324, 0.403301, 0.328911, 1)])
+hairColors = Array[Color]([Color(0.18, 0.066, 0, 1)])
+eyeColors = Array[Color]([Color(0.175446, 0.0549022, 0.00962464, 1)])
+clothesColors = Array[Color]([Color(1, 1, 1, 1)])
+hairChance = 1.0
+facialHairChance = 1.0
+can_walk_on_water = true
+
+[node name="Prop_Sword" parent="Dude" index="11"]
+transform = Transform3D(-0.0488726, 0.00350542, -0.0100286, -0.0029894, 0.0407673, 0.0288181, 0.0101943, 0.02876, -0.0396273, 0.737386, 2.00894, -0.924954)
+
+[editable path="Dude"]

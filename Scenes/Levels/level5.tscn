@@ -114,6 +114,7 @@ transform = Transform3D(0.190432, 0, 0.9817, 0, 1, 0, -0.9817, 0, 0.190432, 34.6
 script = ExtResource("14_nmrc2")
 navigator_scene = ExtResource("16_7r0ls")
 special_props = Array[String](["KnightArmor", "KnightHelmet", "Prop_Sword"])
+special_prop_attach_points = Array[int]([0, 0, 1])
 
 [node name="PlaybackCanvas" parent="." node_paths=PackedStringArray("level_controller") instance=ExtResource("17_0p3wf")]
 visible = false

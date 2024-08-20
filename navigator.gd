@@ -19,7 +19,8 @@ class_name Navigator
 @export var clothesColors: Array[Color]
 @export var hairChance: float = 0.8
 @export var facialHairChance: float = 0.3
-@export var bodyAttach: Node3D
+@export var attach_points: Array[Node3D]
+@export var can_walk_on_water: bool
 
 @onready var lineDrawer: MeshInstance3D = $LineDrawer
 
@@ -47,15 +48,31 @@ func _ready() -> void:
 	
 func create_grid(map: EditableMap):
 	self.map = map
-	grid = MapGridHandler.ParseImage(map.image)
+	var include_water = not can_walk_on_water
+	
+	grid = MapGridHandler.ParseImage(map.image, include_water)
 	for i in range(len(level_controller.goals)):
 		var goal = level_controller.goals[i]
 		if goal == self.goal or not goal.is_hazard or not map.markersPlaced[i] or goal.is_dead: continue
 		MapGridHandler.AddHazard(grid, map.markerLocations[i], goal.hazard_radius)
 		
+	if include_water:
+		for other_goal in level_controller.goals:
+			if other_goal.is_dead and other_goal.remove_water_origin:
+				MapGridHandler.RemoveWater(grid, other_goal.remove_water_origin.position, other_goal.remove_water_radius, map.image)
+		
 func _on_update_map():
 	if not goal.is_dead:
 		create_grid(map)
+		
+func touch_water():
+	if not can_walk_on_water:
+		die()
+		
+func die():
+	level_controller.fail()
+	is_dead = true
+	anim.play("Die")
 	
 func check_goal(hit_goal: Goal):
 	if hit_goal.is_dead: return
@@ -64,9 +81,7 @@ func check_goal(hit_goal: Goal):
 		level_controller.succccess()
 		anim.play("SitDown")
 	elif hit_goal.is_hazard:
-		level_controller.fail()
-		is_dead = true
-		anim.play("Die")
+		die()
 
 #debug nonsense: ignore
 func draw_path(img: Image, from: Vector2i, to: Vector2i, color: Color):
@@ -110,7 +125,7 @@ func randomize_mesh():
 		hair.show()
 		var t = hair.global_transform
 		Model.remove_child(hair)
-		bodyAttach.add_child(hair)
+		attach_points[0].add_child(hair)
 		hair.global_transform = t
 		
 	if rng.randf() < facialHairChance:
@@ -121,7 +136,7 @@ func randomize_mesh():
 		facialHair.show()
 		var transform = facialHair.global_transform
 		Model.remove_child(facialHair)
-		bodyAttach.add_child(facialHair)
+		attach_points[0].add_child(facialHair)
 		facialHair.global_transform = transform
 	
 func vec2i(from: Vector3): return Vector2i(roundi(from.x), roundi(from.z))	
@@ -169,14 +184,14 @@ func _process(_delta: float) -> void:
 			return
 		
 		thoughtBubble.hide()
-		var mesh : ImmediateMesh = lineDrawer.mesh
-		mesh.clear_surfaces()
-		mesh.surface_begin(Mesh.PRIMITIVE_LINE_STRIP)
-		
-		for i in range(len(path)):
-			mesh.surface_add_vertex(vec3(path[i]))
-		
-		mesh.surface_end()
+		#var mesh : ImmediateMesh = lineDrawer.mesh
+		#mesh.clear_surfaces()
+		#mesh.surface_begin(Mesh.PRIMITIVE_LINE_STRIP)
+		#
+		#for i in range(len(path)):
+			#mesh.surface_add_vertex(vec3(path[i]))
+		#
+		#mesh.surface_end()
 		target_pos = vec3(path[1])
 		var dist_0 = position.distance_to(vec3(path[0]))
 		#var dist_1 = position.distance_to(vec3(path[1]))

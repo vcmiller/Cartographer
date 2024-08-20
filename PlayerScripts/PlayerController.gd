@@ -76,7 +76,9 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	else:
-		distanceWalked += velocity.length() * delta
+		var floor_vel = velocity
+		floor_vel.y = 0
+		distanceWalked += floor_vel.length() * delta
 
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():

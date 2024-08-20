@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://dr4hqm07a1wn8"]
+
+[ext_resource type="Script" path="res://gooooaaaal.gd" id="1_y16w0"]
+[ext_resource type="PackedScene" uid="uid://yqgoxm2gfj8g" path="res://Models/BridgeBroken.glb" id="2_tlo68"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_covl1"]
+size = Vector3(9.02055, 1.62, 6.08047)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qv2om"]
+radius = 5.494
+
+[node name="WoodPile" type="StaticBody3D" node_paths=PackedStringArray("trigger")]
+transform = Transform3D(0.958163, 0, -0.286224, 0, 1, 0, 0.286224, 0, 0.958163, 60.339, 3, 34.822)
+script = ExtResource("1_y16w0")
+trigger = NodePath("Area3D")
+
+[node name="Model" parent="." instance=ExtResource("2_tlo68")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.856238, 0, 0.516597, 0, 1, 0, -0.516597, 0, 0.856238, 0.117867, 0, -0.070303)
+shape = SubResource("BoxShape3D_covl1")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_qv2om")
