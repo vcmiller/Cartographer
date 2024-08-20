@@ -82,17 +82,14 @@ size_flags_vertical = 3
 
 [node name="TL" type="SubViewportContainer" parent="HBoxContainer/Left/TL_Parent"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 100.0
+offset_bottom = 100.0
 size_flags_vertical = 3
 stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="HBoxContainer/Left/TL_Parent/TL"]
 handle_input_locally = false
-size = Vector2i(2, 2)
+size = Vector2i(100, 100)
 render_target_update_mode = 4
 
 [node name="CameraTL" type="Camera3D" parent="HBoxContainer/Left/TL_Parent/TL/SubViewport"]
@@ -138,17 +135,14 @@ size_flags_vertical = 3
 
 [node name="BL" type="SubViewportContainer" parent="HBoxContainer/Left/BL_Parent"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 100.0
+offset_bottom = 100.0
 size_flags_vertical = 3
 stretch = true
 
 [node name="SubViewport2" type="SubViewport" parent="HBoxContainer/Left/BL_Parent/BL"]
 handle_input_locally = false
-size = Vector2i(2, 2)
+size = Vector2i(100, 100)
 render_target_update_mode = 4
 
 [node name="CameraBL" type="Camera3D" parent="HBoxContainer/Left/BL_Parent/BL/SubViewport2"]
@@ -198,17 +192,14 @@ size_flags_vertical = 3
 
 [node name="TR" type="SubViewportContainer" parent="HBoxContainer/Right/TR_Parent"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 100.0
+offset_bottom = 100.0
 size_flags_vertical = 3
 stretch = true
 
 [node name="SubViewport3" type="SubViewport" parent="HBoxContainer/Right/TR_Parent/TR"]
 handle_input_locally = false
-size = Vector2i(2, 2)
+size = Vector2i(100, 100)
 render_target_update_mode = 4
 
 [node name="CameraTR" type="Camera3D" parent="HBoxContainer/Right/TR_Parent/TR/SubViewport3"]
@@ -254,17 +245,14 @@ size_flags_vertical = 3
 
 [node name="BR" type="SubViewportContainer" parent="HBoxContainer/Right/BR_Parent"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 100.0
+offset_bottom = 100.0
 size_flags_vertical = 3
 stretch = true
 
 [node name="SubViewport4" type="SubViewport" parent="HBoxContainer/Right/BR_Parent/BR"]
 handle_input_locally = false
-size = Vector2i(2, 2)
+size = Vector2i(100, 100)
 render_target_update_mode = 4
 
 [node name="CameraBR" type="Camera3D" parent="HBoxContainer/Right/BR_Parent/BR/SubViewport4"]

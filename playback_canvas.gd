@@ -28,6 +28,7 @@ class_name PlaybackCanvas
 @onready var Star3: Control = $WinScreen/Panel/StarParent3/Star3
 @onready var attemps_label: Label = $WinScreen/Panel/Label
 @onready var new_best_label: Label = $WinScreen/Panel/NewBestLabel
+@onready var viewport_all_parent: Control = $HBoxContainer
 
 var checkmarks: Array[Control]
 var skulls: Array[Control]
@@ -61,6 +62,21 @@ func _ready() -> void:
 	Star2.hide()
 	Star3.hide()
 	new_best_label.hide()
+	
+	ViewportParentTL.resized.connect(func(): fix_viewport_scale(ViewportParentTL))
+	ViewportParentBL.resized.connect(func(): fix_viewport_scale(ViewportParentBL))
+	ViewportParentTR.resized.connect(func(): fix_viewport_scale(ViewportParentTR))
+	ViewportParentBR.resized.connect(func(): fix_viewport_scale(ViewportParentBR))
+	
+func get_ui_scale() -> float:
+	return viewport_all_parent.size.y / get_viewport().size.y
+	
+func fix_viewport_scale(viewport_parent: Control):
+	var container = viewport_parent.get_child(0) as SubViewportContainer
+	
+	var ui_scale = get_ui_scale()
+	container.scale = Vector2(ui_scale, ui_scale)
+	container.set_size(viewport_parent.size / ui_scale)
 	
 func _process(delta: float) -> void:
 	if not visible: return
