@@ -1,0 +1,186 @@
+[gd_scene load_steps=9 format=3 uid="uid://clnwp2rdq6ebm"]
+
+[ext_resource type="Theme" uid="uid://b3jfopflobcuo" path="res://ui_theme.tres" id="1_jwa3e"]
+[ext_resource type="StyleBox" path="res://paper_style.tres" id="2_pqsep"]
+[ext_resource type="Texture2D" uid="uid://dl7rkn4wfufyg" path="res://Textures/gmtklogo.png" id="3_h7w0s"]
+[ext_resource type="Texture2D" uid="uid://tuql1ycuq4rs" path="res://Textures/x.png" id="4_7hl32"]
+[ext_resource type="Script" path="res://go_to_main_menu_button.gd" id="5_gdm4e"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_rk24s"]
+font_size = 96
+shadow_size = 4
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3mfuy"]
+font_size = 64
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7nuj0"]
+font_color = Color(0, 0, 0, 1)
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_jwa3e")
+theme_override_styles/panel = ExtResource("2_pqsep")
+
+[node name="DevelopedBy" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -707.0
+offset_top = -402.0
+offset_right = -155.0
+offset_bottom = -128.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Panel/DevelopedBy"]
+layout_mode = 2
+theme = ExtResource("1_jwa3e")
+text = "Developed By:"
+label_settings = SubResource("LabelSettings_rk24s")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Panel/DevelopedBy"]
+layout_mode = 2
+theme = ExtResource("1_jwa3e")
+text = "Vincent Miller
+Kate Briggs"
+label_settings = SubResource("LabelSettings_3mfuy")
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="Panel"]
+layout_mode = 2
+offset_left = 918.0
+offset_top = 3.0
+offset_right = 1470.0
+offset_bottom = 118.0
+theme = ExtResource("1_jwa3e")
+text = "Assets:"
+label_settings = SubResource("LabelSettings_rk24s")
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -811.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 128
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="Panel/MarginContainer/ScrollContainer"]
+layout_mode = 2
+theme = ExtResource("1_jwa3e")
+text = "Steps icons created by Freepik - Flaticon: 
+	https://www.flaticon.com/free-icons/steps 
+Treasure icons created by redempticon - Flaticon: 
+	https://www.flaticon.com/free-icons/treasure 
+Dragon icons created by bsd - Flaticon: 
+	https://www.flaticon.com/free-icons/dragon 
+Maps icons created by Smashicons - Flaticon: 
+	https://www.flaticon.com/free-icons/maps 
+Compass icons created by Freepik - Flaticon: 
+	https://www.flaticon.com/free-icons/compass 
+Counter icons created by Freepik - Flaticon: 
+	https://www.flaticon.com/free-icons/counter 
+Path icons created by VectorPortal - Flaticon: 
+	https://www.flaticon.com/free-icons/path 
+Location icons created by smashingstocks - Flaticon: 
+	https://www.flaticon.com/free-icons/location 
+Path icons created by VectorPortal - Flaticon: 
+	https://www.flaticon.com/free-icons/path
+Tick icons created by Octopocto - Flaticon: 
+	https://www.flaticon.com/free-icons/tick 
+Map icons created by Freepik - Flaticon: 
+	https://www.flaticon.com/free-icons/map 
+Star icons created by Pixel perfect - Flaticon: 
+	https://www.flaticon.com/free-icons/star 
+Skull icons created by Victoruler - Flaticon: 
+	https://www.flaticon.com/free-icons/skull 
+Scared icons created by YesternightSupply - Flaticon: 
+	https://www.flaticon.com/free-icons/scared 
+Compass icons created by Muhammad_Usman - Flaticon: 
+	https://www.flaticon.com/free-icons/compass 
+Water Textures: https://www.cadhatch.com/seamless-water-textures
+Input Icons: Nicolae Berbece (also known as Xelu)
+ambient mountain - creek - M+S 48k24b.WAV by tferrino:
+	https://freesound.org/s/405246/ 
+Dvořák - Humoresques - Op. 101 / B. 187 No. 1 - 8 (Complete) - Concert Grand Mix by GregorQuendel:
+	https://freesound.org/s/743474/ -- License: Attribution NonCommercial 4.0
+Dirt Sounds by nuff3:
+	https://freesound.org/s/477396/
+	https://freesound.org/s/477395/ 
+	https://freesound.org/s/477394/
+	https://freesound.org/s/477393/
+	https://freesound.org/s/477392/
+	https://freesound.org/s/477391/
+	https://freesound.org/s/477390/
+Dragon growl.wav by Antimsounds:
+	https://freesound.org/s/556048/ 
+Pencil_erasing.aif by tmkappelt:
+	https://freesound.org/s/85701/
+Writing with dry erase marker.wav by atha89:
+	https://freesound.org/s/79163/ 
+sound-click3.wav by zippi1\"
+	https://freesound.org/s/17893/ 
+Clean and Pompous Fanfare Trumpet.mp3 by joepayne:
+	https://freesound.org/s/413203/ 
+Ambient Summer Field French Mountain Birds- stereo by Salomé_Lubczanski:
+	https://freesound.org/s/733782/
+"
+label_settings = SubResource("LabelSettings_7nuj0")
+
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -474.0
+offset_right = 1014.0
+offset_bottom = 48.0
+grow_vertical = 0
+scale = Vector2(0.685, 0.685)
+texture = ExtResource("3_h7w0s")
+expand_mode = 3
+
+[node name="GoToMainMenuButton" type="TextureButton" parent="Panel"]
+modulate = Color(0.69, 0.1587, 0.1587, 0.878431)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -114.0
+offset_top = 32.0
+offset_right = -50.0
+offset_bottom = 96.0
+grow_horizontal = 0
+texture_normal = ExtResource("4_7hl32")
+script = ExtResource("5_gdm4e")
+
+[connection signal="pressed" from="Panel/GoToMainMenuButton" to="Panel/GoToMainMenuButton" method="_on_pressed"]
