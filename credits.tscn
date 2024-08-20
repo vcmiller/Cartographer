@@ -1,7 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://clnwp2rdq6ebm"]
+[gd_scene load_steps=9 format=3 uid="uid://kt7gr016we3o"]
 
-[ext_resource type="Theme" uid="uid://b3jfopflobcuo" path="res://ui_theme.tres" id="1_jwa3e"]
-[ext_resource type="StyleBox" path="res://paper_style.tres" id="2_pqsep"]
+[ext_resource type="Theme" path="res://ui_theme.tres" id="1_jwa3e"]
+[ext_resource type="StyleBox" uid="uid://drvsm6ee57htw" path="res://paper_style.tres" id="2_pqsep"]
 [ext_resource type="Texture2D" uid="uid://dl7rkn4wfufyg" path="res://Textures/gmtklogo.png" id="3_h7w0s"]
 [ext_resource type="Texture2D" uid="uid://tuql1ycuq4rs" path="res://Textures/x.png" id="4_7hl32"]
 [ext_resource type="Script" path="res://go_to_main_menu_button.gd" id="5_gdm4e"]
