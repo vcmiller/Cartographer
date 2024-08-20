@@ -154,6 +154,7 @@ mesh = SubResource("PlaneMesh_f1guq")
 surface_material_override/0 = ExtResource("20_ytfek")
 
 [node name="Area3D" type="Area3D" parent="WaterPlane"]
+collision_mask = 3
 script = ExtResource("22_xssme")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="WaterPlane/Area3D"]
@@ -171,7 +172,8 @@ transform = Transform3D(0.559328, 0, -0.167083, 0, 0.58375, 0, 0.167083, 0, 0.55
 marker_sprite = ExtResource("26_yg63l")
 show_on_die = NodePath("../Bridge")
 remove_water_origin = NodePath("../Bridge")
-remove_water_radius = 5.0
+remove_water_radius = 8.0
 
 [node name="Bridge" parent="." instance=ExtResource("24_fxp0p")]
+transform = Transform3D(1.18547, 0, 0.186169, 0, 1.2, 0, -0.186169, 0, 1.18547, 61.3812, 3.02688, 41.1511)
 visible = true
