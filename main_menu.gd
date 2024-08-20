@@ -1,9 +1,11 @@
 extends Control
 
 @onready var levels_to_select: HBoxContainer = $CenterContainer/VBoxContainer/LevelsToSelect
+@onready var quit_button: Button = $CenterContainer/VBoxContainer/Quit
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	quit_button.visible = OS.get_name() != "Web"
 
 func _on_new_game_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/Levels/level1.tscn")
@@ -25,3 +27,6 @@ func _on_settings_pressed() -> void:
 	
 func _on_credits_pressed() -> void:
 	get_tree().change_scene_to_file("res://credits.tscn")
+	
+func _on_quit_pressed() -> void:
+	get_tree().quit()
