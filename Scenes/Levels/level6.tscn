@@ -140,7 +140,7 @@ level_controller = NodePath("..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.4167, -0.0444798, 6.33623)
 
 [node name="Flag3" parent="." instance=ExtResource("20_121sd")]
-transform = Transform3D(0.397196, 0, 0.917734, 0, 1, 0, -0.917734, 0, 0.397196, 67.1433, 2.79735, 49.4565)
+transform = Transform3D(0.397196, 0, 0.917734, 0, 1, 0, -0.917734, 0, 0.397196, 63.4052, 2.79735, 50.2449)
 
 [node name="MapBounds" type="Area3D" parent="."]
 

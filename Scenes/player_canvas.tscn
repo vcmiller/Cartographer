@@ -369,6 +369,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_8hili")
 text = "Submit Map"
 
 [node name="Close" type="Button" parent="VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.635294, 0.576471, 0.533333, 1)
@@ -391,6 +392,33 @@ offset_right = 139.0
 offset_bottom = -36.0
 grow_horizontal = 2
 grow_vertical = 0
+texture = ExtResource("19_v02hp")
+expand_mode = 1
+
+[node name="CloseHint" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/CloseHint"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = -5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = -5
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/CloseHint/MarginContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/CloseHint/MarginContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(130.88, 0)
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_r5238")
+theme_override_font_sizes/font_size = 24
+text = "Close Map"
+
+[node name="TextureRect4" type="TextureRect" parent="VBoxContainer/CloseHint/MarginContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
 texture = ExtResource("19_v02hp")
 expand_mode = 1
 

@@ -146,6 +146,7 @@ func show_no_path_bubble():
 	thoughtBubble.show()
 	thoughtBubbleNoPath.show()
 	thoughtBubbleIcon.hide()
+	thoughtBubbleMonster.hide()
 	
 	for i in range(len(level_controller.goals)):
 		var item = level_controller.goals[i]
@@ -160,6 +161,9 @@ func show_no_path_bubble():
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
+	if thoughtBubble.visible:
+		thoughtBubble.look_at(remote.global_position, Vector3(0, 1, 0), true)
+	
 	if not is_on_floor():
 		velocity += get_gravity() * _delta
 	if !map.markersPlaced[destIndex]: return

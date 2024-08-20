@@ -80,4 +80,5 @@ func submit_map():
 	player.submit()
 	
 func close_map():
+	var tree = get_tree()
 	player.item_manager.SetItem(null)

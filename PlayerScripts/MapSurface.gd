@@ -200,7 +200,7 @@ func _unhandled_input(event: InputEvent):
 		var newHighlightButton = null
 		if result.collider == Collider:
 			newHighlightButton = Collider
-			Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+			#Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 			if !currentToolModel:
 				match(currentButton):
 					CliffToolButton:

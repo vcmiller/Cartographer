@@ -64,6 +64,7 @@ albedo_texture = ExtResource("7_6wtfp")
 texture_repeat = false
 
 [node name="Navigator" type="CharacterBody3D" node_paths=PackedStringArray("Model", "remote", "anim", "cameraArm", "thoughtBubble", "thoughtBubbleIcon", "thoughtBubbleNoDest", "thoughtBubbleNoPath", "thoughtBubbleMonster", "body", "hairs", "facialHairs", "attach_points")]
+collision_layer = 2
 axis_lock_angular_x = true
 axis_lock_angular_z = true
 script = ExtResource("1_dle6y")
@@ -144,12 +145,12 @@ bone_name = "Root"
 bone_idx = 0
 
 [node name="RightHandAttach" type="BoneAttachment3D" parent="Dude/Armature/Skeleton3D" index="2"]
-transform = Transform3D(-0.897191, 0.441607, 0.00567332, -0.441643, -0.897097, -0.0129661, -0.000636412, -0.0141387, 0.9999, 0.590047, 1.99674, 0.03887)
+transform = Transform3D(-0.897191, 0.441606, 0.00567332, -0.441642, -0.897097, -0.0129661, -0.000636407, -0.0141387, 0.9999, 0.590047, 1.99674, 0.03887)
 bone_name = "Arm_R"
 bone_idx = 1
 
 [node name="LeftHandAttach" type="BoneAttachment3D" parent="Dude/Armature/Skeleton3D" index="3"]
-transform = Transform3D(-0.897191, -0.441607, -0.00567332, 0.441643, -0.897097, -0.0129661, 0.000636412, -0.0141387, 0.9999, -0.590047, 1.99674, 0.03887)
+transform = Transform3D(-0.897191, -0.441606, -0.00567332, 0.441642, -0.897097, -0.0129661, 0.000636407, -0.0141387, 0.9999, -0.590047, 1.99674, 0.03887)
 bone_name = "Arm_L"
 bone_idx = 2
 
