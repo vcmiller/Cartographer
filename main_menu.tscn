@@ -143,7 +143,6 @@ toggle_mode = true
 text = "Level Select"
 
 [node name="LevelsToSelect" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
-visible = false
 layout_mode = 2
 theme = ExtResource("2_cvubr")
 theme_override_constants/separation = 12
@@ -168,6 +167,10 @@ display_name = "Level 4"
 [node name="Level5" parent="CenterContainer/VBoxContainer/LevelsToSelect" instance=ExtResource("16_m3kik")]
 layout_mode = 2
 display_name = "Level 5"
+
+[node name="Level6" parent="CenterContainer/VBoxContainer/LevelsToSelect" instance=ExtResource("16_m3kik")]
+layout_mode = 2
+display_name = "Level 6"
 
 [node name="Settings" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2

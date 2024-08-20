@@ -44,14 +44,14 @@ textures = [[ExtResource("6_andtf"), ExtResource("7_x6axp"), ExtResource("9_w4bp
 [sub_resource type="BoxShape3D" id="BoxShape3D_70al6"]
 size = Vector3(50, 20, 75)
 
-[node name="Level3" type="Node3D" node_paths=PackedStringArray("navigator_spawn_points", "player", "goals", "extraMarkerPositions")]
+[node name="Level5" type="Node3D" node_paths=PackedStringArray("navigator_spawn_points", "player", "goals", "extraMarkerPositions")]
 script = ExtResource("1_7gly0")
 navigator_spawn_points = [NodePath("Start1"), NodePath("Start2")]
 player = NodePath("Player")
 goals = [NodePath("Chest"), NodePath("Dragon")]
 extraMarkerSprites = Array[Texture2D]([ExtResource("2_fa5xc")])
 extraMarkerPositions = [NodePath("Flag2")]
-nextLevel = "res://Scenes/Levels/level4.tscn"
+nextLevel = "res://Scenes/Levels/level6.tscn"
 info_title = "Here There Be Dragons!"
 info_portrait = ExtResource("3_qgiue")
 info_text = "My esteemed cartogrpaher, be careful! A dragon lurks in this ravine, and there's no way around it! But fear not, for I shall slay the foul beast!
